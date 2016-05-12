@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_smtpclient_queue_all","smtpclient_queue all","smtpclient.model_email_smtpclient_queue",,1,0,1,0
+"access_smtpclient_queue_group_erpmanager","smtpclient.smtpclient_queue erp_manager","smtpclient.model_email_smtpclient_queue","base.group_erp_manager",1,1,1,1
+"access_email_smtpclient_email_template_all","email_smtpclient_email_template all","model_email_smtpclient_email_template",,1,0,0,0
+"access_email_smtpclient_email_template_group_erpmanager","email_smtpclient_email_template erp_manager","model_email_smtpclient_email_template","base.group_erp_manager",1,1,1,1

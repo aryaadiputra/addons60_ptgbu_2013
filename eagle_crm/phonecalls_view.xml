@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<!--
+  File: phonecalls_view.xml
+  Module: eagle_crm
+
+  Created by cyp@open-net.ch
+
+  Copyright (c) 2011 Open-Net Ltd. All rights reserved.
+-->
+<openerp>
+<data>
+
+	<record model="ir.ui.view" id="eagle_view_prod_tree_view_in_phonecall_inherit1">
+		<field name="name">CRM - Inbound Phone Calls Tree</field>
+		<field name="type">form</field>
+		<field name="model">crm.phonecall</field>
+		<field name="inherit_id" ref="crm.crm_case_inbound_phone_tree_view"/>
+		<field name="arch" type="xml">
+			<field name="partner_address_id" position="replace">
+				<field name="partner_address_id" string="Address"
+						on_change="onchange_partner_address_id(partner_address_id, email_from)" />
+				<field name="partner_addr_contact"/>
+			</field>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="eagle_view_prod_form_view_in_phonecall_inherit1">
+		<field name="name">CRM - Inbound Phone Call Form</field>
+		<field name="type">form</field>
+		<field name="model">crm.phonecall</field>
+		<field name="inherit_id" ref="crm.crm_case_inbound_phone_form_view"/>
+		<field name="arch" type="xml">
+			<field name="partner_address_id" position="replace">
+				<field name="partner_address_id" string="Address"
+						on_change="onchange_partner_address_id(partner_address_id, email_from)" />
+				<newline/>
+				<field name="partner_addr_contact"/>
+			</field>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="eagle_view_prod_form_view_phonecall_inherit1">
+		<field name="name">CRM - Phone Call Form</field>
+		<field name="type">form</field>
+		<field name="model">crm.phonecall</field>
+		<field name="inherit_id" ref="crm.crm_case_phone_form_view"/>
+		<field name="arch" type="xml">
+			<field name="partner_address_id" position="replace">
+				<field name="partner_address_id" string="Address"
+						on_change="onchange_partner_address_id(partner_address_id, email_from)" />
+				<newline/>
+				<field name="partner_addr_contact"/>
+			</field>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="eagle_view_prod_tree_view_phonecall_inherit1">
+		<field name="name">CRM - Phone Calls Tree</field>
+		<field name="type">form</field>
+		<field name="model">crm.phonecall</field>
+		<field name="inherit_id" ref="crm.crm_case_phone_tree_view"/>
+		<field name="arch" type="xml">
+			<field name="partner_contact" position="after">
+				<field name="partner_addr_contact"/>
+			</field>
+		</field>
+	</record>
+	
+	<record model="ir.ui.view" id="eagle_view_phonecalls_form_in_inherit_2">
+		<field name="name">Eagle CRM Inbound Phone Calls Form</field>
+		<field name="type">form</field>
+		<field name="model">crm.phonecall</field>
+		<field name="inherit_id" ref="crm.crm_case_inbound_phone_form_view"/>
+		<field name="arch" type="xml">
+			<field name="opportunity_id" position="after">
+					<field name="contract_id" string="Contract" invisible="1" />					
+				</field>
+		</field>
+	</record>
+	
+	<record model="ir.ui.view" id="eagle_view_phonecalls_form_inherit_2">
+			<field name="name">Eagle CRM Phone Calls</field>
+			<field name="model">crm.phonecall</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="crm.crm_case_phone_form_view"/>
+			<field name="arch" type="xml">
+				<field name="opportunity_id" position="after">
+					<field name="contract_id" string="Contract" invisible="1"/>					
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="eagle_view_phonecalls_tree">
+			<field name="name">Eagle CRM Phone Calls List</field>
+			<field name="model">crm.phonecall</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Phone Calls" colors="grey:state in ('cancel','done');blue:state in ('pending',)" editable="top">
+					<field name="date"/>
+					<field name="name"/>
+					<field name="partner_id" on_change="onchange_partner_id(partner_id)" string="Partner"/>
+					<field name="partner_address_id" on_change="onchange_partner_address_id(partner_address_id)"/>
+					<field name="partner_phone"/>
+					<field name="user_id"/>
+					<field name="categ_id" widget="selection" domain="[('object_id.model', '=', 'crm.phonecall')]" string="Type"/>
+					<field name="state" invisible="1"/>
+					<field name="create_date" invisible="1"/>
+				</tree>
+			</field>
+		</record>
+
+		<act_window 
+			domain="[('contract_id', '=', active_id)]" 
+			id="eagle_action_contract_2_corr_phonecalls"
+			name="Corr. Phone Calls" 
+			view_id="eagle_view_phonecalls_tree"
+			res_model="crm.phonecall" 
+			src_model="eagle.contract"/>
+
+		<record model="ir.ui.view" id="eagle_view_phonecalls_calendar_inherit">
+			<field name="name">Eagle CRM Phone Calls Calendar View</field>
+			<field name="type">calendar</field>
+			<field name="model">crm.phonecall</field>
+			<field name="inherit_id" ref="crm.crm_case_phone_calendar_view"/>
+			<field name="arch" type="xml">
+				<field name="partner_id" position="replace"/>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="eagle_view_crm_curr_outgoing_phonecalls_search">
+			<field name="name">Eagle CRM Current Outgoing Phone Calls </field>
+			<field name="model">crm.phonecall</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Search Phonecalls">
+				   <filter icon="terp-go-today" string="Today"
+					   domain="[('date','&lt;', time.strftime('%%Y-%%m-%%d 23:59:59')),
+						('date','&gt;=',time.strftime('%%Y-%%m-%%d 00:00:00'))]"
+					   name="today"
+					   help="Todays's Phonecalls"
+				   />
+				   <filter icon="terp-go-week"
+					   string="7 Days"
+					   help="Phonecalls during last 7 days"
+					   domain="[('date','&gt;=',(datetime.date.today()-datetime.timedelta(days=7)).strftime('%%Y-%%m-%%d'))]"
+				   />
+	
+				   <separator orientation="vertical"/>
+				   <field name="name"/>
+				   <field name="partner_id"/>
+				   <field name="user_id">
+					   <filter icon="terp-personal-"
+						   domain="[('user_id','=',False)]"
+						   help="Unassigned Phonecalls" />
+				   </field>
+				   <field name="section_id"
+					   select="1" widget="selection" string="Sales Team">
+					   <filter icon="terp-personal+" groups="base.group_extended"
+						   domain="['|', ('section_id', '=', context.get('section_id')), '|', ('section_id.user_id','=',uid), ('section_id.member_ids', 'in', [uid])]"
+						   help="My Sales Team(s)" />
+				   </field>
+				   <newline/>
+				   <group expand="0" string="Group By..." colspan="4">
+					   <filter string="Partner" icon="terp-partner" domain="[]"
+						   context="{'group_by':'partner_id'}" />
+					   <filter string="Responsible" icon="terp-personal"
+						   domain="[]" context="{'group_by':'user_id'}" />
+					   <separator orientation="vertical" />
+					   <filter string="Creation" icon="terp-go-month" help="Creation Date"
+						   domain="[]" context="{'group_by':'create_date'}" />
+					   <filter string="Date" icon="terp-go-month" domain="[]"
+						   context="{'group_by':'date'}" help="Date of Call" />
+				   </group>
+			   </search>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="eagle_action_crm_curr_outgoing_phonecalls_search">
+			<field name="name">Current Outbound</field>
+			<field name="res_model">crm.phonecall</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,calendar</field>
+			<field name="view_id" ref="crm.crm_case_phone_tree_view"/>
+			<field name="domain" eval="[('state','=','open')]"/>
+			<field name="context">{'search_default_section_id':section_id, 'default_state':'open'}</field>
+			<field name="search_view_id" ref="crm.view_crm_case_phonecalls_filter"/>
+			<field name="help">Current Outbound Calls list all the calls to be done by your sales team. A salesman can record the information about the call in the form view. This information will be stored in the partner form to trace every contact you have with a customer. You can also import a .CSV file with a list of calls to be done by your sales team.</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_eagle_crm_curr_outgoing_phonecalls_tree">
+			<field name="sequence" eval="1"/>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="crm.crm_case_phone_tree_view"/>
+			<field name="act_window_id" ref="eagle_action_crm_curr_outgoing_phonecalls_search"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="action_eagle_crm_curr_outgoing_phonecalls_cal">
+			<field name="sequence" eval="2"/>
+			<field name="view_mode">calendar</field>
+			<field name="view_id" ref="crm.crm_case_phone_calendar_view"/>
+			<field name="act_window_id" ref="eagle_action_crm_curr_outgoing_phonecalls_search"/>
+		</record>
+		
+		<record model="ir.actions.act_window.view" id="action_eagle_crm_curr_outgoing_phonecalls_view">
+			<field name="sequence" eval="3"/>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="crm.crm_case_phone_form_view"/>
+			<field name="act_window_id" ref="eagle_action_crm_curr_outgoing_phonecalls_search"/>
+		</record>
+
+		<menuitem name="Current Outbound" id="eagle_menu_crm_curr_outgoing_phonecalls"
+			parent="crm.menu_crm_case_phone"
+			action="eagle_action_crm_curr_outgoing_phonecalls_search" />
+
+</data>
+</openerp>

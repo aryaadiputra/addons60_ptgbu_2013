@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<openerp>
+	<data noupdate="True">
+
+		<!-- Taxes -->
+		<!-- TAX Code Definitions -->
+		<!-- Invoiced TAX -->
+		<record id="tax_code_chart_root" model="account.tax.code.template">
+			<field name="name">Plan Fees </field>
+		</record>
+		<record id="tax_code_balance_net" model="account.tax.code.template">
+			<field name="name">Tax Balance to Pay</field>
+			<field name="parent_id" ref="tax_code_chart_root" />
+		</record>
+		<!-- Input TAX -->
+		<record id="tax_code_input" model="account.tax.code.template">
+			<field name="name">Tax Received</field>
+			<field name="parent_id" ref="tax_code_balance_net" />
+			<field name="sign" eval="-1" />
+		</record>
+		<record id="tax_code_input_ppn" model="account.tax.code.template">
+			<field name="name">Tax Received Rate PPN (10%)</field>
+			<field name="parent_id" ref="tax_code_input" />
+		</record>
+		<!-- Output TAX -->
+		<record id="tax_code_output" model="account.tax.code.template">
+			<field name="name">Tax Paid</field>
+			<field name="parent_id" ref="tax_code_balance_net" />
+		</record>
+		<record id="tax_code_output_ppn" model="account.tax.code.template">
+			<field name="name">Tax Paid Rate PPN (10%)</field>
+			<field name="parent_id" ref="tax_code_output" />
+		</record>
+		<!-- Invoiced Base of TAX -->
+		<!-- Purchases -->
+		<record id="tax_code_base_net" model="account.tax.code.template">
+			<field name="name">Tax Bases</field>
+			<field name="parent_id" ref="tax_code_chart_root" />
+		</record>
+		<record id="tax_code_base_purchases" model="account.tax.code.template">
+			<field name="name">Taxable Purchases Base</field>
+			<field name="parent_id" ref="tax_code_base_net" />
+		</record>
+		<record id="tax_code_purch_ppn" model="account.tax.code.template">
+			<field name="name">Taxable Purchases Rated PPN (10%)</field>
+			<field name="parent_id" ref="tax_code_base_purchases" />
+		</record>
+		<!-- Sales -->
+		<record id="tax_code_base_sales" model="account.tax.code.template">
+			<field name="name">Base of Taxable Sales</field>
+			<field name="parent_id" ref="tax_code_base_net" />
+		</record>
+		<record id="tax_code_sales_ppn" model="account.tax.code.template">
+			<field name="name">Taxable Sales Rated (10%)</field>
+			<field name="parent_id" ref="tax_code_base_sales" />
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem name='Skill Category' id='menu_skill_category' parent='hr.menu_hr_root'
+			sequence='11' groups="base.group_hr_manager" />
+	
+		<record model="ir.ui.view" id="view_skill_category_tree">
+			<field name="name">Skill Category</field>
+			<field name="model">hr.skill.category</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Skill Category">
+					<field name="code"/>
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+	
+		<record model="ir.ui.view" id="view_skill_category_form">
+			<field name="name">Skill Category Form</field>
+			<field name="model">hr.skill.category</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Skill Category">
+					<group colspan="2">
+						<field name="code"/>
+						<field name="name"/>
+					</group>
+				</form>
+			</field>
+		</record>
+	
+		<menuitem name='Skill' id='menu_skill' parent='hr.menu_hr_root'
+			sequence='10' groups="base.group_hr_manager" />
+		<record model="ir.ui.view" id="view_skill_record_tree">
+			<field name="name">Skill Record</field>
+			<field name="model">hr.skill.record</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Skill">
+					<field name="category"/>
+					<field name="name" />
+					<field name="level"/>
+					<field name="desc" />
+				</tree>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="view_skill_record_form">
+			<field name="name">Skill Record</field>
+			<field name="model">hr.skill.record</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Skill">
+					<group colspan="4">
+						<field name="category"/>
+						<field name="name" />
+						<field name="level"/>
+						<newline />
+					</group>
+					<notebook colspan="4">
+						<page string="Deskripsi">
+							<separator string="Deskripsi" colspan="4" />
+							<field name="desc" nolabel="1" colspan="4" />
+						</page>
+						<page string="Karyawan">
+							<field name="employee_ids" nolabel="1" colspan="4" />
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+		<record id="act_menu_skill_category_tree" model="ir.actions.act_window">
+		    <field name="name">Skill Category</field>
+		    <field name="res_model">hr.skill.category</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">tree,form</field>
+		    <field eval="False" name="filter"/>
+		    <field name="view_id" ref="view_skill_category_tree"/>
+		</record>
+		
+		<menuitem 	name='Skill Category'
+					id='menu_skill_category_tree' 
+				  	parent='menu_skill'
+				  	action="act_menu_skill_category_tree"
+				  	sequence='4' />
+		
+		
+		<record id="act_menu_skill_record_tree" model="ir.actions.act_window">
+		    <field name="name">Skill Record</field>
+		    <field name="res_model">hr.skill.record</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">tree,form</field>
+		    <field eval="False" name="filter"/>
+		    <field name="view_id" ref="view_skill_record_tree"/>
+		</record>
+		<menuitem 	name='Skill'
+					id='menu_skill_record_tree' 
+				  	parent='menu_skill'
+				  	action="act_menu_skill_record_tree"
+				  	sequence='5' />
+		
+		<record model="ir.ui.view" id="view_skill_lines_tab">
+            <field name="name">Skill Lines</field>            
+            <field name="model">hr.employee</field>            
+			<field name="inherit_id" ref="ad_hr_bsp.view_rate_page"/>
+            <field name="arch" type="xml">
+            	<page string="PMS" position="before">
+            		<!-- Move into Experience page -->
+             		<!-- <page string="Skill" groups="base.group_hr_user">
+            			<field name="skill_ids" nolabel="1" colspan="4" />
+            		</page> -->
+            	</page>
+            </field>
+        </record>
+	</data>
+</openerp>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_association_page">
+			<field name="name">Association</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="view_memorandum_page" />
+			<field name="arch" type="xml">
+				<page string="Warning Letter" position="after">
+					<!-- Move into Education page -->
+					<!-- <page string="Association" groups="base.group_hr_user">
+						<field name="association" nolabel="1" colspan="4" mode="tree,form">
+							<tree string="Association" editable="bottom">
+								<field name="from" />
+								<field name="to" />
+								<field name="association" />
+								<field name="position" />
+								<field name="notes" />
+							</tree>
+							<form string="Association">
+								<group colspan="4" col="4">
+									<field name="from" />
+									<field name="to" />
+									<field name="association" />
+									<field name="position" />
+									<separator string="Notes" colspan="4" />
+									<field name="notes" nolabel="1" colspan="4" />
+								</group>
+							</form>
+						</field>
+					</page> -->
+				</page>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		
+		<report id="invoice_form" string="Invoice Form" model="account.invoice"
+			name="invoice.form" 
+			file="ad_invoice_form/report/invoice_form.mako" 
+			report_type="webkit"
+			auto="False"
+			menu="True"/>
+
+	</data>
+</openerp>

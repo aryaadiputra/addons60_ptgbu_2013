@@ -1,0 +1,9 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_eagle_goods_obj_managers","eagle_goods.eagle_goods_obj_managers","model_eagle_good_object","eagle_base.group_contracts_managers",1,1,1,1
+"access_eagle_goods_att_managers","eagle_goods.eagle_goods_att_managers","model_eagle_good_attribut","eagle_base.group_contracts_managers",1,1,1,1
+"access_eagle_goods_obj_viewers","eagle_goods.eagle_goods_obj_viewers","model_eagle_good_object","eagle_base.group_contracts_viewers",1,0,0,0
+"access_eagle_goods_att_viewers","eagle_goods.eagle_goods_att_viewers","model_eagle_good_attribut","eagle_base.group_contracts_viewers",1,0,0,0
+"access_eagle_goods_obj_editors","eagle_goods.eagle_goods_obj_editors","model_eagle_good_object","eagle_base.group_contracts_editors",1,1,1,1
+"access_eagle_goods_att_editors","eagle_goods.eagle_goods_att_editors","model_eagle_good_attribut","eagle_base.group_contracts_editors",1,1,1,1
+"access_eagle_goods_obj_users","eagle_goods.eagle_goods_obj_users","model_eagle_good_object","eagle_base.group_contracts_users",1,0,0,0
+"access_eagle_goods_att_users","eagle_goods.eagle_goods_att_users","model_eagle_good_attribut","eagle_base.group_contracts_users",1,0,0,0

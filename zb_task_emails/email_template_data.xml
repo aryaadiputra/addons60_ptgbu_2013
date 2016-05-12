@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data noupdate="1">
+		
+		<record id="email_smtpclient_email_template_task0" model="email.smtpclient.email.template">
+			<field eval="&quot;&quot;&quot;Hello &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;/span&gt;__assigned_user__&lt;br&gt;
+There has been a new task assigned to you in OpenERP.&lt;br&gt;&lt;br&gt;Task Summary : __task_summary__&lt;br&gt;Task Description : __task_description__&lt;br&gt;Priority : __priority__&lt;br&gt;Project : __project__&lt;br&gt;Planned Hours : __planned_hours__&lt;br&gt;Dead line : __date_deadline__&lt;br&gt;&lt;br&gt;Created User : __created_user__&lt;br&gt;Current Action By : __current_action_user__&lt;br&gt;
+
+&lt;br&gt;Click here to view the task &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 255, 255);&quot;&gt; &lt;/span&gt;&lt;a href=&quot;__web_url1__&quot;&gt;__task_summary__&lt;/a&gt;&lt;br&gt;&lt;br&gt;Please work on this task as per the importance and update the task works once done.&lt;br&gt;
+
+&lt;br&gt;Thank You&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;br&gt;--&lt;br&gt;Best Regards&lt;br&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;__project_manager__&lt;/span&gt;&lt;br&gt;Project Manager.&lt;br&gt;&lt;br&gt;**Do not reply for this email as it is a system generated message from OpenERP.&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;/font&gt;&quot;&quot;&quot;" name="body"/>
+			<field eval="&quot;&quot;&quot;task&quot;&quot;&quot;" name="name"/>
+		</record>
+
+		
+		
+		
+		<record id="email_smtpclient_email_template_taskcomplete0" model="email.smtpclient.email.template">
+			<field eval="&quot;&quot;&quot;Hello __project_manager__&lt;br&gt;
+The following task is completed.&lt;br&gt;&lt;br&gt;Task Summary : __task_summary__&lt;br&gt;Task Description : __task_description__&lt;br&gt;Project :__project__&lt;br&gt;Assigned : &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;/span&gt;__assigned_user__&lt;br&gt;Planned Hours : __planned_hours__&lt;br&gt;Hours Spent : __hours_spent__&lt;br&gt;&lt;br&gt;Created User : __created_user__&lt;br&gt;Current Action By : __current_action_user__&lt;br&gt;
+
+&lt;br&gt;Click here to view the task &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 255, 255);&quot;&gt; &lt;/span&gt;&lt;a href=&quot;__web_url1__&quot;&gt;__task_summary__&lt;/a&gt;&lt;br&gt;
+
+&lt;br&gt;Thank You&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;br&gt;--&lt;br&gt;&lt;br&gt;**Do not reply for this email as it is a system generated message from OpenERP.&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&quot;&quot;&quot;" name="body"/>
+			<field eval="&quot;&quot;&quot;task_complete&quot;&quot;&quot;" name="name"/>
+		</record>
+		
+		
+		
+		
+		<record id="email_smtpclient_email_template_task_pending" model="email.smtpclient.email.template"> 
+		<field eval="&quot;&quot;&quot;Hello &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;/span&gt;__project_manager__&lt;br&gt;
+The following task is pending in OpenERP.&lt;br&gt;&lt;br&gt;Task Summary : __task_summary__&lt;br&gt;Task Description : __task_description__&lt;br&gt;Priority : __priority__&lt;br&gt;Project : __project__&lt;br&gt;Assigned To : __assigned_user__&lt;br&gt;Planned Hours : __planned_hours__&lt;br&gt;Hours Spent: __hours_spent__&lt;br&gt;Dead line : __date_deadline__&lt;br&gt;&lt;br&gt;Created User : __created_user__&lt;br&gt;Current Action By : __current_action_user__&lt;br&gt;
+
+&lt;br&gt;Click here to view the task &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 255, 255);&quot;&gt; &lt;/span&gt;&lt;a href=&quot;__web_url1__&quot;&gt;__task_summary__&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;br&gt;Thank You&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;br&gt;--&lt;br&gt;&lt;br&gt;**Do not reply for this email as it is a system generated message from OpenERP.&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&quot;&quot;&quot;" name="body"/>
+		<field eval="&quot;&quot;&quot;task_pending&quot;&quot;&quot;" name="name"/>
+		</record>
+		
+
+		
+		
+		<record id="email_smtpclient_email_template_task_reassigned" model="email.smtpclient.email.template"> 
+		<field eval="&quot;&quot;&quot;Hello &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;/span&gt;__assigned_user__&lt;br&gt;
+There has been a  task re assigned to you in OpenERP.&lt;br&gt;&lt;br&gt;Task Summary : __task_summary__&lt;br&gt;Task Description : __task_description__&lt;br&gt;Priority : __priority__&lt;br&gt;Project : __project__&lt;br&gt;Assigned To : __assigned_user__&lt;br&gt;Planned Hours : __planned_hours__&lt;br&gt;Hours Spent: __hours_spent__&lt;br&gt;Dead line : __date_deadline__&lt;br&gt;&lt;br&gt;Created User : __created_user__&lt;br&gt;Current Action By : __current_action_user__&lt;br&gt;
+
+&lt;br&gt;Click here to view the task &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 255, 255);&quot;&gt; &lt;/span&gt;&lt;a href=&quot;__web_url1__&quot;&gt;__task_summary__&lt;/a&gt;&lt;br&gt;&lt;br&gt;Please work on this task as per the importance and update the task works once done.&lt;br&gt;
+
+&lt;br&gt;Thank You&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;br&gt;--&lt;br&gt;Best Regards&lt;br&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;__project_manager__&lt;/span&gt;&lt;br&gt;Project Manager.&lt;br&gt;&lt;br&gt;**Do not reply for this email as it is a system generated message from OpenERP.&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;/font&gt;&quot;&quot;&quot;"  name="body"/>
+		<field eval="&quot;&quot;&quot;task_reassigned&quot;&quot;&quot;" name="name"/>
+		</record>
+		
+		
+		
+		
+		
+		<record id="email_smtpclient_email_template_task_des_changed" model="email.smtpclient.email.template"> 
+		<field eval="&quot;&quot;&quot;Hello &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;/span&gt;__assigned_user__&lt;br&gt;
+The task description  has been changed for the task assigned to you in OpenERP.&lt;br&gt;&lt;br&gt;Task Summary : __task_summary__&lt;br&gt;Task Description : __task_description__&lt;br&gt;Priority : __priority__&lt;br&gt;Project : __project__&lt;br&gt;Assigned To : __assigned_user__&lt;br&gt;Planned Hours : __planned_hours__&lt;br&gt;Hours Spent: __hours_spent__&lt;br&gt;Dead line : __date_deadline__&lt;br&gt;&lt;br&gt;Created User : __created_user__&lt;br&gt;Current Action By : __current_action_user__&lt;br&gt;
+
+&lt;br&gt;Click here to view the task &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 255, 255);&quot;&gt; &lt;/span&gt;&lt;a href=&quot;__web_url1__&quot;&gt;__task_summary__&lt;/a&gt;&lt;br&gt;&lt;br&gt;Please work on this task as per the importance and update the task works once done.&lt;br&gt;
+
+&lt;br&gt;Thank You&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;br&gt;--&lt;br&gt;Best Regards&lt;br&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;__project_manager__&lt;/span&gt;&lt;br&gt;Project Manager.&lt;br&gt;&lt;br&gt;**Do not reply for this email as it is a system generated message from OpenERP.&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;/font&gt;&quot;&quot;&quot;" name="body"/>
+		<field eval="&quot;&quot;&quot;task_des_changed&quot;&quot;&quot;" name="name"/>
+		</record>
+		
+		
+		
+		
+		
+		<record id="email_smtpclient_email_template_task_reopen" model="email.smtpclient.email.template"> 
+		<field eval="&quot;&quot;&quot;Hello &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;/span&gt;__assigned_user__&lt;br&gt;
+The Following Task Has been Re Activated in OpenERP.&lt;br&gt;&lt;br&gt;Task Summary : __task_summary__&lt;br&gt;Task Description : __task_description__&lt;br&gt;Priority : __priority__&lt;br&gt;Project : __project__&lt;br&gt;Assigned To : __assigned_user__&lt;br&gt;Planned Hours : __planned_hours__&lt;br&gt;Hours Spent: __hours_spent__&lt;br&gt;Dead line : __date_deadline__&lt;br&gt;&lt;br&gt;Created User : __created_user__&lt;br&gt;Current Action By : __current_action_user__&lt;br&gt;
+
+&lt;br&gt;Click here to view the task &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 255, 255);&quot;&gt; &lt;/span&gt;&lt;a href=&quot;__web_url1__&quot;&gt;__task_summary__&lt;/a&gt;&lt;br&gt;&lt;br&gt;Please work on this task as per the importance and update the task works once done.&lt;br&gt;
+
+&lt;br&gt;Thank You&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;br&gt;--&lt;br&gt;Best Regards&lt;br&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;__project_manager__&lt;/span&gt;&lt;br&gt;Project Manager.&lt;br&gt;&lt;br&gt;**Do not reply for this email as it is a system generated message from OpenERP.&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;/font&gt;&quot;&quot;&quot;" name="body"/>
+		<field eval="&quot;&quot;&quot;task_reopen&quot;&quot;&quot;" name="name"/>
+		</record>
+		
+		
+		
+		
+		
+		<record id="email_smtpclient_email_template_task_work_summary" model="email.smtpclient.email.template"> 
+		<field eval="&quot;&quot;&quot;Hello &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;/span&gt;__project_manager__&lt;br&gt;
+Task Work of The Following Task has been Updated.&lt;br&gt;&lt;br&gt;Task Summary : __task_summary__&lt;br&gt;Task Description : __task_description__&lt;br&gt;Priority : __priority__&lt;br&gt;Project : __project__&lt;br&gt;Assigned To : __assigned_user__&lt;br&gt;Planned Hours : __planned_hours__&lt;br&gt;Hours Spent: __hours_spent__&lt;br&gt;Dead line : __date_deadline__&lt;br&gt;&lt;br&gt;Created User : __created_user__&lt;br&gt;Current Action By : __current_action_user__&lt;br&gt;
+
+&lt;br&gt;Click here to view the task &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 255, 255);&quot;&gt; &lt;/span&gt;&lt;a href=&quot;__web_url1__&quot;&gt;__task_summary__&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;br&gt;Thank You&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;br&gt;--&lt;br&gt;&lt;br&gt;**Do not reply for this email as it is a system generated message from OpenERP.&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&quot;&quot;&quot;" name="body"/>
+		<field eval="&quot;&quot;&quot;task_work_summary&quot;&quot;&quot;" name="name"/>
+		</record>
+		
+		
+		
+		
+		
+		<record id="email_smtpclient_email_template_task_cancelled" model="email.smtpclient.email.template"> 
+		<field eval="&quot;&quot;&quot;Hello &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;/span&gt;__project_manager__&lt;br&gt;
+The Following Task has been Cancelled In OpenERP.&lt;br&gt;&lt;br&gt;Task Summary : __task_summary__&lt;br&gt;Task Description : __task_description__&lt;br&gt;Priority : __priority__&lt;br&gt;Project : __project__&lt;br&gt;Assigned To : __assigned_user__&lt;br&gt;Planned Hours : __planned_hours__&lt;br&gt;Hours Spent: __hours_spent__&lt;br&gt;Dead line : __date_deadline__&lt;br&gt;&lt;br&gt;Created User : __created_user__&lt;br&gt;Current Action By : __current_action_user__&lt;br&gt;
+
+&lt;br&gt;Click here to view the task &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 255, 255);&quot;&gt; &lt;/span&gt;&lt;a href=&quot;__web_url1__&quot;&gt;__task_summary__&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;br&gt;Thank You&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;br&gt;--&lt;br&gt;&lt;br&gt;**Do not reply for this email as it is a system generated message from OpenERP.&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&quot;&quot;&quot;" name="body"/>
+		<field eval="&quot;&quot;&quot;task_cancelled&quot;&quot;&quot;" name="name"/>
+		</record>
+		
+		
+		
+		<record id="email_smtpclient_email_template_task_warning" model="email.smtpclient.email.template"> 
+		<field eval="&quot;&quot;&quot;Hello &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;/span&gt;__project_manager__&lt;br&gt;
+The Following Task has not been completed even after the ending date of the task.&lt;br&gt;&lt;br&gt;Task Summary : __task_summary__&lt;br&gt;Task Description : __task_description__&lt;br&gt;Priority : __priority__&lt;br&gt;Project : __project__&lt;br&gt;Assigned To : __assigned_user__&lt;br&gt;Planned Hours : __planned_hours__&lt;br&gt;Hours Spent: __hours_spent__&lt;br&gt;Dead line : __date_deadline__&lt;br&gt;Ending Date : __end_date__&lt;br&gt;&lt;br&gt;Created User : __created_user__&lt;br&gt;Current Action By : __current_action_user__&lt;br&gt;
+
+&lt;br&gt;Click here to view the task &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 255, 255);&quot;&gt; &lt;/span&gt;&lt;a href=&quot;__web_url1__&quot;&gt;__task_summary__&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;br&gt;Thank You&lt;br&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;font color=&quot;#888888&quot;&gt;&lt;br&gt;--&lt;br&gt;&lt;br&gt;**Do not reply for this email as it is a system generated message from OpenERP.&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&quot;&quot;&quot;" name="body"/>
+		<field eval="&quot;&quot;&quot;task_warning&quot;&quot;&quot;" name="name"/>
+		</record>
+		
+		
+		
+	</data>
+</openerp>

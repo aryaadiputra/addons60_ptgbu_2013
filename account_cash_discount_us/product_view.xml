@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">product.normal.form.inherit2</field>
+            <field name="model">product.product</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.product_normal_form_view"/>
+            <field name="arch" type="xml">
+				<xpath expr="//field[@name='property_account_expense']" position="after">
+				        <newline/>
+                        <field name="sales_discount_account" attrs="{'readonly':[('sale_ok','=',0)]}"/>
+                        <field name="purchase_discount_account" attrs="{'readonly':[('purchase_ok','=',0)]}"/>
+				</xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
+            

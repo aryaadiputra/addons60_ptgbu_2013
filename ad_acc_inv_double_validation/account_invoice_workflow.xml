@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+	    <record id="account.act_cancel" model="workflow.activity">
+	            <field name="wkf_id" ref="account.wkf"/>
+	            <field name="name">cancel</field>
+	            <field name="flow_stop">True</field>
+	            <field name="action">action_cancel()
+	            action_note()
+	            write({'state':'cancel','text':''})</field>
+	            <field name="kind">function</field>
+	        </record>
+        
+    	<record id="account.act_draft" model="workflow.activity">
+            <field name="wkf_id" ref="account.wkf"/>
+            <field name="flow_start">True</field>
+            <field name="action">write({'state':'draft','text':''})</field>
+            <field name="name">draft</field>
+            <field name="kind">function</field>
+        </record>
+    
+    	<record id="act_lv2" model="workflow.activity">
+            <field name="wkf_id" ref="account.wkf"/>
+            <field name="name">lv2</field>
+            <field name="action">action_check()
+            action_date_assign()
+            action_move_create()
+            action_number()
+            write({'state':'approve_lv2','text':''})</field>
+            <field name="kind">function</field>
+        </record>
+        
+        <!--Cost Control Added-->
+        <record id="act_lv2-1" model="workflow.activity">
+            <field name="wkf_id" ref="account.wkf"/>
+            <field name="name">lv2-1</field>
+            <field name="action">write({'state':'approve_lv2-1','text':''})</field>
+            <field name="kind">function</field>
+        </record>
+        <!--##################-->
+    
+    	<record id="act_lv3" model="workflow.activity">
+            <field name="wkf_id" ref="account.wkf"/>
+            <field name="name">lv3</field>
+            <field name="action">write({'state':'approve_lv3','text':''})</field>
+            <field name="kind">function</field>
+        </record>
+        
+        <record id="act_lv4" model="workflow.activity">
+            <field name="wkf_id" ref="account.wkf"/>
+            <field name="name">lv4</field>
+            <field name="action">write({'state':'approve_lv4','text':''})</field>
+            <field name="kind">function</field>
+        </record>
+        
+        <!--##################-->
+    	
+        <record id="act_lv5" model="workflow.activity">
+            <field name="wkf_id" ref="account.wkf"/>
+            <field name="name">lv5</field>
+            <field name="action">write({'state':'approve_lv5','text':''})</field>
+            <field name="kind">function</field>
+        </record>
+        
+        <record id="account.act_open" model="workflow.activity">
+            <field name="wkf_id" ref="account.wkf"/>
+            <field name="name">open</field>
+            <field name="action">write({'state':'open','text':''})</field>
+            <field name="kind">function</field>
+        </record>
+        
+        <record id="account.t4" model="workflow.transition">
+            <field name="act_from" ref="account.act_draft"/>
+            <field name="act_to" ref="act_lv2"/>
+            <field name="signal">invoice_open</field>
+            <!--<field name="group_id" ref="group_cost_control_validation"/>-->
+        </record>
+        
+        <record id="tlv2" model="workflow.transition">
+            <field name="act_from" ref="act_lv2"/>
+            <field name="act_to" ref="act_lv2-1"/>
+            <field name="condition">True</field>
+            <!--##############Remove CFO##################-->
+            <!--<field name="condition">amount_total &gt;= 1000000</field>-->
+            <!--<field name="signal">approve_lv2</field>-->
+            <field name="signal"></field>
+            <!--<field name="group_id" ref="group_cfo"/>-->
+        </record>
+        
+        <record id="tlv2i" model="workflow.transition">
+            <field name="act_from" ref="act_lv2"/>
+            <field name="act_to" ref="act_lv2-1"/>
+            <!--##############Remove CFO##################-->
+            <!--<field name="condition">amount_total &lt; 1000000</field>-->
+            <field name="condition">True</field>
+        </record>
+        
+        <!--Cost Control Added-->
+        <record id="tlv2-1" model="workflow.transition">
+            <field name="act_from" ref="act_lv2-1"/>
+            <field name="act_to" ref="act_lv3"/>
+            <field name="signal">approve_lv2-1</field>
+            <!--<field name="condition">amount_total &gt;= 100000000</field>-->
+            <!--<field name="group_id" ref="group_ceo"/>-->
+        </record>
+        
+        <record id="tlv2-1i" model="workflow.transition">
+            <field name="act_from" ref="act_lv2-1"/>
+            <field name="act_to" ref="act_lv3"/>
+            <!--<field name="condition">amount_total &lt; 100000000</field>-->
+        </record>
+        <!--##############-->
+        
+        <record id="tlv3" model="workflow.transition">
+            <field name="act_from" ref="act_lv3"/>
+            <field name="act_to" ref="act_lv4"/>
+            <!--##############Treasury Approve di Remove#############-->
+            <!--<field name="signal">approve_lv3</field>-->
+            <!--<field name="group_id" ref="group_treasury_validation"/>-->
+            <field name="signal"></field>
+        </record>
+        <!-- 
+        <record id="tlv4_check" model="workflow.transition">
+            <field name="act_from" ref="act_lv4"/>
+            <field name="act_to" ref="act_lv5"/>
+            <field name="signal">approve_lv4</field>
+        </record>
+        -->
+        <!--Payment Added-->
+        <record id="tlv4" model="workflow.transition">
+            <field name="act_from" ref="act_lv4"/>
+            <field name="act_to" ref="act_lv5"/>
+            <!--Set No Limit-->
+            <field name="condition">amount_total &gt;= 0</field>
+            <!--<field name="condition">amount_total &gt;= 1000000</field>-->
+            <field name="signal">approve_lv4</field>
+            <!--<field name="group_id" ref="group_cfo"/>-->
+        </record>
+        <!--Use It IF use Amount Limit-->
+        <!-- 
+        <record id="tlv4i" model="workflow.transition">
+            <field name="act_from" ref="act_lv4"/>
+            <field name="act_to" ref="act_lv5"/>
+            <field name="condition">amount_total &lt; 1000000</field>
+        </record>
+        -->
+        <!--###################-->
+        
+        
+        
+        <record id="tlv5" model="workflow.transition">
+            <field name="act_from" ref="act_lv5"/>
+            <field name="act_to" ref="account.act_open"/>
+            <field name="condition">amount_total &gt;= 100000000</field>
+            <field name="signal">approve_lv5</field>
+            <field name="group_id" ref="group_ceo"/>
+        </record>
+        
+        <record id="tlv5i" model="workflow.transition">
+            <field name="act_from" ref="act_lv5"/>
+            <field name="act_to" ref="account.act_open"/>
+            <field name="condition">amount_total &lt; 100000000</field>
+        </record>
+        
+        <record id="account.t8" model="workflow.transition">
+            <field name="act_from" ref="account.act_open"/>
+            <field name="act_to" ref="account.act_paid"/>
+            <field name="trigger_model">account.move.line</field>
+            <field name="trigger_expr_id">move_line_id_payment_get()</field>
+            <field name="condition">test_paid()</field>
+            <field name="group_id" ref="group_treasury_validation"/>
+        </record>
+        
+        <record id="account.t9" model="workflow.transition">
+            <field name="act_from" ref="account.act_draft"/>
+            <field name="act_to" ref="account.act_cancel"/>
+            <field name="signal">invoice_cancel</field>
+            <field name="group_id" ref="group_cost_control_validation"/>
+        </record>
+        
+        <record id="tc2" model="workflow.transition">
+            <field name="act_from" ref="act_lv2"/>
+            <field name="act_to" ref="account.act_cancel"/>
+            <field name="signal">invoice_cancel</field>
+            <field name="group_id" ref="group_cfo"/>
+        </record>
+
+        <record id="tc2-1" model="workflow.transition">
+            <field name="act_from" ref="act_lv2-1"/>
+            <field name="act_to" ref="account.act_cancel"/>
+            <field name="signal">invoice_cancel</field>
+            <field name="group_id" ref="group_ceo"/>
+        </record>
+                
+        <record id="tc3" model="workflow.transition">
+            <field name="act_from" ref="act_lv3"/>
+            <field name="act_to" ref="account.act_cancel"/>
+            <field name="signal">invoice_cancel</field>
+            <field name="group_id" ref="group_treasury_validation"/>
+        </record>
+        
+        <record id="tc4" model="workflow.transition">
+            <field name="act_from" ref="act_lv4"/>
+            <field name="act_to" ref="account.act_cancel"/>
+            <field name="signal">invoice_cancel</field>
+            <field name="group_id" ref="group_cfo"/>
+        </record>
+        
+        <record id="tc5" model="workflow.transition">
+            <field name="act_from" ref="act_lv5"/>
+            <field name="act_to" ref="account.act_cancel"/>
+            <field name="signal">invoice_cancel</field>
+            <field name="group_id" ref="group_ceo"/>
+        </record>
+        
+    </data>
+</openerp>

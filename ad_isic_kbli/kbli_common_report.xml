@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="kbli_common_report_view" model="ir.ui.view">
+            <field name="name">kbli common report</field>
+            <field name="model">kbli.common.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Report Options">
+				<label nolabel="1" string=""/>
+                <newline/>
+                <field name="filter" on_change="onchange_filter(filter)" colspan="4"/>
+                <separator string="Category" colspan="4"/>
+                <field name="category_from" attrs="{'readonly':[('filter', '!=', 'filter_category')], 'required':[('filter', '=', 'filter_category')]}" colspan="4"/>
+                <field name="category_to" attrs="{'readonly':[('filter', '!=', 'filter_category')], 'required':[('filter', '=', 'filter_category')]}"  colspan="4"/>
+				<!--
+                <separator string="Main Class" colspan="4"/>
+                <field name="main_class_from" attrs="{'readonly':[('filter', '!=', 'filter_main_class')], 'required':[('filter', '=', 'filter_main_class')]}" colspan="4"/>
+                <field name="main_class_to" attrs="{'readonly':[('filter', '!=', 'filter_main_class')], 'required':[('filter', '=', 'filter_main_class')]}"  colspan="4"/>
+                <separator string="Class" colspan="4"/>
+                <field name="class_from" attrs="{'readonly':[('filter', '!=', 'filter_class')], 'required':[('filter', '=', 'filter_class')]}" colspan="4"/>
+                <field name="class_to" attrs="{'readonly':[('filter', '!=', 'filter_class')], 'required':[('filter', '=', 'filter_class')]}"  colspan="4"/>
+                <separator string="Sub Class" colspan="4"/>
+                <field name="sub_class_from" attrs="{'readonly':[('filter', '!=', 'filter_sub_class')], 'required':[('filter', '=', 'filter_sub_class')]}" colspan="4"/>
+                <field name="sub_class_to" attrs="{'readonly':[('filter', '!=', 'filter_sub_class')], 'required':[('filter', '=', 'filter_sub_class')]}"  colspan="4"/>
+                <separator string="Group" colspan="4"/>
+                <field name="group_from" attrs="{'readonly':[('filter', '!=', 'filter_group')], 'required':[('filter', '=', 'filter_group')]}" colspan="4"/>
+                <field name="group_to" attrs="{'readonly':[('filter', '!=', 'filter_group')], 'required':[('filter', '=', 'filter_group')]}"  colspan="4"/>
+				-->
+					<!--
+					<field name="chart_account_id" widget='selection'/>
+					<field name="fiscalyear_id"/>
+					<field name="target_move"/>
+						<notebook tabpos="up" colspan="4">
+							<page string="Filters" name="filters">
+                                <field name="filter" on_change="onchange_filter(filter, fiscalyear_id)" colspan="4"/>
+                                    <separator string="Dates" colspan="4"/>
+                                    <field name="date_from" attrs="{'readonly':[('filter', '!=', 'filter_date')], 'required':[('filter', '=', 'filter_date')]}" colspan="4"/>
+                                    <field name="date_to" attrs="{'readonly':[('filter', '!=', 'filter_date')], 'required':[('filter', '=', 'filter_date')]}"  colspan="4"/>
+                                    <separator string="Periods"  colspan="4"/>
+                                    <field name="period_from"  domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" colspan="4"/>
+                                    <field name="period_to" domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" colspan="4"/>
+                            </page>
+                            <page string="Journals" name="journal_ids">
+                                <field name="journal_ids" colspan="4" nolabel="1"/>
+                            </page>
+                        </notebook>
+					-->
+                <separator colspan="4"/>                    
+				<group col="4" colspan="4">
+				    <button icon="gtk-cancel" special="cancel" string="Cancel" colspan="2"/>
+					<button icon="gtk-print" name="check_report" string="Print KBLI" type="object" colspan="2" default_focus="1" />
+				</group>
+			</form>
+            </field>
+        </record>
+
+        <record id="action_kbli_common_menu" model="ir.actions.act_window">
+            <field name="name">Common Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kbli.common.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="kbli_common_report_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem 
+			id="menu_kbli_form" 
+			name="KBLI" 
+			parent="base.menu_res_company_global"/>
+
+        <menuitem
+            icon="STOCK_PRINT"
+            parent="menu_kbli_form"
+            action="action_kbli_common_menu"
+            id="menu_kbli_common_print"
+           />
+
+    </data>
+</openerp>

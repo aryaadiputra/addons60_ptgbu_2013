@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--
+          Inherit - Cash flow type in account 
+        -->
+        
+        <record id="view_cash_flow_form" model="ir.ui.view">
+            <field name="name">view.cash.flow.form</field>
+            <field name="model">account.account</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <field name="user_type" position="after">
+                    <field name="sub_cashflow_category_id" attrs="{'invisible':['|',('reconcile','=',True),('type','=','view')]}"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+            
+
+

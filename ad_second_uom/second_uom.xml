@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+	
+        <record model="ir.ui.view" id="product_normal_form_view_second_uom">
+			<field name="name">product.product.second.uom</field>
+			<field name="model">product.product</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="product.product_normal_form_view" />
+			<field name="arch" type="xml">
+				<field name="uom_po_id" position="after">
+                	<field name="factor"/>
+                	<field name="factor_price"/>
+                </field>
+				<xpath expr="/form/notebook/page/group[@name='uom']" position="after">
+			        <group colspan="2" col="2" name="tolerances">
+                    	<separator string="Over Shipment Tolerances" colspan="2"/>
+                    	<field name="tolerances_uom"/>
+                       	<field name="tolerances_qty"/>
+                	</group>
+				</xpath>
+			</field>
+		</record>
+		
+		<record id="purchase_order_tree_second_uom" model="ir.ui.view">
+            <field name="name">purchase.order.tree.second.uom</field>
+            <field name="model">purchase.order</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree" />
+			<field name="arch" type="xml">
+				<xpath expr="/tree" position="replace">
+					<tree colors="grey:state=='cancel';blue:state in ('wait','confirmed');red:state in ('except_invoice','except_picking')" string="Purchase Order">
+	                	<field name="state"/>
+	                	<field name="requisition_id"/>
+	                	<field name="rfq_number"/>
+						<field name="name" string="PO Number"/>
+						<field name="material_req_release_date"/>
+	                    <field name="date_order" string="Order Date"/>
+	                    <field name="mr_description"/>
+	                    <field name="partner_id"/>
+	                    <field name="company_id" groups="base.group_multi_company" widget="selection" invisible="1"/>
+	                    <field name="location_id" invisible="1"/>
+	                    <field name="minimum_planned_date" invisible="1"/>
+	                    <field name="origin" invisible="1"/>
+	                    <field name="invoiced_rate" widget="progressbar" />
+	                    <field name="shipped_rate" widget="progressbar"/>
+	                    <field name="amount_untaxed" sum="Total Untaxed amount"/>
+	                    <field name="amount_total" sum="Total amount"/>
+	                    
+	                </tree>
+				</xpath>
+			</field>
+		</record>
+		
+        <record id="purchase_order_form_second_uom" model="ir.ui.view">
+            <field name="name">purchase.order.form.second.uom</field>
+            <field name="model">purchase.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="/form/notebook/page/field/tree/field[@name='price_unit']" position="after">
+					<field name="factor" readonly="1"/>
+					<field name="uom_warehouse_qty"/>
+                    <field name="uom_warehouse" readonly="1"/>
+				</xpath>
+				<xpath expr="/form/group/field[@name='company_id']" position="after">
+					<field name="delegate" readonly="1"/>
+					<field name="mr_description" readonly="0" attrs="{'required':[('state','=','draft')]}"/>
+				</xpath>
+				<xpath expr="/form/notebook/page[@string='Notes']" position="after">
+					<page string="Historical Transaction">
+						<group colspan="4" col="4">		
+							<separator string="material requisition" colspan="4"/>
+						
+							<field name='mr_number' readonly='1'/>
+							<field name='material_req_created_date' readonly='1'/>
+							<field name='material_req_release_date' readonly='1'/>
+						
+							<separator string="Purchase Requisition" colspan="4"/>
+						
+							<field name='purchase_requisition_date' readonly='1'/>
+							<field name='request_for_quotation' readonly='1'/>
+							<field name='purchase_order_release_date' readonly='1'/>
+						
+							<separator string="Purchase Approval" colspan="4"/>
+							<field name='manager_proc_app_date' readonly='1'/>
+							<field name='head_of_div_proc_app_date' readonly='1'/>
+							<field name='head_of_div_req_app_date' readonly='1'/>
+							<field name='ceo' readonly='1'/>
+						
+							<separator string="Invoices" colspan="4"/>
+							<field name='inv_receive_date' readonly='1'/>
+							<field name='payment_inv_date' readonly='1'/>
+						</group>
+					</page>
+				</xpath>
+				<xpath expr="/form/notebook/page[@string='Delivery &amp; Invoicing']/field[@name='invoice_ids']" position="after">        
+                    <field name="picking_ids" groups="base.group_extended" nolabel="1" colspan="4"/>
+                </xpath>
+			</field>
+		</record>
+		
+		<record id="purchase_order_line_tolerances_form" model="ir.ui.view">
+            <field name="name">purchase.order.line.tolerances.form</field>
+            <field name="model">purchase.order.line</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_form" />
+			<field name="arch" type="xml">
+				<field name="account_analytic_id" position="after">
+			        <field name="uom_warehouse_qty" on_change="uom_warehouse_qty_change(product_id, product_qty)"/>
+                    <field name="uom_warehouse" readonly="1"/>	
+			        <group colspan="2" col="2" name="tolerances">
+			            <separator string="Over Shipment Tolerances" colspan="2"/>
+                    	<field name="tolerances_uom" readonly="1"/>
+                       	<field name="tolerances_qty" readonly="1"/>
+                	</group>
+                	<group colspan="2" col="2" name="shipment">
+			            <separator string="Incoming Shipment Plan" colspan="2"/>
+                    	<field name="use_incoming_plan" />
+                       	<field name="incoming_plan" colspan="4" nolabel="1" widget="one2many_list" height="100" width="250" attrs="{'invisible':[('use_incoming_plan','=',False)]}">
+                			<tree string="Release Plan" editable="bottom">
+                            	<field name="name"/>
+                            	<field name="date"/>
+                            	<field name="qty"/>
+                            </tree>
+                            <form string="Incoming Shipment Plan" editable="bottom">
+                            	<field name="name"/>
+                            	<field name="date"/>
+                            	<field name="qty"/>
+                            </form>
+                        </field>
+                	</group>	
+				</field>
+				<field name="taxes_id" position="replace">
+					<field colspan="4" nolabel="1" name="taxes_id" height="100"
+                        domain="[('parent_id','=',False),('type_tax_use','!=','sale')]"/>			
+				</field>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="picking_form_view_second_uom">
+			<field name="name">stock.picking.second.uom</field>
+			<field name="model">stock.picking</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="stock.view_picking_in_form"/>
+			<field name="arch" type="xml">
+				<field name="product_uom" position="after">
+                	<field name="uom_po_qty"/>
+                	<field name="uom_po_id"/>
+                	<field name="release"/>
+                </field>
+			</field>
+		</record>
+		<!--Tambahan Informasi untuk Incoming Shipment-->
+		<record model="ir.ui.view" id="picking_in_form_view_second_uom">
+			<field name="name">stock.picking.in.form.second.uom</field>
+			<field name="model">stock.picking</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="stock.view_picking_in_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//form[@string='Input Picking List']/group[1]/group[2]" position='after'>
+					<group colspan="4" col="4">
+						<field name="req_employee" readonly="1"/>
+						<field name="mr_description" readonly="1"/>
+					</group>			
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="picking_in_tree_view_second_uom">
+			<field name="name">stock.picking.in.tree.second.uom</field>
+			<field name="model">stock.picking</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="stock.view_picking_in_tree"/>
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+                	<field name="req_employee"/>
+                	<field name="mr_description"/>
+                </field>
+			</field>
+		</record>
+		
+		<!--#######################################################-->
+		
+        <record id="seq_type_release_plan_new" model="ir.sequence.type">
+			<field name="name">Release Plan</field>
+			<field name="code">release.plan</field>
+		</record>
+		
+		<record id="seq_release_plan_new" model="ir.sequence">
+			<field name="name">Release Plan</field>
+			<field name="code">release.plan</field>
+			<field name="prefix">RP/%(y)s%(month)s/</field>
+			<field name="padding">4</field>
+		</record>
+		
+	</data>
+</openerp>

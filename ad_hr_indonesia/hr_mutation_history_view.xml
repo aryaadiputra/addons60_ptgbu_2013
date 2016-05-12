@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<record model="ir.ui.view" id="hr_employement_history_view">
+            <field name="name">hr.employement.history.view</field>            
+            <field name="model">hr.employee</field>            
+            <field name="type">form</field>							
+			<field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <page string="Notes" groups="base.group_hr_user" position="before">
+                	<page string="Employement History" groups="base.group_hr_user">
+	                	<field name="employement_history" mode="tree,form" nolabel="1">
+	                		<tree string="Employement History">
+	                			<field name="name" />
+	                			<field name="company" />
+	                			<field name="position" />
+	                		</tree>
+	                		<form string="Employement History">
+	                			<field name="company" />
+	                			<field name="position" />
+	                		</form>
+	                	</field>
+                	</page>
+                </page>
+            </field>		
+		</record>
+
+	</data>
+</openerp>

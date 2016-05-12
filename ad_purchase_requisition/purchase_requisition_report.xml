@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		
+		<report id="permintaan_barang" string="PB A5"
+			model="purchase.requisition" name="permintaan.barang"
+			rml="ad_purchase_requisition/report/report_permintaan_barang.rml" auto="False"/>
+		
+		<report id="permintaan_barang2" string="PB A4"
+			model="purchase.requisition" name="permintaan.barang2"
+			rml="ad_purchase_requisition/report/report_permintaan_barang2.rml" auto="False"/>
+		
+		<report auto="False" 
+			id="purchase_requisition.report_purchase_requisition" 
+			model="purchase.requisition" 
+			name="hide.purchase.requisition" 
+			rml="purchase_requisition/report/purchase_requisition.rml" 
+			string="Purchase Requisition" menu="False"/>
+	
+	</data>
+</openerp>

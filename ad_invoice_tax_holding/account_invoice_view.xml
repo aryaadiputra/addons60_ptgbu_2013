@@ -1,0 +1,31 @@
+<openerp>
+	<data>
+		<record id="invoice_supplier_form" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="priority">2</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+				
+            	<xpath expr='/form/notebook/page[@string="Invoice"]/group[2]/field[@name="amount_tax"]' position='replace'>
+                  <field name="amount_tax" invisible="1"/>
+                 
+              	</xpath>	
+            
+            	<xpath expr='/form/notebook/page[@string="Invoice"]/group[2]/field[@name="amount_untaxed"]' position='after'>
+                  <label string="" colspan="2"/>
+                  <field name="amount_ppn"/>
+                  <label string="" colspan="2"/>
+                  <field name='sub_total'/>
+                  <label string="" colspan="2"/>
+                  <field name='holding_taxes'/>
+                  <label string="" colspan="2"/>
+                  <field name='to_be_paid'/>
+                  <label string="" colspan="2"/>
+              </xpath>
+              
+            </field>
+         </record>
+   	</data>
+</openerp>

@@ -1,0 +1,95 @@
+<openerp>
+      <data>
+            <record model="ir.ui.view" id="view_resignation_type_tree">
+                  <field name="name">Employee Retirement Type List</field>            
+                  <field name="model">hr.resign.type</field>            
+                  <field name="type">tree</field>                                         
+                  <field name="arch" type="xml">
+                        <tree string="Retirement Type" colors="gray:state=='approved';blue:state=='draft'">
+                              <field name="name" />
+                              <field name="resign_department" />
+                        </tree>
+                  </field>
+            </record>
+                  
+            <record model="ir.ui.view" id="view_resignation_type_form">
+                  <field name="name">Employee Retirement Type List</field>            
+                  <field name="model">hr.resign.type</field>            
+                  <field name="type">form</field>                                         
+                  <field name="arch" type="xml">
+                        <form string="Retirement Type">
+                              <field name="name" />
+                              <field name="resign_department" />
+                        </form>
+                  </field>
+            </record>
+
+            <record model="ir.ui.view" id="view_resignation_type_search">
+                  <field name="name">Employee Retirement Search</field>            
+                  <field name="model">hr.resign.type</field>            
+                  <field name="type">search</field>                                       
+                  <field name="arch" type="xml">
+                        <search string="Retirement Submission">
+                              <field name="name" />
+                              <field name="resign_department" />
+                        </search>
+                  </field>
+            </record>
+
+            <record id="action_resignation_type" model="ir.actions.act_window">
+                  <field name="name">Additional Information Type</field>
+                  <field name="res_model">hr.resign.type</field>
+                  <field name="view_type">form</field>
+                  <field name="view_mode">tree,form</field>
+                  <field name="context">{'search_default_posted': 1}</field>
+                  <field name="search_view_id" ref="view_resignation_type_search"/>
+            </record>
+
+            <menuitem action="action_resignation_type" icon="STOCK_JUSTIFY_FILL" id="menu_action_resignation_type" parent="menu_resignation" sequence="4"/>
+
+
+            <record model="ir.ui.view" id="view_resignation_department_tree">
+                  <field name="name">Employee Retirement Department List</field>            
+                  <field name="model">hr.resign.department</field>            
+                  <field name="type">tree</field>                                         
+                  <field name="arch" type="xml">
+                        <tree string="Retirement Department" >
+                              <field name="name" />
+                        </tree>
+                  </field>
+            </record>
+                  
+            <record model="ir.ui.view" id="view_resignation_department_form">
+                  <field name="name">Employee Retirement Department</field>            
+                  <field name="model">hr.resign.department</field>            
+                  <field name="type">form</field>                                         
+                  <field name="arch" type="xml">
+                        <form string="Retirement Department">
+                              <field name="name" />
+                        </form>
+                  </field>
+            </record>
+
+            <record model="ir.ui.view" id="view_resignation_department_search">
+                  <field name="name">Employee Retirement Search</field>            
+                  <field name="model">hr.resign.department</field>            
+                  <field name="type">search</field>                                       
+                  <field name="arch" type="xml">
+                        <search string="Retirement Department">
+                              <field name="name" />
+                        </search>
+                  </field>
+            </record>
+
+            <record id="action_resignation_department" model="ir.actions.act_window">
+                  <field name="name">Department Cheking</field>
+                  <field name="res_model">hr.resign.department</field>
+                  <field name="view_type">form</field>
+                  <field name="view_mode">tree,form</field>
+                  <field name="context">{'search_default_posted': 1}</field>
+                  <field name="search_view_id" ref="view_resignation_department_search"/>
+            </record>
+
+            <menuitem action="action_resignation_department" icon="STOCK_JUSTIFY_FILL" id="menu_action_resignation_department" parent="menu_resignation" sequence="5"/>
+      </data>
+</openerp>

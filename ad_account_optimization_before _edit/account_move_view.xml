@@ -1,0 +1,15 @@
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_move_name">
+	        <field name="name">view.move.name</field>
+	        <field name="model">account.move</field>
+	        <field name="type">form</field>
+	        <field name="inherit_id" ref="account.view_move_form"/>
+	        <field name="arch" type="xml">
+	            <field name="name" position="after">
+	                <field name="move_name_manual"/>
+	            </field>
+	        </field>
+	    </record>
+	</data>
+</openerp>

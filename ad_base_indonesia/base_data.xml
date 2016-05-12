@@ -1,0 +1,55 @@
+<openerp>
+	<data>
+		<record id="lang_id" model="res.lang">
+			<field name="code">id_ID</field>
+			<field name="name">Bahasa Indonesia</field>
+			<field name="translatable">True</field>
+		</record>
+
+		<record id="IDR" model="res.currency">
+			<field name="name">IDR</field>
+			<field name="code">IDR</field>
+			<field name="rounding">0.01</field>
+			<field name="accuracy">4</field>
+		</record>
+		<record id="rateIDR" model="res.currency.rate">
+			<field name="rate">1.0</field>
+			<field name="currency_id" ref="IDR" />
+			<field eval="time.strftime('%Y-01-01')" name="name" />
+		</record>
+
+		<record id="base.rateUSD" model="res.currency.rate">
+			<field name="rate">0.0001176</field>
+		</record>
+
+		<record id="base.rateEUR" model="res.currency.rate">
+			<field name="rate">0.0000816</field>
+		</record>
+
+		<record id="base.main_company" model="res.company">
+			<field name="name">ADSOFT OpenERP Partner Indonesia</field>
+			<field name="currency_id" ref="IDR" />
+			<field name="rml_header1">ADSOFT OpenERP Partner Indonesia</field>
+			<field name="rml_footer1">Web: http://adsoft.co.id/ - Tel: +62(021) 29959880</field>
+			<field name="rml_footer2">Bank: BNI 49396472 - SWIFT: BNIINDJA</field>
+		</record>
+
+		<record id="base.main_partner" model="res.partner">
+			<field name="name">ADSOFT OpenERP Partner Indonesia</field>
+			<field name="website">http://adsoft.co.id</field>
+		</record>
+
+		<record id="base.main_address" model="res.partner.address">
+			<field name="name">Mr.Alle Aldine</field>
+			<field name="street">CityLofts Sudirman 820</field>
+			<field name="street2">Jl KH Mas Mansyur 121</field>
+			<field name="email">info@adsoft.co.id</field>
+			<field name="zip">12920</field>
+			<field name="city">Jakarta</field>
+			<field name="phone">+62(021) 29959880</field>
+			<field name="fax">+62(021) 29959880</field>
+			<field name="state_id" ref="state_id_31" />
+			<field name="country_id" ref="base.id" />
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,306 @@
+<openerp>
+    <data>
+        <report id="print_total_employee" model="hr.employee" name="Total Employee" file="ad_hr_bsp/report/employee_list.mako"
+            string="Employee Summary" report_type="webkit" auto="False" />
+        
+        
+        <record id="hr_employee_payroll_property_form" model="ir.ui.view">
+            <field name="name">hr.employee.payroll.property.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+            <field name="arch" type="xml">
+                <field name='bank_account_id' position='after'>
+                    <field name="pension_acc" />
+                </field>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="move_job_info">
+            <field name="name">Move Job Info</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="ad_hr_indonesia.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/notebook/page[@string='Job']/group[1]" position="before">
+                    <group colspan="4" col="4">
+                        <separator string="Job Information" colspan="4" />
+                        <newline />
+                        <field name="doj" />
+                        <field name="type"/>
+                        <field name="rosters_type_id" attrs="{'invisible':[('type','=','bsp')]}"/>
+                        <field name="status" />
+                    </group>
+                    <group colspan="4" col="2">
+                        <field name="is_staff" on_change="onchange_staff(is_staff,non_staff)" invisible="1"/>
+                        <field name="non_staff" on_change="onchange_non_staff(is_staff,non_staff)" invisible="1"/>
+                        <field name="nik_bob" attrs="{'invisible':[('type','!=','bob')]}" />
+                        <field name="doj_bob" attrs="{'invisible':[('type','!=','bob')]}" />
+                    </group>
+                </xpath>
+                <field name="job_id" position="after">
+                    <field name="company_id" widget="selection" groups="base.group_multi_company,base.group_extended"
+                        on_change="onchange_company(company_id)" invisible="1"/>
+                    <field name="department_id" />
+                    <field name="parent_id" />
+                    <field name="section" domain="[('placement','=',type)]" invisible="1"/>
+                    <field name="kasie"/>
+                </field>
+            </field>
+        </record>
+        
+        
+        <record model="ir.ui.view" id="custom_view_employee_form">
+            <field name="name">department.code.view.from</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <page string="Categories" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </page>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_employee_form">
+            <field name="name">department.code.view.from</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="ad_hr_indonesia.custom_top_view" />
+            <field name="arch" type="xml">
+                <xpath expr="/form[@string='Employee']/group[1]" position="replace">
+                    <group colspan="4" col="8">
+                        <group colspan="2" col="2">
+                            <field name="nik" />
+                            <field name="name" width="200"/>
+                            <field name="user_id" on_change="onchange_user(user_id)"/>
+                            <field name="admission_letter" />
+                            <field name="admission_date" />
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="active" on_change="onchange_active(active,non_active)"/>
+                            <field name="non_active" on_change="onchange_non_active(active,non_active)"/>
+                        </group>
+                        <group colspan="2" col="1">
+                            <field name="photo" widget='image' img_height="160" img_width="120" nolabel="1"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_section_employee_tree">
+            <field name="name">view.section.employee.tree</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree" />
+            <field name="arch" type="xml">
+                <field name="department_id" position="after">
+                    <field name="section" invisible="1" />
+                </field>
+                <field name="company_id" position="replace">
+                    <field name="type" string="Work Location" />
+                </field>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="hide_tab_notes">
+            <field name="name">Hide Tab Notes</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="/form[@string='Employee']/notebook/page[@string='Notes']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hide_some_personal_information">
+            <field name="name">Hide Working Address</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/notebook/page[@string='Personal Information']/group[3]/field[@name='address_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="/form/notebook/page[@string='Personal Information']/group[3]/field[@name='work_phone']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="hide_otherid">
+            <field name="name">Hide Other ID</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_payroll.view_employee_passport_form" />
+            <field name="arch" type="xml">
+                <field name="otherid" position="replace">
+                </field>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_employee_filter">
+            <field name="name">BSP Employee Filter</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter" />
+            <field name="arch" type="xml">
+                <filter name="active" position="replace">
+                    <filter icon="terp-personal" domain="[('type','=','bsp')]" name="bsp" string="Head Office"/>
+                    <filter icon="terp-personal" domain="[('type','=','bob')]" name="bob" string="OnSite"/>
+                    <separator orientation="vertical" />
+                    <filter icon="terp-personal+" domain="[('active','=',True)]" name="active" string="Active"
+                        groups="base.group_extended"/>
+                    <filter icon="terp-personal-" domain="[('active','=',False)]" name="inactive" string="Non-Active" groups="base.group_extended"/>
+                    <separator orientation="vertical" />
+                    <filter icon="terp-personal" domain="[('status','=','outsource')]" name="outsource"
+                        string="Outsource" groups="base.group_extended"/>
+                </filter>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="group_by_section">
+            <field name="name">Group by Section</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="/search[@string='Employees']/group[1]/filter[@string='Department']" position="after">
+                    <filter string="Section" icon="terp-personal+" domain="[]" context="{'group_by':'section'}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="hide_timesheet_tab">
+            <field name="name">Hide Timesheet</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_employee_extd_form" />
+            <field name="arch" type="xml">
+                <page string="Timesheets" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </page>
+            </field>
+        </record>
+        
+        <!-- View only employee By User ID-->
+        
+        <record id="view_employee_tree_user" model="ir.ui.view">
+            <field name="name">hr.employee.tree.user</field>
+            <field name="model">hr.employee</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Employees By User">
+                    <field name="nik_bob"/>
+                    <field name="name"/>
+                    <field name="work_phone"/>
+                    <field name="work_email"/>
+                    <field name="type" string="Work Location"/>
+                    <field name="department_id"/>
+                    <field name="section" invisible="1"/>
+                    <field name="job_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="open_view_employee_user_list" model="ir.actions.act_window">
+            <field name="name">Employees By User</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_employee_tree_user"/>
+            <field name="domain">[('user_id','=',uid)]</field>
+            <field name="search_view_id" ref="hr.view_employee_filter" />
+        </record>
+        
+        
+        <!-- View only BOB employee-->
+        
+        <record id="view_employee_tree_bob" model="ir.ui.view">
+            <field name="name">hr.employee.tree.bob</field>
+            <field name="model">hr.employee</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Employees BOB">
+                    <field name="nik_bob"/>
+                    <field name="name"/>
+                    <field name="work_phone"/>
+                    <field name="work_email"/>
+                    <field name="type" string="Work Location"/>
+                    <field name="department_id"/>
+                    <field name="section" invisible="1"/>
+                    <field name="job_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="open_view_employee_bob_list" model="ir.actions.act_window">
+            <field name="name">Employees OnSite</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_employee_tree_bob"/>
+            <field name="domain">[('type','=','bob')]</field>
+            <field name="search_view_id" ref="hr.view_employee_filter" />
+        </record>
+        
+        <!-- View only BSP employee-->
+        
+        <record id="view_employee_tree_bsp" model="ir.ui.view">
+            <field name="name">Employees Head Office</field>
+            <field name="model">hr.employee</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Employees BSP">
+                    <field name="nik"/>
+                    <field name="name"/>
+                    <field name="work_phone"/>
+                    <field name="work_email"/>
+                    <field name="type" string="Work Location"/>
+                    <field name="department_id"/>
+                    <field name="section" invisible="1" />
+                    <field name="job_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="open_view_employee_bsp_list" model="ir.actions.act_window">
+            <field name="name">GBU Employees</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_employee_tree_bsp"/>
+            <field name="domain">[('type','=','bsp')]</field>
+            <field name="search_view_id" ref="hr.view_employee_filter" />
+        </record>
+        
+        <!-- View only Outsource-->
+        
+        <record id="view_employee_tree_outsource" model="ir.ui.view">
+            <field name="name">hr.employee.tree.outsource</field>
+            <field name="model">hr.employee</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Employees Outsource">
+                    <field name="nik"/>
+                    <field name="name"/>
+                    <field name="department_id"/>
+                    <field name="section" invisible="1"/>
+                    <field name="job_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="open_view_employee_outsource_list" model="ir.actions.act_window">
+            <field name="name">Employees</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_employee_tree_outsource"/>
+            <field name="domain">[('status','=','outsource')]</field>
+            <field name="search_view_id" ref="hr.view_employee_filter" />
+        </record>
+        
+        <menuitem id="menu_view_employee_user" action="open_view_employee_user_list" parent="hr.menu_hr_main"
+            name="Employees By User" sequence="4"/>
+        <menuitem id="menu_view_employee_bob" action="open_view_employee_bob_list" parent="hr.menu_hr_main"
+            name="Employees OnSite" sequence="4" />
+        <menuitem id="menu_view_employee_bsp" action="open_view_employee_bsp_list" parent="hr.menu_hr_main"
+            name="Employees Head Office" sequence="3" />
+        <menuitem id="menu_view_employee_outsource" action="open_view_employee_outsource_list"
+            parent="hr.menu_hr_main" name="Employees Outsource" sequence="4" />
+        
+    </data>
+</openerp>

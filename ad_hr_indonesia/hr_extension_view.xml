@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		<!-- Add employee extra info -->
+		<record model="ir.ui.view" id="hr_employee_extension_view">
+			<field name="name">hr.employee.extension.view</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<data>
+					<xpath expr="/form/notebook/page/group/field[@name='birthday']"
+						position="after">
+						<field name="age" />
+					</xpath>
+				</data>
+			</field>
+		</record>
+
+		<!-- Job level list view -->
+		<record model="ir.ui.view" id="hr_job_level_list_view">
+			<field name="name">hr.job.level.list</field>
+			<field name="model">hr.job.level</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Job level">
+					<field name="name" />
+					<field name="job_level" invisible="1" />
+					<field name="sal_struc" />
+					<field name="allowance"/>
+					<field name="deduction"/>
+					<field name="mini_wage" />
+					<field name="max_wage" />
+					<field name="job_id" />
+				</tree>
+			</field>
+		</record>
+		<!-- Job level form view -->
+		<record model="ir.ui.view" id="hr_job_level_form_view">
+			<field name="name">hr.job.level.form</field>
+			<field name="model">hr.job.level</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Mission">
+					<field name="name" />
+					<field name="job_level"/>
+					<field name="job_id" />
+					<field name="sal_struc" on_change="onchange_sal_structure(sal_struc)"/>
+					<separator string="Advantages" colspan="4"/>
+					<field name="allowance"/>
+					<field name="deduction"/>
+					<group colspan="4" col="4">
+					<separator string="Wages Level" colspan="4"/>
+					<field name="mini_wage" string="Minimum Wage"/>
+					<field name="max_wage" string="Maximum Wage"/>
+					</group>
+				</form>
+			</field>
+		</record>
+		<record id="act_hr_job_level" model="ir.actions.act_window">
+            <field name="name">Level</field>
+            <field name="res_model">hr.job.level</field>
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="hr_job_level_list_view"/>
+        </record>
+		<menuitem name="Level"
+				  id="menu_level_config"
+				  parent="hr.menu_hr_management"
+				  action="act_hr_job_level"
+				  sequence="10" />
+	</data>
+</openerp>

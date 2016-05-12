@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="employee_religion_form_view">
+			<field name="name">hr.employee.religion.form</field>
+			<field name="model">hr.employee</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<field name="birthday" position="after">
+					<field name="religion_id" />
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="religion_form_view">
+			<field name="name">Religion</field>
+			<field name="model">res.religion</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Religion">
+					<field name="name" />
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="religion_tree_view">
+			<field name="name">Religion</field>
+			<field name="model">res.religion</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Religion">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_view_religion_form" model="ir.actions.act_window">
+			<field name="name">Religion</field>
+			<field name="res_model">res.religion</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="religion_tree_view" />
+		</record>
+
+		<menuitem id="menu_religion_configure" action="action_view_religion_form"
+			parent="hr.menu_hr_management" />
+
+	</data>
+</openerp>

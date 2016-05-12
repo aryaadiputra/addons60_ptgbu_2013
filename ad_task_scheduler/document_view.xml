@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record model="ir.ui.view" id="ir_attachment_date_expired_form">
+            <field name="name">ir.attachment.date_expired.form</field>            
+            <field name="model">ir.attachment</field>            
+            <field name="type">form</field>							
+			<field name="inherit_id" ref="document.view_document_file_form"/>
+			<field name="arch" type="xml">
+                <xpath expr="/form/notebook/page[@string='Attachment']/group[1]" position="after">
+                	<group col="2" colspan="2" attrs="{'invisible':[('type','=','url')]}">
+                		<separator string="Issued and Expired" colspan="2" /> <newline />
+						<field name="date_issued" width="50" />
+						<field name="date_expired" width="50" />
+					</group>
+				</xpath>
+				<xpath expr="/form/notebook/page[@string='Attachment']" position="after">
+	                <page string="Recipient List">
+	                	<label string="Please select the users to send reminder email. The owner of this document will be selected by default" /> <newline />
+	                	<field name="recipient" nolabel="1" />
+	                </page>
+				</xpath>
+            </field>		
+		</record>
+
+		<record model="ir.ui.view" id="ir_attachment_date_expired_tree" >
+            <field name="name">ir.attachment.date_expired.tree</field>            
+            <field name="model">ir.attachment</field>            
+            <field name="type">tree</field>							
+			<field name="inherit_id" ref="document.view_document_file_tree"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                	<field name="date_expired"/>
+                </field>
+            </field>		
+        </record>
+
+	</data>
+</openerp>

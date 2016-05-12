@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <menuitem 
+            name="Legal" 
+            icon="terp-crm" 
+            id="legal_menu"
+            sequence="17"
+            groups="ad_legal.group_legal_user,ad_legal.group_legal_manager"
+            web_icon="images/legal.png"
+            web_icon_hover="images/legal-hover.png" />
+		
+
+        <record id="view_legal_installer" model="ir.ui.view">
+            <field name="name">ad_legal.installer.view</field>
+            <field name="model">ad_legal.installer</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.res_config_installer"/>
+            <field name="arch" type="xml">
+                <data>
+                  <form position="attributes">
+                    <attribute name="string">Corporate Legal Document Application Configuration</attribute>
+                  </form>
+                  <separator string="title" position="attributes">
+                    <attribute name="string">Configure Your Corporate Legal Application</attribute>
+                  </separator>
+                  <xpath expr="//label[@string='description']"
+                         position="attributes">
+                    <attribute name="string">OpenERP provides Addons to better manage your corporate legal processes. Select the ones you would be interested in.</attribute>
+                  </xpath>
+                 <xpath expr='//separator[@string="vsep"]' position='attributes'>
+                       <attribute name='rowspan'>13</attribute>
+                       <attribute name='string'></attribute>
+                 </xpath>
+                  <xpath expr="//button[@string='Install Modules']" position="attributes">
+                            <attribute name="string">Configure</attribute>
+                  </xpath>
+                  <group colspan="8">
+                        <field name="legal_process" />
+                        <field name="email_template" />
+                  </group>
+                </data>
+            </field>
+        </record>
+
+        <record id="action_legal_installer" model="ir.actions.act_window">
+            <field name="name">Corporate Legal Applications Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">legal.installer</field>
+            <field name="view_id" ref="view_legal_installer"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="legal_installer_todo" model="ir.actions.todo">
+            <field name="action_id" ref="action_legal_installer"/>
+            <field name="sequence">3</field>
+            <field name="restart">always</field>
+        </record>
+
+		<menuitem name="Configuration" parent="legal_menu"
+            id="menu_legal_config_root" sequence="20" groups="base.group_system"/>
+
+        <menuitem name="Email Template" id="menu_email_template_configuration" 
+        	parent="menu_legal_config_root" />
+
+        <menuitem name="Email Accounts" id="menu_email_template_account_all" 
+        	parent="menu_email_template_configuration" action="email_template.action_email_template_account_tree_all"/>
+        	
+        <menuitem name="Email Templates" id="menu_email_template_all"
+            parent="menu_email_template_configuration" action="email_template.action_email_template_tree_all" />
+
+		<record model="ir.ui.view" id="view_document_file_form_gbu">
+            <field name="name">view.document.file.form.gbu</field>            
+            <field name="model">ir.attachment</field>            
+            <field name="type">form</field>							
+			<field name="inherit_id" ref="document.view_document_file_form"/>
+			<field name="arch" type="xml">
+				<!-- Replace field Attachment Name to Document Name and add field Partner [START] -->
+				<xpath expr="/form/group[1]" position="replace">
+					<group colspan="4" col="6">
+						<field name="name" string="Document Name" select="1" colspan="3" />
+						<field name="partner_id" colspan="3" required="True" domain="[('company','=',True)]" />
+<!-- 						<field domain="[('partner','=',partner_id)]" name="parent_id"/> -->
+						<field domain="[('partner','=',partner_id)]" name="parent_id" colspan="3" />
+						<field name="user_id" colspan="3" />
+						<field name="company_id" groups="base.group_multi_company"
+							widget="selection" />
+					</group>
+				</xpath>
+				
+				<!-- Replace field Attachment Name to Document Name and add field Partner [END] -->
+				
+				<!-- REPLACE GROUP 2 [START] -->
+				<xpath expr="/form/notebook/page[@string='Attachment']/group[2]" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+				<!-- REPLACE GROUP 2 [START] -->
+				
+				<xpath expr="/form/notebook/page[@string='Attachment']/group[1]" position="replace">
+					<group col="2" colspan="2">
+						<separator string="Data" colspan="2" />
+						<field name="type" colspan="2" />
+						<newline />
+						<group col="2" colspan="2"
+							attrs="{'invisible':[('type','=','url')]}">
+							<field name="datas" filename="datas_fname" />
+							<field name="datas_fname" select="1" />
+						</group>
+						<group col="2" colspan="2"
+							attrs="{'invisible':[('type','=','binary')]}">
+							<field name="url" widget="url" />
+						</group>
+					</group>
+				</xpath>
+	        </field>
+	    </record>
+	    <record model="ir.ui.view" id="view_document_file_tree_gbu">
+	        <field name="name">ir.attachment</field>
+	        <field name="model">ir.attachment</field>
+	        <field name="priority" eval="1"/>
+	        <field name="type">form</field>
+	        <field name="inherit_id" ref="document.view_document_file_tree" />
+	        <field name="arch" type="xml">
+	        	<xpath expr="/tree/field[@name='name']" position="replace">
+	        		<field name="name" string="Document Name" select="1" colspan="4" />
+	        	</xpath>
+	        	<xpath expr="/tree/field[@name='company_id']" position="after">
+	        		<field name="date_issued" />
+	        	</xpath>
+	        </field>
+	    </record>
+	    
+	    
+    </data>
+</openerp>

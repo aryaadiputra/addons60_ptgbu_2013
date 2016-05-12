@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+
+		<report id="report_per_asset" 
+				string="Report Per Asset"
+				model="account.asset.asset" 
+				name="report.per.asset"
+				rml="ad_account_asset/report/report_per_asset.rml" 
+				auto="False" />
+		
+		<report id="report_label_asset" 
+				string="Report Label Asset"
+				model="account.asset.asset" 
+				name="report.label.asset"
+				rml="ad_account_asset/report/report_label_asset.rml" 
+				auto="False" />
+	</data>
+</openerp>

@@ -1,0 +1,38 @@
+===============================================================================
+ Version Change Log (account_check_writing)
+===============================================================================
+1.83 (2011-10-10) By Janeesh
+	* Fixed error in on_change amount
+
+1.82 (2011-07-22) By Jabir
+	* Created a new field Reference Invoice on Invoice which will update when the "Invoice Number" in Receptions is update. This will work only if stock_assigned_picker module is installed
+	* Took the Reference Invoice field instead of Free Reference in printing check. Free Reference is taken only if "Reference Invoice" is not present.
+
+1.8 -> 1.81 (2011-07-22) By Jabir
+	* Updated alignment of Original Amount so that it will not group with purhcase order
+
+1.6 -> 1.7 (2011-04-08) By Jabir
+	* Updated discount on check
+
+1.6 -> 1.7 (2011-04-04) By Jabir
+	* Fixed the wrong next check number displayed on check printing wizard when open the payment voucher using the Pay Invoice button from supplier invoice.
+
+1.5 -> 1.6 (2011-03-22) By Jabir
+	* Fixed unable to print check from Accounting/Bank and Cash/Write Checks
+
+1.4 -> 1.5 (2011-03-22) By Jabir
+	* Added npg copyright on all py files
+	* Added npg copyright on all py files
+	* Made status on check printing wizard mandatory so that there will not be two check logs active for single payment
+	* checked the copyright in .py files and deleted the print in wizard/check_print.py and given descriptions for functions in wizard/check_print.py
+	* Fixed the issue with commenting, variable naming and log updating
+
+1.3 -> 1.4 (2011-03-22) By Jabir
+	* Changed the checkprinting wizard from old type to new one
+
+1.2 -> 1.3 (2011-03-07) By Jabir
+	* Added the code send by OpenERP
+	* Created wizard for check printing
+
+1.1 -> 1.2 (2011-02-22) By Jabir
+	* Support us format on check printing

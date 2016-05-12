@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="mr_user_state_form_view">
+		    <field name="name">res.users.mr.state.form</field>            
+		    <field name="model">res.users</field>            
+		    <field name="type">form</field>							
+			<field name="inherit_id" ref="base.view_users_form"/>
+		    <field name="arch" type="xml">
+		        <notebook position="inside">
+		        	<page string="State on MR" groups="base.group_extended">
+		        		<field name="mr_draft"/>
+		        		<field name="mr_lv1"/>
+		        		<field name="mr_lv2"/>
+		        		<field name="mr_lv3"/>
+		        		<field name="mr_lv4"/>
+		        		<field name="super_user"/>
+		        	</page>
+		        </notebook>
+		    </field>		
+		</record>
+	</data>
+</openerp>

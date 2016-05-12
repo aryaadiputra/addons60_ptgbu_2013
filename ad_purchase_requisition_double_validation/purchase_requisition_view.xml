@@ -1,0 +1,32 @@
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_purchase_requisition_form">
+        <field name="name">purchase.requisition.form</field>
+        <field name="type">form</field>
+        <field name="model">purchase.requisition</field>
+        <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/notebook/page[@string='Products']/group/button[@name='tender_in_progress']" position="replace">
+                <button name="tender_in_progress" states="draft" string="Confirm" icon="gtk-apply" />
+            </xpath>
+            
+            <xpath expr="//form/notebook/page[@string='Products']/group/button[@name='tender_in_progress']" position="after">
+                <button name="manager_approve" states="lv_approve2" string="Approve" icon="gtk-apply" />
+            </xpath>
+            
+            <xpath expr="//form/notebook/page[@string='Products']/group/button[@name='tender_done']" position="replace">
+                <button name="tender_done" states="in_progress" string="Done" icon="gtk-jump-to" />
+            </xpath>
+            
+            <xpath expr="//form/notebook/page[@string='Products']/group/button[@name='tender_cancel']" position="replace">
+            	<button name="tender_cancel" states="draft,lv_approve2,in_progress" string="Cancel" icon="gtk-cancel" />
+            </xpath>
+            
+            <xpath expr="//form/notebook/page[@string='Products']/group/button[@name='tender_reset']" position="replace">
+            	<button name="tender_reset" states="done,cancel" string="Reset to Draft" icon="gtk-convert" />
+            </xpath>
+            	
+        </field>
+    </record>
+	</data>
+</openerp>

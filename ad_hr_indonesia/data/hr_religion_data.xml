@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data noupdate="1">
+		<record id="hr_religion_islam" model="res.religion">
+			<field name="name">Islam</field>
+		</record>
+		<record id="hr_religion_katolik" model="res.religion">
+			<field name="name">Katolik</field>
+		</record>
+		<record id="hr_religion_protestan" model="res.religion">
+			<field name="name">Protestan</field>
+		</record>
+		<record id="hr_religion_hindu" model="res.religion">
+			<field name="name">Hindu</field>
+		</record>
+		<record id="hr_religion_budha" model="res.religion">
+			<field name="name">Budha</field>
+		</record>
+	</data>
+</openerp>

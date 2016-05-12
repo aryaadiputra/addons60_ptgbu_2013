@@ -1,0 +1,53 @@
+===============================================================================
+ Version Change Log (account_cash_discount_us)
+===============================================================================
+1.15 (2011-09-16) -> Janeesh
+	* Added the onchange on amount in Pay Invoice
+	
+1.14 (2011-09-16) -> Arif
+	* Removed the onchange on amount in Pay Invoice
+	
+1.13 (2011-09-15) -> Sinoj & Arif
+	* Fixed the bug on calculation of discount on Pay Invoice
+	
+1.12 (2011-07-18) By Arif
+	* Added discount field in (Task ID: 362) in supplier payment
+
+1.10 -> 1.11 (2011-04-14) By Jabir
+	* Update the payment amount when discount is selected and clicked on recalculate button
+
+
+1.08 -> 1.09 (2011-04-14) By Jabir
+	* Add calculate button on Supplier Payment
+
+1.08 -> 1.09 (2011-04-08) By Jabir
+	* Supplier discount
+
+1.07 -> 1.08 (2011-02-04) By Sinoj
+	* Optimization and cleanup
+	
+
+1.06 -> 1.07 (2010-12-06) By jabir
+	* Removed discount wizard and changed domain filtering
+	
+1.05 -> 1.06 (2010-12-06) By jabir
+	* Take invoice partner instead of moveline partner
+
+ 1.04 -> 1.05 (2010-11-29) By Jabir
+ 	*  Fix placement of Cash Discount Separation Line
+
+ 1.03 -> 1.04 (2010-11-29) By Sinoj
+ 	* Account posting updated for National account
+
+ 1.02 -> 1.03 (2010-11-09) By Sinoj
+ 	* "Debit and Credits" wizard button moved to voucher line
+ 	* fields on wizard form are readonly
+ 	* fields on wizard are populated with default values
+ 	* removed
+
+ 1.01 -> 1.02 (2010-11-04) By jabir
+ 	* Add wizard Discount and Credits
+ 	* Create button Discount and Credits in customer payment form
+
+ 1.0 -> 1.01 (2010-11-04) By sinoj
+ 	* dependency changed from account_voucher_jdc to account_voucher_credits_us

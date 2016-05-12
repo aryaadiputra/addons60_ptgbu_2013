@@ -1,0 +1,54 @@
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="cash_flow_category_tree">
+            <field name="name">cash.flow.category.tree</field>
+            <field name="model">cash.flow.category</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Cash Flow Category">
+                	<field name="name"/>
+                	<field name="sequence"/> 
+                </tree>
+           	</field>
+        </record>
+		<record model="ir.ui.view" id="cash_flow_category_form">
+            <field name="name">cash.flow.category.form</field>
+            <field name="model">cash.flow.category</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Cash Flow Category">
+                	<field name="name"/>
+                	<field name="sequence"/>
+                	<newline />
+                	<field name="sub_category_line" nolabel="1" string="Sub Category">
+                	    <tree string="Sub Category">
+                			<field name = "name"/>
+                			<field name = "sequence"/>
+                		</tree>     
+                		<form string="Sub Category">
+                			<field name = "name"/>
+                			<field name = "sequence"/>
+                		</form>          	
+                	</field> 
+                </form>
+           	</field>
+        </record>
+	
+		<menuitem id="menu_cashflow_category_conf" name="Cash Flow Category Configuration" parent="account.menu_finance_accounting" sequence="20"/>	
+		
+		<act_window id='act_menu_cashflow_category'
+				  	res_model='cash.flow.category'
+					name='Cash Flow Category' 
+					domain="[]" 
+					view_type='form'
+					view_mode='tree,form' 
+					context="" />
+		
+		<menuitem id="menu_cashflow_category"
+				name="Cash Flow Category"
+			  	action="act_menu_cashflow_category"
+			  	parent="menu_cashflow_category_conf"
+			  	sequence="5" />
+		
+	</data>
+</openerp>

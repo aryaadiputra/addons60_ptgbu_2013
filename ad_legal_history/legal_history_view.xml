@@ -1,0 +1,99 @@
+<openerp>
+	<data>
+		<menuitem name="History" id="menu_history" parent="base.menu_base_config" sequence="15" />
+
+<!--###################################Structure History [START]####################################-->	
+		<record id="structure_history_tree" model="ir.ui.view">
+			<field name="name">History Structure</field>
+			<field name="model">structure.history.line</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name" />
+					<field name="partner" />
+					<field name="function" />
+					<field name="date_start" />
+					<field name="date_stop" />
+				</tree>
+			</field>
+		</record>
+	
+		<act_window id='act_structure_history_form'
+					res_model='structure.history.line'
+					name='Structure History'
+					domain="[]"
+					view_type='form'
+					view_mode='tree' />
+		<menuitem 	id='menu_structure_history_form'
+					name="Structure History"
+					parent='menu_history'
+					action='act_structure_history_form'
+					sequence='5' />
+
+<!--#####################################Structure History [END]#####################################-->
+
+<!--#####################################Document History [START]####################################-->
+	<record id="document_history_tree" model="ir.ui.view">
+		<field name="name">Document History</field>
+		<field name="model">document.history.line</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" />
+				<field name="partner" />
+				<field name="date_start" />
+				<field name="date_stop" />
+				<field name="date_created" />
+				<field name="date_renew" />
+				<field name="date_deleted" />
+			</tree>
+		</field>
+	</record>
+	<act_window id="act_document_history"
+				res_model="document.history.line"
+				name="Document History"
+				domain="[]"
+				view_type="form"
+				view_mode="tree" />
+	<menuitem name="Document History"
+			  id="menu_document_history"
+			  action="act_document_history"
+			  parent="menu_history"
+			  sequence="10" />
+<!--######################################Document History [END]#####################################-->
+
+<!--#####################################Shareholder History [START]####################################-->
+	<record id="shareholder_history_tree" model="ir.ui.view">
+		<field name="name">Shareholder History</field>
+		<field name="model">shareholder.history.line</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" />
+				<field name="shareholder" />
+				<field name="company" />
+				<field name="total_share" />
+				<field name="total_share_value" />
+				<field name="total_share_percent" />
+				<field name="date_start" />
+				<field name="date_stop" />
+				<field name="date_created" />
+				<field name="date_edited" />
+				<field name="date_deleted" />
+			</tree>
+		</field>
+	</record>
+	<act_window id="act_shareholder_history"
+				res_model="shareholder.history.line"
+				name="Shareholder History"
+				domain="[]"
+				view_type="form"
+				view_mode="tree" />
+	<menuitem name="Shareholder History"
+			  id="menu_shareholder_history"
+			  action="act_shareholder_history"
+			  parent="menu_history"
+			  sequence="10" />
+<!--######################################Shareholder History [END]#####################################-->
+	</data>
+</openerp>

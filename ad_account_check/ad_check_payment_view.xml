@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+		<record model="ir.ui.view" id="check_form_view_payment">
+			<field name="name">check.form.payment.inherit</field>
+			<field name="model">payment.order</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account_payment.view_payment_order_form" />
+			<field name="arch" type="xml">
+				<field name="user_id" position="after">
+					<field name="check_num" />
+				</field>
+			</field>
+		</record>
+
+	</data>
+</openerp>

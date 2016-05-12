@@ -1,0 +1,427 @@
+<openerp>
+	<data>
+		<menuitem id="base.menu_address_book" name="Directories"
+			parent="base.menu_base_partner" sequence="2" />
+
+		<!-- Menu Government [START] -->
+		<record id="action_gov_form" model="ir.actions.act_window">
+			<field name="name">Government</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">res.partner</field>
+			<field name="view_type">form</field>
+			<field name="context">{"search_default_government":1}</field>
+			<field name="search_view_id" ref="base.view_res_partner_filter" />
+			<field name="help">A customer is an entity you do business with, like
+				a company or an organization. A customer can have several contacts
+				or addresses which are the people working for this company. You can
+				use the history tab, to follow all transactions related to a
+				customer: sales order, emails, opportunities, claims, etc. If you
+				use the email gateway, the Outlook or the Thunderbird plugin, don't
+				forget to register emails to each contact so that the gateway will
+				automatically attach incoming emails to the right partner.
+			</field>
+		</record>
+
+		<menuitem action="action_gov_form" id="menu_gov_form"
+			parent="base.menu_address_book" sequence="3" />
+
+		<record id="action_partner_form" model="ir.actions.act_window">
+			<field name="name">Companies</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">res.partner</field>
+			<field name="view_type">form</field>
+			<field name="context">{"search_default_company":1}</field>
+			<field name="search_view_id" ref="base.view_res_partner_filter" />
+			<field name="help">A customer is an entity you do business with, like
+				a company or an organization. A customer can have several contacts
+				or addresses which are the people working for this company. You can
+				use the history tab, to follow all transactions related to a
+				customer: sales order, emails, opportunities, claims, etc. If you
+				use the email gateway, the Outlook or the Thunderbird plugin, don't
+				forget to register emails to each contact so that the gateway will
+				automatically attach incoming emails to the right partner.
+			</field>
+		</record>
+
+		<menuitem action="action_partner_form" id="base.menu_partner_form"
+			parent="base.menu_address_book" sequence="2" />
+
+
+		<!-- Replace BOOLEAN customer and supplier turn out company and government -->
+		<record id="view_partner_companyORgovernment_form" model="ir.ui.view">
+			<field name="name">view.partner.government.form</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="type">form</field>
+
+			<field name="arch" type="xml">
+				<xpath
+					expr="//form[@string='Partners']/group[1]/group[2]/field[@name='customer']"
+					position="replace">
+					<field name="company" />
+				</xpath>
+				<xpath
+					expr="//form[@string='Partners']/group[1]/group[2]/field[@name='supplier']"
+					position="replace">
+					<field name="government" />
+				</xpath>
+			</field>
+		</record>
+
+		<record id="view_partner_tree_gbu" model="ir.ui.view">
+			<field name="name">view_.partner.tree.gbu</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_tree" />
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<xpath expr="//tree[@string='Partners']/field[@name='user_id']"
+					position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+			</field>
+		</record>
+
+		<!-- Replace FILTER customer and supplier turn out company and government -->
+		<record id="view_partner_companyORgovernment_filter" model="ir.ui.view">
+			<field name="name">view.partner.government.filter</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_res_partner_filter" />
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<xpath
+					expr="//search[@string='Search Partner']/group[1]/filter[@name='customer']"
+					position="replace">
+					<filter string="Company" name="company" icon="terp-personal"
+						domain="[('company','=','1')]" />
+				</xpath>
+				<xpath
+					expr="//search[@string='Search Partner']/group[1]/filter[@name='supplier']"
+					position="replace">
+					<filter string="Government" name="government" icon="terp-personal"
+						domain="[('government','=','1')]" />
+				</xpath>
+			</field>
+		</record>
+
+		<!-- Add Legal Doc tab [START] -->
+		<record id="view_partner_legaldoc_tab" model="ir.ui.view">
+			<field name="name">view.partner.legaldoc.tab</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="priority" eval="1" />
+			<field name="arch" type="xml">
+				<page string="Notes" position="before">
+					<page string="General">
+						<group col="4" colspan="4">
+							<field colspan="2" mode="tree" name="shareowner_id"
+								nolabel="1" select="1" height="400">
+								<tree string="Shareholders">
+									<field name="share_certificates" />
+									<field name="share_owning" />
+									<field name="contact" />
+									<field name="share" />
+									<field name="share_percent" />
+									<field name="share_value" />
+									<field name="start_date" />
+									<field name="stop_date" />
+								</tree>
+							</field>
+							<field name="job_structure" colspan="2" mode="tree"
+								nolabel="1" height="400">
+					            <tree string="Company Structure">
+					                <field name="contact_id"/>
+					                <field name="function"/>
+					                <field name="address_id"/>
+					                <field name="email"/>
+					                <field name="phone"/>
+					                <field name="fax"/>
+					                <field name="extension"/>
+					                <field name="state" />
+					            </tree>
+					       	</field>
+						</group>
+					</page>
+					<page string="Address">
+						<field colspan="4" mode="form,tree" name="address" nolabel="1" select="1" height="260">
+							<form string="Partner Contacts">
+	                              <group colspan="2" col="2">
+	                                <separator string="Postal Address" colspan="2" col="2" />
+	                                <field name="type" string="Type"/>
+	                                <field name="street" />
+	                                <field name="street2" />
+	                                <field name="zip"/>
+	                                <field name="city"/>
+	                                <field name="country_id" completion="1"/>
+	                             </group>
+	                             <group colspan="2" col="2">
+	                                <separator string="Communication" colspan="2" col="2" />
+	                                <field name="phone"/>
+	                                <field name="mobile"/>
+	                                <field name="fax"/>
+	                                <field name="email" widget="email"/>
+	                             </group>
+	                        </form>
+	                        <tree string="Partner Contacts">
+	                            <field name="name"/>
+	                            <field name="zip"/>
+	                            <field name="city"/>
+	                            <field name="country_id"/>
+	                            <field name="phone"/>
+	                            <field name="email"/>
+	                        </tree>
+						</field>
+					</page>
+					<page string="Shareholders" attrs="{'invisible':[('government','=',True)]}">
+						<group col="6" colspan="6">
+							<field name="total_value" colspan="2" />
+							<field name="total_share" colspan="2" on_change="onchange_total_share(total_value,total_share)" />
+							<field name="value_per_share" colspan="2" />
+						</group>
+						<field colspan="4" mode="tree,form" name="shareowner_id"
+							nolabel="1" select="1" height="100">
+							<tree string="Shareholders">
+								<field name="share_certificates" />
+								<field name="share_owning" />
+								<field name="contact" />
+								<field name="share" />
+								<field name="share_percent" />
+								<field name="share_value" />
+								<field name="start_date" />
+								<field name="stop_date" />
+							</tree>
+							<form string="Shareholders">
+								<field name="is_person" /><newline />
+								<field name="share_owning" attrs="{'invisible':[('is_person','=',True)]}" /><newline />
+								<field name="contact" attrs="{'invisible':[('is_person','=',False)]}" /><newline />
+								<field name="share_certificates" />
+								<field name="share" /><newline />
+								<field name="start_date" />
+								<field name="stop_date" />
+							</form>
+						</field>
+						<separator string="Owned Share" colspan="2" /> 		<separator string="Not Owned Share" colspan="2" />
+						<field name="owned_share_amount" colspan="2" />		<field name="not_owned_share_amount" colspan="2" />
+						<field name="owned_share_percent" colspan="2" />	<field name="not_owned_share_percent" colspan="2" />
+					</page>
+					<page string="Share Owning" attrs="{'invisible':[('government','=',True)]}">
+						<field colspan="4" mode="tree,form" name="shareholder_id"
+							nolabel="1" select="1" height="100" readonly="1">
+							<tree string="Share Owning">
+								<field name="share_certificates" />
+								<field name="name" />
+								<field name="share" />
+								<field name="share_percent" />
+								<field name="share_value" />
+								<field name="start_date" />
+								<field name="stop_date" />
+							</tree>
+							<form string="Share Owning">
+								<field name="share_certificates" />
+								<field name="name" readonly="1" />
+								<field name="share" readonly="1" /><newline />
+								<field name="share_percent" />
+								<field name="share_value" />
+								<field name="start_date" />
+								<field name="stop_date" />
+							</form>
+						</field>
+					</page>
+					<page string="Directory">
+						<field colspan="4" mode="tree,form" name="directory"
+							nolabel="1" select="1" height="260">
+							<tree string="Directory">
+								<field name="name" />
+								<field name="type" />
+								<field name="user_id" />
+								<field name="company_id" groups="base.group_multi_company" />
+								<field name="storage_id" />
+								<field name="create_date" />
+								<field name="write_date" />
+								<field name="filled" />
+							</tree>
+						</field>
+						<group col="6" colspan="2">
+							<button colspan="2" name="structure_directory" type="object"
+								string="Create Directory Structure" />
+							<button colspan="2" name="rem_directory_strucutre" type="object"
+								string="Remove Directory Structure" />
+						</group>
+					</page>
+					<page string="Legal Documents">
+						<field colspan="4" mode="tree,form" name="attachment_ids"
+							nolabel="1" select="1" height="260">
+						</field>
+					</page>
+				</page>
+			</field>
+		</record>
+		<!-- Add Legal Doc tab [END] -->
+
+		<!-- Add Structure tab [START] -->
+		<record id="view_res_partner_show_structure_tab" model="ir.ui.view">
+			<field name="name">view.res.partner.structure.tab</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="priority" eval="32" />
+			<field name="arch" type="xml">
+				<xpath expr="/form/notebook/page[@string='Address']"
+					position="after">
+					<page string="Structure" attrs="{'invisible':[('government','=',True)]}">
+						<field name="job_structure" colspan="4" mode="tree,form"
+							nolabel="1" height="260" >
+				            <tree string="Company Structure">
+				                <field name="contact_id"/>
+				                <field name="function"/>
+				                <field name="address_id"/>
+				                <field name="email"/>
+				                <field name="phone"/>
+				                <field name="fax"/>
+				                <field name="extension"/>
+				                <field name="state" />
+				            </tree>
+				            <form string="Company Structure">
+					             <field name="contact_id" select="1"/>
+					             <field name="function" select="1"/>
+					             <field name="email" widget="email"/>
+					             <field name="phone"/>
+					             <field name="fax"/>
+					             <field name="extension"/>
+					             <field name="sequence_contact" groups="base.group_user"/>
+					             <field name="sequence_partner" groups="base.group_user"/>
+					             <field name="state" /> <newline />
+					             <separator string="Job Periode" colspan="4" />
+					             <field name="date_start" />
+					             <field name="date_stop" help="Last date of job. Leave it empty if you are not sure.." />
+				            </form>
+						</field>
+					</page>
+				</xpath>
+			</field>
+		</record>
+		<!-- Add Structure tab [END] -->
+		
+		
+		<!-- Remove tabs [START] -->
+		<record id="view_res_partner_address_tab" model="ir.ui.view">
+			<field name="name">view.res.partner.structure.tab</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="priority" eval="32" />
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+				<xpath expr="/form/notebook/page[@string='General']" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+				<xpath expr="/form/notebook/page[@string='Sales &amp; Purchases']" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+				<xpath expr="/form/notebook/page[@string='History']" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+			</field>
+		</record>
+		<!-- Remove tabs [END] -->
+
+		
+		<record id="hide_accounting_tab" model="ir.ui.view">
+			<field name="name">hide.accounting.tab</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account.view_partner_property_form" />
+			<field name="arch" type="xml">
+				<page string="Accounting" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</page>
+			</field>
+		</record>
+		
+		<record id="view_res_partner_rem_tree_contacts" model="ir.ui.view">
+			<field name="name">view.res.partner.rem.tree.contacts</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base_contact.view_partner_form_inherit" />
+			<field name="arch" type="xml">
+				<xpath
+					expr="//field[@name='address']/form[@string='Address']/field[@name='job_ids']"
+					position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+			</field>
+		</record>
+		
+		<record id="hide_category_tab" model="ir.ui.view">
+			<field name="name">hide.category.tab</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base_contact.view_partner_form_inherit3" />
+			<field name="arch" type="xml">
+				<page string="Categories" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</page>
+			</field>
+		</record>
+		
+<!-- ===========================Remove tree string 'Contact Functions' [START]============================ -->
+		<record model="ir.ui.view" id="view_partner_job_tree_gbu">
+			<field name="name">res.partner.job.tree</field>
+			<field name="model">res.partner.job</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="base_contact.view_partner_job_tree" />
+			<field name="arch" type="xml">
+				<xpath expr="/tree[@string='Contact Functions']" position="replace">
+					<tree string=" ">
+						<field name="contact_id" />
+						<field name="function" string="Function" />
+						<field name="name" />
+						<field name="address_id" />
+						<field name="email" />
+						<field name="phone" />
+						<field name="fax" />
+						<field name="extension" />
+						<field name="state" />
+					</tree>
+				</xpath>
+			</field>
+		</record>
+<!-- ============================Remove tree string 'Contact Functions' [END]============================= -->
+		
+<!-- ======================================Add Field Partner [START]====================================== -->
+		<record model="ir.ui.view" id="view_partner_field_document_directory">
+			<field name="name">view.partner.field.document.directory</field>
+			<field name="model">document.directory</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="document.view_document_directory_form" />
+			<field name="arch" type="xml">
+				<field name="parent_id" position="replace">
+					<field name="partner_template" />
+				</field> 
+				<field name="user_id" position="after">
+					<field name="parent_id" domain="['|',('partner_template','=',partner_template),('partner_template','=',False)]" on_change="onchange_parent(parent_id)" />
+				</field>
+				<field name="company_id" position="after">
+					<field name="level" required="1"/>
+					<field name="filled" />
+				</field>
+			</field>
+		</record>
+<!-- ======================================Add Field Partner [END]======================================== -->
+
+<!-- ===============================Add Field Partner & Parent TREE [START]=============================== -->
+		<record model="ir.ui.view" id="view_level_field_document_directory">
+			<field name="name">view.level.field.document.directory</field>
+			<field name="model">document.directory</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="document.view_document_directory_tree" />
+			<field name="arch" type="xml">
+				<field name="type" position="after">
+					<field name="partner_template" />
+					<field name="parent_id" />
+				</field> 
+			</field>
+		</record>
+<!-- ================================Add Field Partner & Parent TREE [END]================================ -->
+
+	</data>
+</openerp>

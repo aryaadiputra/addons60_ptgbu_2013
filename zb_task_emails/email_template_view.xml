@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data> 
+    	<!-- Email Template -->
+        <record model="ir.ui.view" id="view_email_smtpclient_email_template_tree">
+			<field name="name">email.smtpclient.email.template.tree</field>
+			<field name="model">email.smtpclient.email.template</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Email Templates">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="view_email_smtpclient_email_template_form">
+			<field name="name">email.smtpclient.email.template.form</field>
+			<field name="model">email.smtpclient.email.template</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Email Templates">
+					<field name="name" select="1"/>
+					<newline/>
+					<field name="body" select="1"/>
+					<newline/>
+					<group col="3" colspan="4" groups="base.group_extended">
+                                <separator string="Automatic variables for email body. Use exactly the same notation." colspan="4"/>
+                                <label string="Asigned to: __assigned_user__"/>
+                                <label string="Project Manager: __project_manager__"/>
+                                <label string="Task Summary: __task_summary__"/>
+                                <label string="Task Description: __task_description__"/>
+                                <label string="Priority: __priority__"/>
+                                <label string="Project: __project__"/>
+                                <label string="Planned Hours: __planned_hours__"/>
+                                <label string="Total Hours: __hours_spent__"/>
+                                <label string="Deadline: __date_deadline__"/>
+                                <label string="Starting Date: __start_date__"/>
+                                <label string="Ending Date: __end_date__"/>
+                                <label string="Created User: __created_user__"/>
+                                <label string="Current Action User: __current_action_user__"/>
+                                <label string="Web client: __web_url1__"/>
+                    </group>
+				</form>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="action_email_smtpclient_email_template_tree">
+			<field name="name">Email Templates</field>
+			<field name="res_model">email.smtpclient.email.template</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="view_email_smtpclient_email_template_tree" />
+		</record>
+		
+		<menuitem id="menu_email_smtpclient_email_template" 
+			action="action_email_smtpclient_email_template_tree" 
+			parent="smtpclient.menu_smtpclient_administration_server"/>
+    </data>
+</openerp>

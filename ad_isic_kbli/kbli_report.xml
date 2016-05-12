@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<report
+            id="kbli_list_report"
+            model="kbli.kbli"
+            name="kbli.list.report"
+            rml="addons/l10n_id_kbli/report/kbli_list_report.rml"
+            string="KBLI List"
+			auto="False"/>
+
+	</data>
+</openerp>

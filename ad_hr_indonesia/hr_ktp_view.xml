@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="hr_npwp_list_view">
+			<field name="name">hr.employee.npwp.tree</field>
+			<field name="model">hr.employee</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="hr.view_employee_tree" />
+			<field name="arch" type="xml">
+				<field name="coach_id" position="after">
+					<field name="ktp" invisible="1" />
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="partner_npwp_form_view">
+			<field name="name">hr.employee.npwp.form</field>
+			<field name="model">hr.employee</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<field name="identification_id" position="replace">
+					<field name="ktp" />
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

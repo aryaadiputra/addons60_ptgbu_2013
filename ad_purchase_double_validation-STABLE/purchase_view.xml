@@ -1,0 +1,92 @@
+<openerp>
+	<data>
+		<!--######################DisCount########################-->
+		<record model="ir.ui.view" id="purchase_discount_order_line_form">
+			<field name="name">purchase_discount.order.line.form</field>
+			<field name="model">purchase.order.line</field>
+	        <field name="type">form</field>
+	        <field name="inherit_id" ref="purchase.purchase_order_line_form"/>
+	        <field name="arch" type="xml">
+				<field name="price_unit" position="after">
+					<field name="discount"/>
+				</field>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="purchase_discount_order_form">
+			<field name="name">purchase.discount.order.form</field>
+			<field name="model">purchase.order</field>
+	        <field name="type">form</field>
+	        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+	        <field name="arch" type="xml">
+				<xpath expr="/form/notebook/page[@string='Purchase Order']/field[@name='order_line']/tree/field[@name='price_unit']" position="before">
+	            	<field name="discount"/>
+	            </xpath>
+			</field>
+		</record>
+		<!--########################################################-->
+		
+		<record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form" />
+            <field name="arch" type="xml">
+                        
+            	<xpath expr="//form/notebook/page[@string='Notes']" position="after">
+					<page string="Budget Info Po">
+						<field name="budget_info_ids_po" nolabel="1">
+							<tree>
+								<field name="account_analytic_id"/>
+								<field name="amount_budget" string="Total Budget"/>
+								<field name="amount_spent" string="Budget Spent"/>
+								<field name="amount_current" string="Current Request"/>
+								<field name="amount_utilized" string="Current Utilization"/>
+								<field name="amount_remain" string="Budget Remain"/>
+							</tree>				
+						</field>
+					</page>
+				</xpath>
+				<xpath expr="//form/notebook/page[@string='Notes']" position="after">
+					<page string="Budget Note">
+						<separator string="Budget Note" colspan="4"/>
+						<field name="budget_note" nolabel="1"/>
+						<field name="budget_note_line_ids" nolabel="1" colspan="4">
+							<tree>
+								<field name="user"/>
+								<field name="description"/>
+								<field name="date"/>						
+							</tree>
+						</field>
+					</page>
+				</xpath>
+				<xpath expr="//form/notebook/page[@string='Purchase Order']/group[2]/button[@name='purchase_cancel']" position="replace">
+					<button name="purchase_cancel" states="draft,confirmed,wait_auth,confirmed2,confirmed3,confirmed4" string="Cancel" icon="gtk-cancel" confirm="Are you sure to Cancel this record ?"/>
+	            </xpath>    
+				
+	            <xpath expr="//form/notebook/page[@string='Purchase Order']/group[2]" position="attributes">
+	            	<attribute name="col">15</attribute>            
+	            </xpath>
+	            
+                <xpath expr="//form/notebook/page[@string='Purchase Order']/group[2]" position="inside">
+                    <button name="purchase_approve2" states="confirmed2" string="Approve Head Proc Div" icon="gtk-go-forward"/>
+	                <button name="purchase_approve3" states="confirmed3" string="Approve Kadiv (User)" icon="gtk-go-forward"/>
+	                <button name="purchase_approve4" states="confirmed4" string="Approve CEO" icon="gtk-go-forward"/>
+	            </xpath>
+	       </field>
+	    </record>
+
+	    <record id="view_po_filter" model="ir.ui.view">
+            <field name="name">view.po.filter</field>
+            <field name="model">purchase.order</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+            <field name="arch" type="xml">
+            <filter name="draft" position="after">	
+            	<filter icon="terp-document-new" name="notdone" string="Not Done" domain="[('state','not in',['approved','done'])]" help="Draft Vouchers"/>
+            </filter>	
+            </field>
+        </record>
+	    
+	</data>
+</openerp>

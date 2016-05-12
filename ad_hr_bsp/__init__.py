@@ -1,0 +1,12 @@
+import hr_contract_available
+import hr_memorandum
+import hr_section
+import employee_bsp
+import hr_department
+import hr_memorandum
+import hr_rate
+import hr_association
+import partner
+import medical_history
+import report
+import hr_payroll

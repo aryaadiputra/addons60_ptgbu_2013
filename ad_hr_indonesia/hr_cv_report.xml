@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<report
+            id="hr_employee_cv_report"
+            model="hr.employee"
+            name="hr.employee.cv"
+            file="ad_hr_indonesia/report/hr_cv_report.mako" 
+            string="Employee's CV"
+			report_type="webkit" auto="False"/>
+	</data>
+</openerp>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="purchase.act_cancel" model="workflow.activity">
+            <field name="wkf_id" ref="purchase.purchase_order"/>
+            <field name="name">cancel</field>
+            <field name="kind">function</field>
+            <field name="flow_stop">True</field>
+            <field name="action">action_cancel_cancel()</field>
+        </record>	
+    
+    	<record id="act_waitting2" model="workflow.activity">
+            <field name="wkf_id" ref="purchase.purchase_order"/>
+            <field name="name">confirmed2</field>
+            <field name="action">create_date_manager_proc()
+                        write({'state':'confirmed2'})</field>
+            <field name="kind">function</field>
+        </record>
+        <!--Tambahan-->
+        <record id="act_waitting3" model="workflow.activity">
+            <field name="wkf_id" ref="purchase.purchase_order"/>
+            <field name="name">confirmed3</field>
+            <field name="action">create_date_div_proc()
+                        write({'state':'confirmed3'})</field>
+            <field name="kind">function</field>
+        </record>
+        
+        <record id="act_waitting4" model="workflow.activity">
+            <field name="wkf_id" ref="purchase.purchase_order"/>
+            <field name="name">confirmed4</field>
+            <field name="action">create_date_div_req()
+                        write({'state':'confirmed4'})</field>
+            <field name="kind">function</field>
+        </record>
+        
+	
+		<!--######################################-->
+
+        <record id="purchase.trans_confirmed_router" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_confirmed"/>
+            <field name="act_to" ref="act_waitting2"/>
+        	<field name="condition">amount_total &gt;= 0</field>
+            <field name="signal">purchase_approve</field>
+            <!--<field name="group_id" ref="purchase.group_purchase_manager"/>-->
+        </record>
+
+        <record id="trans_waiting_confirmed" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_confirmed"/>
+            <field name="act_to" ref="act_waitting2"/>
+            <field name="condition">amount_total &lt; 0</field>
+        </record>
+        
+        <record id="trans_confirmed_router2" model="workflow.transition">
+            <field name="act_from" ref="act_waitting2"/>
+            <field name="act_to" ref="act_waitting3"/>
+        	<field name="condition">check_budget_proc_div()</field>
+            <field name="signal">purchase_approve2</field>
+        </record>
+
+        
+		<record id="trans_waiting_confirmed2" model="workflow.transition">
+            <field name="act_from" ref="act_waitting2"/>
+            <field name="act_to" ref="act_waitting3"/>
+            <field name="condition">not check_budget_proc_div()</field>
+        </record>
+
+		
+        <!--Tambahan App Kadiv-->
+        
+        
+
+        <record id="trans_waiting_confirmed3" model="workflow.transition">
+            <field name="act_from" ref="act_waitting3"/>
+            <field name="act_to" ref="act_waitting4"/>
+            <field name="condition">not check_budget_kadiv()</field>
+        </record>
+        
+        <record id="trans_confirmed_router3" model="workflow.transition">
+            <field name="act_from" ref="act_waitting3"/>
+            <field name="act_to" ref="act_waitting4"/>
+        	<field name="condition">check_budget_kadiv()</field>
+            <field name="signal">purchase_approve3</field>
+        </record>
+        
+        <record id="trans_confirmed_router4" model="workflow.transition">
+            <field name="act_from" ref="act_waitting4"/>
+            <field name="act_to" ref="purchase.act_router"/>
+        	<field name="condition">check_budget_ceo()</field>
+            <field name="signal">purchase_approve4</field>
+        </record>
+
+        <record id="trans_waiting_confirmed4" model="workflow.transition">
+            <field name="act_from" ref="act_waitting4"/>
+            <field name="act_to" ref="purchase.act_router"/>
+            <field name="condition">not check_budget_ceo()</field>
+        </record>
+        <!--#######################Cancel###############################-->
+        <record id="trans_confirmed_cancel_confirmed2" model="workflow.transition">
+            <field name="act_from" ref="act_waitting2"/>
+            <field name="act_to" ref="purchase.act_cancel"/>
+            <field name="signal">purchase_cancel</field>
+        </record>
+        
+        <record id="trans_confirmed_cancel_confirmed3" model="workflow.transition">
+            <field name="act_from" ref="act_waitting3"/>
+            <field name="act_to" ref="purchase.act_cancel"/>
+            <field name="signal">purchase_cancel</field>
+        </record>
+        
+        <record id="trans_confirmed_cancel_confirmed4" model="workflow.transition">
+            <field name="act_from" ref="act_waitting4"/>
+            <field name="act_to" ref="purchase.act_cancel"/>
+            <field name="signal">purchase_cancel</field>
+        </record>
+        <!--##################################################################-->
+    </data>
+</openerp>

@@ -1,0 +1,44 @@
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_travel_line_tree">
+            <field name="name">Travel Tree</field>
+            <field name="model">hr.travel.line</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Ijin Khusus">
+                    <field name="name" />
+                    <field name="origin"/>
+                    <field name="account_id"/>
+                    <field name="quantity"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_travel_line_form" model="ir.ui.view">
+            <field name="name">Travel Form</field>
+            <field name="model">hr.travel.line</field>
+            <field name="type">form</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <form string="Hr Travel">
+                    <group>
+                        <field name="name" />
+                        <field name="account_id" invisible="False"/>
+                        <field name="account_analytic_id" />
+                    </group>
+                    <newline/>
+                    <group>
+                        <field name="origin" readonly="1" invisible="True"/>
+                        <field name="price_unit" />
+                    </group>
+                    <newline/>
+                    <group colspan="4">
+                        <field name="price_subtotal" />
+                        <field name="quantity" />
+                        <field name="invoice_line_tax_id" nolabel="1" colspan="4"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>  

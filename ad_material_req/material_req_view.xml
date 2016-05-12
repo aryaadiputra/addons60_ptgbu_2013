@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<act_window
+            context="{}"
+			domain="[('dept_relation.id', '=', department)]"
+		    id="act_budget_lines_open"
+            name="Budget"
+            res_model="ad_budget.line"
+            src_model="material.requisition"
+		    groups="base.group_extended"/>
+		<!--Menu Base  >> -->
+		<menuitem id="menu_material_request_main" name="Material Request" icon="terp-purchase" sequence="2"/>
+				  	
+		<menuitem id="menu_material_request" name="Material Request" parent="menu_material_request_main" sequence="1"/>	
+		
+		<record model="ir.ui.view" id="view_material_requisition_tree">
+            <field name="name">view.material.requisition.tree</field>            
+            <field name="model">material.requisition</field>          
+            <field name="type">tree</field>		
+            <field name="arch" type="xml">
+            	<tree>
+            		<field name="name" />
+	                    <field name="user_id" />
+	                    <field name="req_employee" />
+	                    <field name="department" />
+	                    <field name="date_start"/>
+	                    <field name="date_end" />
+	                    <field name="origin" />
+	                    <field name="state" />
+            	</tree>            
+            </field>
+        </record>
+		
+		
+		<record model="ir.ui.view" id="view_material_requisition_form">
+            <field name="name">view.material.requisition.form</field>            
+            <field name="model">material.requisition</field>          
+            <field name="type">form</field>		
+            <field name="arch" type="xml">
+                <form string="Material Requisition">
+	                <group colspan="4" col="6">
+	                    <!--<field name="name" attrs="{'readonly':[('state','&lt;&gt;','draft')]}" />-->
+	                    <field name="name" attrs="{'readonly':[('state','&lt;&gt;','draft')]}" />
+	                    <field name="user_id" attrs="{'readonly':[('state','&lt;&gt;','draft')]}" />
+	                    <field name="req_employee" attrs="{'readonly':[('state','&lt;&gt;','draft')]}" on_change="onchange_request_employee(req_employee)"/>
+	                    <!--<field name="delegate" attrs="{'readonly':[('state','&lt;&gt;','draft')], 'required':[('state','=','draft')]}" />-->
+	                    <!--<field name="department" readonly="1" />-->
+	                    <field name="department_rel_employee" invisible="1"/>
+	                    <field name="division_rel_employee" invisible="1"/>
+	                    <field name="department" widget="selection" attrs="{'readonly':[('state','&lt;&gt;','draft')],'required':[('state','=','draft')]}"/>
+	                    <field name="exclusive" attrs="{'readonly':[('state','&lt;&gt;','draft')]}" invisible="1"/>
+	                    <field name="date_start" attrs="{'readonly':[('state','&lt;&gt;','draft')]}" />
+	                    <field name="date_end" attrs="{'readonly':[('state','&lt;&gt;','draft')]}" />
+	                    <field name="origin" attrs="{'readonly':[('state','&lt;&gt;','draft')], 'required':[('state','=','draft')]}" />
+	                    <field name="warehouse_id" groups="base.group_extended" widget="selection" attrs="{'readonly':[('state','&lt;&gt;','draft')]}" invisible="1"/>
+	                    <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+	                	<button name="lv_4_approve" states="lv_4" string="Warehouse User" icon="gtk-jump-to" />
+	                </group>
+	                
+	                <notebook colspan="4">
+		                <page string="Products">
+	                		<field name="line_ids" colspan="4" nolabel="1" attrs="{'readonly':[('state','&lt;&gt;','draft')]}" >
+		                        <tree string="Products">
+		                            <field name="product_id"/>
+<!--		                            <field name="with_budget"/-->
+		                            <field name="account_analytic_id"/>
+		                            <field name="info" />
+		                            <field name="product_uom_id"/>
+		                            <field name="price" width="200"/>
+		                            <field name="product_qty"/>
+		                            <field name="subtotal" sum="Total"/>
+		                        </tree>
+		                        <form string="Products" >
+		                            <field name="product_id" required="1" on_change="onchange_product_id(parent.department,product_id,product_uom_id)"/>
+		                            <field name="price" required="1"/>
+		                            <field name="account_analytic_id" required="0" invisible="1"/>
+		                            <field name="product_qty" required="1"/>
+		                            <field name="product_uom_id" invisible="1"/>
+		                            <field name="info" required="1"/>
+		                            <field name="description" invisible="1"/>
+		                            <field name="company_id" groups="base.group_multi_company" widget="selection" invisible="1"/>
+		                            <newline/>
+		                           	<separator string="Detail" colspan="4"/>
+		                            <field name="detail" colspan="4" nolabel="1"/>
+		                        </form>
+		                	</field>
+		                	<separator colspan="4"/>
+		                	<field name="approve_status"/>
+		                    <group col="10" colspan="5">
+		                        <field name="state" select="1" readonly ="1"/>
+		                        <button name="compute" string="Compute" type="object" icon="terp-stock_format-scientific" attrs="{'invisible': [('state','!=','draft')]}"/>
+		                        <button name="tender_cancel" states="draft,lv_1,lv_2,lv_3,done" string="Cancel" icon="gtk-cancel" />
+		                        <button name="action_cancel_draft" type='object' states="cancel" string="Set to Draft" icon="gtk-convert" />
+		                        <button name="tender_in_progress" states="draft" string="End User" icon="gtk-apply" />
+		                        <button name="lv_1_approve" states="lv_1" string="Head of Department" icon="gtk-jump-to" />
+		                        <button name="lv_2_approve" states="lv_2" string="Head of Division" icon="gtk-jump-to" />
+		                        <button name="lv_3_approve" states="lv_3" string="CFO" icon="gtk-jump-to" />
+		                        <button name="lv_4_approve" states="lv_4" string="Warehouse User" icon="gtk-jump-to" />
+		                    </group>
+		                    
+		                </page>
+		                
+		                <page string="Budget Info">
+		                	<group colspan="2" col="2">
+								<separator string="Budget" colspan="4"/>
+								<field name="budget_info_ids" nolabel="1" height="300">
+									<tree string="Budget Info">
+										<field name="account_analytic_id"/>
+										<field name="amount_budget" string="Total Budget"/>
+										<field name="amount_spent" string="Budget Spent"/>			
+										<field name="amount_current" string="Current Request"/>		
+										<field name="amount_utilized" string="Current Utilization"/>			
+										<field name="amount_remain" string="Budget Remain"/>		
+									</tree>							
+								</field>
+							</group>
+		                	<group colspan="2" col="2">
+								<separator string="Budget Notes" colspan="4"/>
+								<field name="ext_note" nolabel="1" colspan="2"/>
+								<field name="extra_note_line_ids" nolabel="1" colspan="2">
+	                    			<tree string="Budget Note Lines" >
+	                    			    <field name="user"/>
+	                    			    <field name="description"/>
+	                    				<field name="date" />                   			
+	                    			</tree>
+	                    			<form string="Budget Note Lines" >
+	                    			    <field name="user"/>
+	                    			    <field name="description"/>
+	                    				<field name="date" />                   			
+	                    			</form>                   		
+	                    		</field>
+							</group>
+                    	</page>
+                    	
+		                <page string="Notes">
+		                	<field name="description" nolabel="1" colspan="4"/>
+                        	<field name="note_line_ids" nolabel="1">
+                    			<tree string="Note Lines" >
+                    			    <field name="user"/>
+                    			    <field name="description"/>
+                    				<field name="date" />                   			
+                    			</tree>
+                    			<form string="Note Lines" >
+                    			    <field name="user"/>
+                    			    <field name="description"/>
+                    				<field name="date" />                   			
+                    			</form>                   		
+                    		</field>                
+		                </page>
+		                <page string="Approval Historical">
+		              		<group col="6" colspan="3">
+			                	<field name="user_app" readonly="1" />
+			                	<field name="manager_app" readonly="1" />
+			                	<field name="kadiv_app" readonly="1" />	 
+			                	<field name="ceo_app" readonly="1" />
+			                	<!--<field name="warehouse_app" readonly="1" />-->
+		                	</group>
+		                </page>
+                    	<page string="Tracking">
+                    	    <group col="2" colspan="2">
+	                    		<field name="int_status"/>
+	                    		<field name="pr_status"/>    
+	                    		<field name="po_status"/> 
+	                    		<!--<field name="in_status"/>-->
+                    		</group>  
+                    		<label colspan="2" />
+                    	</page>
+
+	                </notebook>
+	        	</form>
+            </field>		
+		</record>
+		
+		<act_window id='act_material_request' 
+				    res_model='material.requisition'
+					name='Material Requisition' 
+					domain="[]" 
+					view_type='form'
+					view_mode='tree,form'
+					context="{'search_default_notdone':1}" />
+				
+		
+		<menuitem 	id='menu_material_request_action' 
+				  	parent='menu_material_request'
+				  	action='act_material_request'
+				  	sequence='20'/>
+		
+		<record id="view_material_filter" model="ir.ui.view">
+            <field name="name">view.material.filter</field>
+            <field name="model">material.requisition</field>
+            <field name="type">search</field>
+<!--            <field name="inherit_id" ref="account_voucher.view_voucher_filter_vendor_pay" /-->
+            <field name="arch" type="xml">
+                <search string="Filter State">
+                    <group expand="0" string="Filter" colspan="4" col="10">
+            			<filter icon="terp-document-new" name="notdone" string="Not Done" domain="[('state','!=','done')]" help="Draft Vouchers"/>
+            		</group>
+            	</search>
+            </field>
+        </record>
+		
+	</data>
+</openerp>

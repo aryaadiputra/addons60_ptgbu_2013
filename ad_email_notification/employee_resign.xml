@@ -1,0 +1,228 @@
+<openerp>
+	<data>
+		<menuitem name='Retirement' id='menu_resignation' parent='hr.menu_hr_root' sequence='17' groups="base.group_hr_manager" />
+		
+		<record model="ir.ui.view" id="view_resignation_tree">
+            <field name="name">Employee Retirement List</field>            
+            <field name="model">hr.resign</field>            
+            <field name="type">tree</field>							
+            <field name="arch" type="xml">
+            	<tree string="Retirement Submission" colors="gray:state=='approved';blue:state=='draft'">
+            		<field name="name" />
+            		<field name="employee_id" />
+            		<field name="department_id" />
+            		<field name="job_id" />
+            		<field name="job_level_id" />
+            		<field name="date_submission" />
+            		<field name="date_approved" />
+            		<field name="state" />
+            	</tree>
+            </field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_resignation_form">
+            <field name="name">Employee Retirement</field>            
+            <field name="model">hr.resign</field>            
+            <field name="type">form</field>							
+            <field name="arch" type="xml">
+            	<form string="Retirement Submission">
+            		<field name="employee_id"/>
+            		<field name="name" readonly="1" />
+            		<field name="send_mail" colspan="2" />
+            		<notebook colspan="4">
+            			<page string="Retirement Info">
+		            		<field name="department_id" />
+		            		<field name="job_id" />
+		            		<field name="job_level_id" />
+		            		<field name="date_retirement" />
+		            		<field name="date_submission" />
+		            		<field name="date_approved" />
+		            		<field name="resign_letter" colspan="4"/>
+		            		<field name="serah_terima_file" colspan="2"/>
+		            		<field name="fasilitas_kerja" colspan="2"/>
+		            		<field name="finished_petty_cash_division" colspan="2"/>
+		            		<field name="deleted_mail_box" colspan="2"/>
+		            		<newline/>
+		            		<separator string="Reason Summary" colspan="4"/>
+		            		<field name="reason_summary" colspan="4" nolabel="1"/>
+		            		<group colspan="4">
+			            		<field name="state" />
+								<group colspan="2">
+				            		<button name="button_proposed" states="draft" string="Confirm" type="object" icon="gtk-apply"/>
+				                	<button name="button_draft" states="proposed, approved" string="Set To Draft" type="object" icon="gtk-cancel"/>
+				                	<button name="button_approve" groups="base.group_hr_manager" states="proposed, approved" string="Approve" type="object" icon="gtk-apply"/>
+								</group>
+		            		</group>
+            			</page>
+						<page string="Recipient" attrs="{'invisible':[('send_mail','=',False)]}">
+							<separator string="Please select employee to send notification email" colspan="4" />
+							<field name="recipient" attrs="{'required':[('send_mail','=',True)], 'readonly':[('state','=','done')]}" on_change="onchange_recipient(recipient)" colspan="4" nolabel="1" />
+						</page>
+						<page string="Mail" attrs="{'invisible':[('send_mail','=',False)]}">
+							<group colspan="4" col="6">
+								<group colspan="4" col="4" height="350" width="880">
+									<separator string="Please type text you would like to send to the recipient." colspan="4" /><newline />
+									<field name="body" colspan="4" nolabel="1" attrs="{'readonly':[('state','=','done')]}"/>
+								</group>
+								<group colspan="2" col="4">
+									<separator string="Legends" colspan="4" />
+									<label string="[name]"/>
+									<label string=": People that is being retired" /> <newline />
+									<label string="[nik] "/>
+									<label string=": Employee's ID" /> <newline />
+									<label string="[tmt] "/>
+									<label string=": Date of join" /> <newline />
+									<label string="[retirement_date] "/>
+									<label string=": Retirement date" /> <newline />
+									<label string="[reason] "/>
+									<label string=": Retirement reason" /> <newline />
+									<label string="INFO: HTML element is allowed." />
+								</group>
+							</group>
+						</page>
+						<page string="General Affair Checking">
+            				<group colspan="2">
+	            			    <field name="motor" />
+	            				<field name="mobil" />
+	            				<field name="pengemudi" />
+	            				<field name="notebook" />
+	            				<field name="handphone" />
+            					<field name="pager" />
+	            				<field name="handy_talky" />
+	            				<field name="kamera" />
+            				</group>
+            				<notebook colspan="4">
+		    					<page string="Aditonal Information For GA">
+		    						<group  colspan="4">
+			            				<field name="resign_list_inv_id" nolabel="1">
+			                                <tree editable="bottom" string="Additional Information">
+			                                    <field name="type_id"/>
+			                                    <field name="status" />
+			                                </tree>
+			                            </field>
+		                        	</group>
+		                        </page>
+		                        <page string="Notes">
+		            			    <separator string="Notes From General Affair Department" colspan="4"/>
+		            				<field name="general_affair_note" nolabel="1"/>
+		                        </page>
+	                    	</notebook>
+            				<newline/>      
+            				<field name="ga_checking_state" nolabel="1"/>
+            				<button name="ga_checked" attrs="{'invisible':[('ga_checking_state','!=','draft')]}" string="GA Checked" type="object" icon="gtk-apply"/>	
+            			</page>
+            			<page string="IT Checking">
+            				<group colspan="2">
+	            			    <field name="deleting_email" colspan="4"/>
+	            				<field name="deleting_lotus_note" colspan="4"/>
+	            				<field name="deleting_userid_pass" colspan="4"/>
+            				</group>
+            				<notebook colspan="4">
+		    					<page string="Aditonal Information For IT">
+		    						<group  colspan="4">
+			            				<field name="resign_list_inv_id_it" nolabel="1">
+			                                <tree editable="bottom" string="Additional Information">
+			                                    <field name="type_id"/>
+			                                    <field name="status" />
+			                                </tree>
+			                            </field>
+		                        	</group>
+		                        </page>
+		                        <page string="Notes">
+		                        	<separator string="Notes From IT Department" colspan="4"/>
+		        			    	<field name="it_note" nolabel="1"/>
+		                        </page>
+	                    	</notebook>
+            				<newline/>      
+            				<field name="it_checking_state" nolabel="1"/>
+            				<button name="it_checked" attrs="{'invisible':[('it_checking_state','!=','draft')]}" string="IT Checked" type="object" icon="gtk-apply"/>
+            			</page>
+            			<page string="Finance Checking">
+            				<group colspan="2">
+            					<field name="advance" colspan="4"/>
+            					<field name="petty_cash" colspan="4"/>
+            				</group>
+            				<notebook colspan="4">
+		    					<page string="Aditonal Information For Finance">
+		    						<group  colspan="4">
+			            				<field name="resign_list_inv_id_finance" nolabel="1">
+			                                <tree editable="bottom" string="Additional Information">
+			                                    <field name="type_id"/>
+			                                    <field name="status" />
+			                                </tree>
+			                            </field>
+		                        	</group>
+		                        </page>
+		                        <page string="Notes">
+		            			    <separator string="Notes From Finance Department" colspan="4"/> 
+		            			    <field name="finance_note" nolabel="1"/>
+		                        </page>
+	                    	</notebook>
+	            			<newline/>      
+	            			<field name="finance_checking_state" nolabel="1"/>
+	            			<button name="finance_checked" attrs="{'invisible':[('finance_checking_state','!=','draft')]}" string="Finance Checked" type="object" icon="gtk-apply"/>
+            			</page>
+            			<page string="HRD Checking">
+            				<group colspan="2">
+            					<field name="saldo_pinjaman" />
+            					<field name="saldo_cuti" />
+            					<field name="pass_tlpn" />
+            					<field name="id_card" />
+            					<field name="kartu_nama" />
+            					<field name="kartu_assuransi" />
+            				</group>
+            				<notebook colspan="4">
+		    					<page string="Aditonal Information For HRD">
+		    						<group  colspan="4">
+			            				<field name="resign_list_inv_id_hr" nolabel="1">
+			                                <tree editable="bottom" string="Additional Information">
+			                                    <field name="type_id"/>
+			                                    <field name="status" />
+			                                </tree>
+			                            </field>
+		                        	</group>
+		                        </page>
+		                        <page string="Notes">
+		            			    <separator string="Notes From HRD Department" colspan="4"/> 
+		            			    <field name="hrd_note" nolabel="1"/>
+		                        </page>
+	                    	</notebook>
+	            			<newline/>      
+	            			<field name="hrd_checking_state" nolabel="1"/>
+	            			<button name="hrd_checked" attrs="{'invisible':[('hrd_checking_state','!=','draft')]}" string="HRD Checked" type="object" icon="gtk-apply"/>
+            			</page>
+            		</notebook>
+				</form>
+            </field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_resignation_search">
+            <field name="name">Employee Retirement Search</field>            
+            <field name="model">hr.resign</field>            
+            <field name="type">search</field>							
+            <field name="arch" type="xml">
+            	<search string="Retirement Submission">
+            		<field name="employee_id" />
+            		<field name="department_id" />
+            		<field name="job_id" />
+            		<field name="job_level_id" />
+            		<field name="date_submission" />
+            		<field name="date_approved" />
+            		<field name="state" />
+            	</search>
+            </field>
+		</record>
+		
+		<record id="action_resignation" model="ir.actions.act_window">
+			<field name="name">Employee Retirement</field>
+			<field name="res_model">hr.resign</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'search_default_posted': 1}</field>
+			<field name="search_view_id" ref="view_resignation_search"/>
+		</record>
+
+		<menuitem action="action_resignation" icon="STOCK_JUSTIFY_FILL" id="menu_action_resignation"
+			parent="menu_resignation" sequence="3"/>
+	</data>
+</openerp>

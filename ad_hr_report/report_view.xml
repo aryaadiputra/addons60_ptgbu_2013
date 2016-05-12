@@ -1,0 +1,103 @@
+<openerp>
+	<data>
+		<report id="report_hr_attendance"
+			string="Report Attendance Daily"
+			model="hr.report.wizard"
+			name="report.hr.attendance"
+			file="ad_hr_report/report/attendance_report.mako"
+			report_type="webkit"
+			auto="False"
+			menu="False"/>
+		
+		<report id="report_hr_attendance_monthly"
+			string="Report Attendance Monthly"
+			model="hr.report.wizard"
+			name="report.hr.attendance.monthly"
+			file="ad_hr_report/report/attendance_report_monthly.mako"
+			report_type="webkit"
+			auto="False"
+			menu="False"/>
+
+		<report id="report_hr_custom_department_list"
+			string="Report Employee Custom by Department"
+			model="hr.report.wizard"
+			name="report.hr.custom.department.list"
+			file="ad_hr_report/report/employee_department_list.mako"  
+			report_type="webkit"
+			auto="False"
+			menu="False"/>
+		
+		<report id="report_hr_custom_section_list"
+			string="Report Employee Custom by Section" 
+			model="hr.report.wizard"
+			name="report.hr.custom.section.list"
+			file="ad_hr_report/report/employee_section_list.mako"  
+			report_type="webkit"
+			auto="False"
+			menu="False"/>
+		
+		<report id="report_hr_custom_joblevel_list"
+			string="Report Employee Custom by Job Level" 
+			model="hr.report.wizard"
+			name="report.hr.custom.joblevel.list"
+			file="ad_hr_report/report/employee_joblevel_list.mako"  
+			report_type="webkit"
+			auto="False"
+			menu="False"/>
+		
+		<report id="report_hr_custom_location_list"
+			string="Report Employee Custom by Location"
+			model="hr.report.wizard"
+			name="report.hr.custom.location.list"
+			file="ad_hr_report/report/employee_location_list.mako"  
+			report_type="webkit"
+			auto="False"
+			menu="False"/>
+		
+		<report id="report_hr_custom_gender_list"
+			string="Report Employee Custom by Gender"
+			model="hr.report.wizard"
+			name="report.hr.custom.gender.list"
+			file="ad_hr_report/report/employee_gender_list.mako"  
+			report_type="webkit"
+			auto="False"
+			menu="False"/>
+		
+		<report id="report_hr_custom_bagian_list"
+			string="Report Employee Custom by Function"
+			model="hr.report.wizard"
+			name="report.hr.custom.bagian.list"
+			file="ad_hr_report/report/employee_bagian_list.mako"  
+			report_type="webkit"
+			auto="False"
+			menu="False"/>
+		
+		<report id="report_hr_custom_age_list"
+			string="Report Employee Custom by Age"
+			model="hr.report.wizard"
+			name="report.hr.custom.age.list"
+			file="ad_hr_report/report/employee_age_list.mako" 
+			report_type="webkit"
+			auto="False"
+			menu="False"/>		
+	
+		<report id="report_hr_custom_workexperience_list"
+			string="Report Employee Custom by Work Experience Time"
+			model="hr.report.wizard"
+			name="report.hr.custom.workexperience.list" 
+			file="ad_hr_report/report/employee_workexperience_list.mako" 
+			report_type="webkit"
+			auto="False"
+			menu="False"/>		
+
+		<report id="report_hr_custom_contract_list"
+			string="Report Employee Custom"
+			model="hr.report.wizard"
+			name="report.hr.contract.list"
+			file="ad_hr_report/report/employee_contract_list.mako"  
+			report_type="webkit"
+			auto="False"
+			menu="False"/>
+			
+	</data>
+</openerp>

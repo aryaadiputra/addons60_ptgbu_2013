@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+<!-- ===================================Menu Create New Company[START]==================================== -->
+		<record model="ir.ui.view" id="view_company_wizard_form">
+			<field name="name">view.company.wizard.form</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Create New Company">
+					<field name="state" invisible="1"/>
+					<group states="company_name" col="4" colspan="4" width="800" height="200">
+						<field name="name" colspan="2" /><newline />
+						<field name="partner_category" required="1" />
+					</group>
+					<group states="company_addr" col="4" colspan="4">
+						<field name="address" nolabel="1" mode="tree,form" colspan="4" height="200">
+							<form string="Partner Contacts">
+	                              <group colspan="2" col="4">
+	                                <separator string="Postal Address" colspan="4" col="4" />
+	                                <field name="type" string="Type" colspan="2"/>
+	                                <field name="street" colspan="4"/>
+	                                <field name="street2" colspan="4"/>
+	                                <field name="zip"/>
+	                                <field name="city"/>
+	                                <field name="country_id" completion="1"/>
+	                                <field name="state_id"/>
+	                             </group>
+	                             <group colspan="2" col="2">
+	                                <separator string="Communication" colspan="2" col="2" />
+	                                <field name="phone"/>
+	                                <field name="mobile"/>
+	                                <field name="fax"/>
+	                                <field name="email" widget="email"/>
+	                             </group>
+	                        </form>
+	                        <tree string="Partner Contacts">
+	                            <field name="name"/>
+	                            <field name="zip"/>
+	                            <field name="city"/>
+	                            <field name="country_id"/>
+	                            <field name="phone"/>
+	                            <field name="email"/>
+	                        </tree>
+						</field>
+					</group>
+					<group states="company_strc" col="4" colspan="4" >
+						<field name="job_structure" nolabel="1" mode="tree,form" colspan="4" height="200">
+							<tree string="Person Functions">
+				                <field name="contact_id"/>
+				                <field name="function"/>
+				                <field name="name"/>
+				                <field name="address_id"/>
+				                <field name="email"/>
+				                <field name="phone"/>
+				                <field name="fax"/>
+				                <field name="extension"/>
+				                <field name="state" />
+				            </tree>
+				            <form string="Person Functions">
+								<field name="contact_id" select="1"/>
+								<field name="function" select="1"/>
+								<field name="email" widget="email"/>
+								<field name="phone"/>
+								<field name="fax"/>
+								<field name="extension"/>
+								<field name="sequence_contact" groups="base.group_user"/>
+								<field name="sequence_partner" groups="base.group_user"/>
+								<field name="date_start" groups="base.group_user"/>
+								<field name="date_stop" groups="base.group_user"/>
+								<field name="state" />
+				            </form>
+						</field>
+					</group>
+					<group states="shareholder" col="4" colspan="4" >
+						<field name="shareowner_id" nolabel="1" mode="tree,form" colspan="4" height="200">
+							<tree string="Shareholder">
+								<field name="share_owning" />
+								<field name="share" />
+							</tree>
+							<form string="Shareholder">
+								<field name="share_owning" />
+								<field name="share" />
+							</form>
+						</field>
+					</group>
+					<group states="share_owning" col="4" colspan="4">
+						<field name="shareholder_id" nolabel="1" mode="tree,form" colspan="4" height="200">
+							<tree string="Share Owning">
+								<field name="name" />
+								<field name="share" />
+							</tree>
+							<form string="Share Owning">
+								<field name="name" />
+								<field name="share" />
+							</form>
+						</field>
+					</group>
+					<group states="confirm" col="8" colspan="8">
+						<field name="config_logo" widget="image" width="220" height="130" nolabel="1" colspan="2"/>
+						<separator orientation="vertical" rowspan="7" />
+						<label string="The company has been saved." colspan="5" />
+					</group>
+		<!-- ==================================BUTTON [START]================================== -->
+					<group states="company_name" col="4" colspan="4">
+    				    <button special="cancel" string="Cancel" icon="gtk-cancel" colspan="2"/>
+						<button name="new_company" string="Next" type="object" icon="gtk-go-forward" colspan="2"/>
+					</group>
+					<group states="company_addr" col="4" colspan="4">
+    				    <button name="company_addr" string="Skip" type="object" icon="gtk-jump-to" colspan="2"/>
+						<button name="company_addr" string="Next" type="object" icon="gtk-go-forward" colspan="2"/>
+					</group>
+					<group states="company_strc" col="4" colspan="4">
+						<button name="company_strc" string="Skip" type="object" icon="gtk-jump-to" colspan="2"/>
+						<button name="company_strc" string="Next" type="object" icon="gtk-go-forward" colspan="2"/>
+					</group>
+					<group states="shareholder" col="4" colspan="4">
+						<button name="shareholder" string="Skip" type="object" icon="gtk-jump-to" colspan="2"/>
+						<button name="shareholder" string="Next" type="object" icon="gtk-go-forward" colspan="2"/>
+					</group>
+					<group states="share_owning" col="4" colspan="4">
+						<button name="share_owning" string="Skip" type="object" icon="gtk-jump-to" colspan="2"/>
+						<button name="share_owning" string="Next" type="object" icon="gtk-go-forward" colspan="2"/>
+					</group>
+					<group states="confirm" col="4" colspan="4">
+						<button special="cancel" string="Done" icon="gtk-ok"  colspan="1" />
+					</group>
+					<newline />
+		<!-- ====================================BUTTON [END]==================================== -->
+				</form>
+			</field>
+		</record>
+<!-- ====================================Menu Create New Company[END]===================================== -->
+
+		<record id="act_company_wizard" model="ir.actions.act_window">
+            <field name="name">Create New Company</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="priority">20</field>
+            <field name="view_id" ref="view_company_wizard_form"/>
+            <field name="target">new</field>
+    	</record>
+    	    		
+    	<menuitem 	id='menu_company_wizard' 
+				  	parent='ad_partner_category.menu_corporate_conf'
+					action='act_company_wizard'
+				  	sequence='20'/>
+
+<!-- =======================================Menu Create New Company======================================= -->
+
+<!-- =====================================Add field Company Category====================================== -->
+		<record model="ir.ui.view" id="view_company_category_field">
+			<field name="name">view_.company.category.field</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<field name="lang" position="after">
+					<field name="partner_category" />
+				</field>
+			</field>
+		</record>
+<!-- =====================================Add field Company Category====================================== -->
+	</data>
+</openerp>

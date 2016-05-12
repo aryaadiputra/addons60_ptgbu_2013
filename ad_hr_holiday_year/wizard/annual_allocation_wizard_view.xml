@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="view_allocation_request_wizard" model="ir.ui.view">
+            <field name="name">Allocation Request Wizard</field>
+            <field name="model">annual.allocation.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Allocation Request Wizard">
+                	<group colspan="4" col="4">
+	                    <field name="name" />
+						<field name="type_id" />
+						<field name="total_allo" />
+	                    <field name="employee_ids" colspan="4" nolabel="1" width="400"/>
+	                    <group colspan="4">
+	                        <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+	                        <button name="create_allocation" string="Create" type="object" icon="gtk-go-forward"/>
+	                    </group>
+                	</group>
+                 </form>
+            </field>
+        </record>
+        
+        <record id="action_allocation_request_wizard" model="ir.actions.act_window">
+             <field name="name">Allocation Request Wizard</field>
+             <field name="res_model">annual.allocation.wizard</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">form</field>
+             <field name="view_id" ref="view_allocation_request_wizard"/>
+             <field name="target">new</field>
+       </record>
+       
+       <menuitem icon="STOCK_EXECUTE"
+            name="Allocation Request Wizard"
+            action="action_allocation_request_wizard"
+            groups="base.group_hr_manager"
+            id="menu_allocation_request_wizard"
+            parent="hr.menu_open_view_attendance_reason_config"/>
+    </data>
+</openerp>

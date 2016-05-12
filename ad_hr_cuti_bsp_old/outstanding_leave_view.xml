@@ -1,0 +1,212 @@
+<openerp>
+    <data>
+        <menuitem name='Ketidakhadiran' id='menu_cuti' parent='hr.menu_hr_root' sequence='6'
+            groups="base.group_hr_manager" />
+        
+        <menuitem name='Khusus' id='menu_cuti_khusus' parent='menu_cuti' sequence='10' groups="base.group_hr_manager"
+            />
+        
+        <record model="ir.ui.view" id="view_outstanding_leave_tree">
+            <field name="name">Ijin Khusus BSP</field>
+            <field name="model">outstanding.leave</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Ijin Khusus">
+                    <field name="name" />
+                    <field name="employee_id" />
+                    <field name="department_id" />
+                    <field name="section_id" />
+                    <field name="start" />
+                    <field name="end" />
+                    <field name="duration" />
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_outstanding_leave_form">
+            <field name="name">Ijin Khusus BSP</field>
+            <field name="model">outstanding.leave</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Ijin Khusus">
+                    <group colspan="4" col="6">
+                        <field name="employee_id" on_change="onchange_employee(employee_id)" attrs="{'readonly':[('state','=','done')]}"
+                            />
+                        <field name="department_id" attrs="{'readonly':[('state','=','done')]}" />
+                        <field name="section_id" attrs="{'readonly':[('state','=','done')]}" />
+                        <field name="created" attrs="{'readonly':[('state','=','done')]}" />
+                        <field name="approved" />
+                        <field name="approve_by" />
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Data Ijin">
+                            <group colspan="4" col="6">
+                                <field name="name" attrs="{'readonly':[('state','=','done')]}" />
+                                <newline />
+                                <field name="start" on_change="onchange_start(start,name)" attrs="{'invisible':[('name','=','keluar')],'readonly':[('state','=','done')]}"
+                                    />
+                                <field name="end" attrs="{'invisible':[('name','=','keluar')],'readonly':[('state','=','done')]}"
+                                    />
+                                <field name="duration" attrs="{'invisible':[('name','=','keluar')],'readonly':[('state','=','done')]}"
+                                    />
+                                <newline />
+                                <field name="start_time" attrs="{'invisible':[('name','!=','keluar')],'readonly':[('state','=','done')]}"
+                                    />
+                                <field name="end_time" attrs="{'invisible':[('name','!=','keluar')],'readonly':[('state','=','done')]}"
+                                    on_change="onchange_start_end(start_time,end_time)"
+                                    />
+                                <field name="dur_hour" attrs="{'invisible':[('name','!=','keluar')],'readonly':[('state','=','done')]}"/>
+                                <field name="return" attrs="{'invisible':[('name','=','keluar')],'readonly':[('state','=','done')]}"
+                                    />
+                                <newline />
+                            </group>
+                            <field name="workdays_ids" mode="tree,form" nolabel="1" colspan="4" readonly="1">
+                                <tree string="Workdays">
+                                    <field name="name_day" />
+                                    <field name="name" />
+                                </tree>
+                                <form string="Workdays">
+                                    <field name="name" />
+                                    <field name="name_day" />
+                                </form>
+                            </field>
+                            <button name="generate_days" string="Generate Days" type="object" icon="terp-stock_format-scientific"/>
+                            <group col="6" colspan="4">
+                                <field name="state" />
+                                <group colspan="4">
+                                    <button name="button_proposed" states="draft" string="Propose" type="object" icon="gtk-apply"/>
+                                    <button name="button_draft" states="approved,waiting" string="Reviews" type="object"
+                                        icon="gtk-convert"/>
+                                    <button name="button_approved" groups="base.group_hr_manager" states="waiting" string="Approve"
+                                        type="object" icon="gtk-go-forward" />
+                                    <button name="button_done" states="approved" string="Done" type="object" icon="gtk-apply"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_outstanding_leave_search" model="ir.ui.view">
+            <field name="name">Ijin Khusus</field>
+            <field name="model">outstanding.leave</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Ijin Khusus">
+                    <filter icon="terp-document-new" domain="[('state','=','draft')]" string="Draft" help="Draft"/>
+                    <filter icon="terp-camera_test" domain="[('state','=','approved')]" string="Approved"
+                        help="Approved"/>
+                    <filter icon="terp-check" domain="[('state','=','done')]" string="Done" help="Done"/>
+                    <separator orientation="vertical"/>
+                    <field name="employee_id" />
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+        
+        <act_window id='act_menu_outstanding_leave_form' res_model='outstanding.leave' name='Ijin
+            Meninggalkan Pekerjaan' domain="[]" view_type='form' view_mode='tree,form'/>
+        <menuitem name='Ijin Meninggalkan Pekerjaan' id='menu_leave_submission_form' parent='menu_cuti_khusus'
+            action='act_menu_outstanding_leave_form' sequence='5'/>
+        
+        
+        
+        <!-- CUTI KHUSUS  -->
+        <record model="ir.ui.view" id="view_outstanding_holiday_tree">
+            <field name="name">Cuti Melahirkan/Keguguran</field>
+            <field name="model">outstanding.holiday</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Cuti Khusus">
+                    <field name="name" />
+                    <field name="employee_id" />
+                    <field name="department_id" />
+                    <field name="section_id" />
+                    <field name="start" />
+                    <field name="end" />
+                    <field name="duration" />
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_outstanding_holiday_form">
+            <field name="name">Cuti Melahirkan/Keguguran</field>
+            <field name="model">outstanding.holiday</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Cuti Khusus">
+                    <group colspan="4" col="6">
+                        <field name="employee_id" on_change="onchange_employee(employee_id)" />
+                        <field name="department_id" />
+                        <field name="section_id" />
+                        <field name="created" />
+                        <field name="approved" />
+                        <field name="approve_by" />
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Data cuti">
+                            <group colspan="4" col="6">
+                                <field name="name" />
+                                <field name="duration" />
+                                <newline />
+                                <field name="start" on_change="onchange_start(start,name)" />
+                                <field name="end" />
+                                <field name="return" />
+                                <newline />
+                                <separator string="Notes" colspan="6" />
+                            </group>
+                            <field name="notes" nolabel="1" colspan="4" />
+                            <group col="6" colspan="4">
+                                <field name="state" />
+                                <group colspan="4">
+                                    <button name="button_proposed" states="draft" string="Propose" type="object" icon="gtk-apply"/>
+                                    <button name="button_draft" states="approved,waiting" string="Reviews" type="object"
+                                        icon="gtk-convert"/>
+                                    <button name="button_approved" groups="base.group_hr_manager" states="waiting" string="Approve"
+                                        type="object" icon="gtk-go-forward" />
+                                    <button name="button_done" states="approved" string="Done" type="object" icon="gtk-apply"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_outstanding_holiday_search" model="ir.ui.view">
+            <field name="name">Cuti Melahirkan/Keguguran</field>
+            <field name="model">outstanding.holiday</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Cuti Melahirkan/Keguguran">
+                    <filter icon="terp-document-new" domain="[('state','=','draft')]" string="Draft" help="Draft"/>
+                    <filter icon="terp-camera_test" domain="[('state','=','approved')]" string="Approved"
+                        help="Approved"/>
+                    <filter icon="terp-check" domain="[('state','=','done')]" string="Done" help="Done"/>
+                    <separator orientation="vertical"/>
+                    <field name="employee_id" />
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+        
+<!--         <act_window id='act_menu_outstanding_holiday_form' res_model='outstanding.holiday'
+            name='Cuti Melahirkan/Keguguran' domain="[]" view_type='form' view_mode='tree,form'/>
+        <menuitem name='Cuti Melahirkan/Keguguran' id='menu_holiday_submission_form'
+            parent='menu_cuti_khusus' action='act_menu_outstanding_holiday_form' sequence='5'/> -->
+        
+        <record model="ir.ui.view" id="view_category">
+            <field name="name">Holiday Type</field>
+            <field name="model">hr.holidays</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_new" />
+            <field name="arch" type="xml">
+                <field name="date_from"  position="replace">
+                    <field name="date_from" attrs="{'readonly':[('state','!=','draft'),('state','!=','confirm')]}"
+                        on_change="onchange_start(date_from,holiday_status_id)"/>
+                </field>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

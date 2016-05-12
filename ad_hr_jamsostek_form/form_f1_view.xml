@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="view_form_f1_tree" model="ir.ui.view">
+            <field name="name">Form F1</field>
+            <field name="model">form.f1</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Form F1">
+                	<field name="name" />
+                	<field name="city" />
+                	<field name="regency" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_form_f1_form" model="ir.ui.view">
+            <field name="name">Form F1</field>
+            <field name="model">form.f1</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Form F1">
+                	<group colspan="4" col="8">
+	                	<separator string="BAGIAN I: IDENTITAS PERUSAHAAN" colspan="8" /> <newline />
+	                	<field name="name" colspan="4" on_change="onchange_company(name)" />
+	                	<field name="address" colspan="4" />
+	                	<field name="city" colspan="4"/>
+	                	<field name="regency" colspan="4"/>
+	                	<field name="zip" />
+	                	<field name="com_phone1" />
+	                	<field name="com_phone2"/>
+	                	<field name="com_fax" />
+	                	<field name="com_status" colspan="4" />
+	                	<field name="ownership" colspan="4" />
+	                	<field name="com_corporation" colspan="4" widget="selection" />
+	                	<field name="business_type" colspan="4" />
+	                	<field name="business_license" colspan="4" />
+	                	<field name="npwp" colspan="4" />
+                	</group>
+                	<group colspan="4" col="8">
+	                	<separator string="BAGIAN II: DATA NAMA YANG DAPAT DIHUBUNGI" colspan="8" /> <newline />
+	                	<field name="com_contact" colspan="4" />
+	                	<field name="position" colspan="4" />
+	                	<field name="com_contact_phone" colspan="4"/>
+	                	<field name="com_contact_ext"/><label /><label /> <newline />
+	                	<field name="com_contact_mobile" />
+	                	<field name="com_contact_fax" />
+	                	<field name="com_contact_email" colspan="4" widget="email"/>
+                	</group>
+                	<group colspan="4" col="8" attrs="{'invisible':[('com_status','=','pusat')]}">
+	                	<separator string="BAGIAN III: DATA KANTOR PUSAT (diisi bila perubahan berstatus cabang)" colspan="8" /> <newline />
+	                	<field name="ho_npp" colspan="4" />
+	                	<field name="ho_name" colspan="4" />
+	                	<field name="ho_address" colspan="4"/>
+	                	<field name="ho_city"/>
+	                	<field name="ho_zip" />
+	                	<field name="ho_regency"/>
+                	</group>
+                	<group colspan="4" col="8">
+	                	<separator string="BAGIAN IV: KEPESERTAAN PROGRAM" colspan="8" /> <newline />
+	                	<field name="program" colspan="4" /><newline />
+	                	<field name="member_since" colspan="2" />
+	                	<field name="total_employee" colspan="2" /> <newline />
+	                	<field name="salary_amount" colspan="4"/><label /><label /><label /><label />
+                	</group>
+                </form>
+            </field>
+        </record>
+        <record id="view_form_f1_search" model="ir.ui.view">
+            <field name="name">Form F1</field>
+            <field name="model">form.f1</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Form F1">
+                	<field name="name" />
+                	<field name="city" />
+                	<field name="regency" />
+                </search>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_partner_legal">
+            <field name="name">Partner Legal</field>            
+            <field name="model">res.partner</field>            
+            <field name="type">form</field>							
+			<field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+            	<field name="title" position="after">
+            		<field name="director" />
+            		<field name="isic" />
+            	</field>
+            	<page string="General" position="after">
+            		<page string="Legal Document">
+            			<field name="document" nolabel="1">
+            				<tree string="Legal Document">
+            					<field name="name" />
+            					<field name="parent_id" />
+            					<field name="create_uid" />
+            					<field name="company_id" />
+            					<field name="create_date" />
+            					<field name="write_date" />
+            					<field name="type" />
+            				</tree>
+            			</field>
+            		</page>
+            	</page>
+            </field>
+        </record>
+	</data>
+</openerp>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="department_code_form_view">
+            <field name="name">department.code.view.from</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="department_code" />
+                </field>
+                <field name="company_id" position="after">
+                    <field name="placement" />
+                    <field name="bagian" string="Bagian"/>
+                </field>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="department_bob_bsp_tree_view">
+            <field name="name">Department Tree</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_tree"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="placement" />
+                    <field name="bagian" string="Bagian"/>
+                </field>
+            </field>
+        </record>
+        <!-- <record model="ir.ui.view" id="department_bob_bsp_form_view"> <field name="name">Department
+            BOB BSP</field> <field name="model">hr.employee</field> <field name="inherit_id"
+            ref="move_job_info"/> <field name="arch" type="xml"> <field name="department_id"
+            position="replace"> <field name="department_id" domain="[('placement','=',type)]"
+            /> </field> </field> </record> -->
+        
+        <!-- 		Job Position -->
+        <record model="ir.ui.view" id="job_bob_bsp_tree_view">
+            <field name="name">Job Tree</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr.view_hr_job_tree"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="placement" />
+                </field>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="job_bob_bsp_form_view">
+            <field name="name">Department BOB BSP</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr.view_hr_job_form"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="placement" />
+                </field>
+                <field name="department_id" position="replace">
+                    <field name="department_id" domain="[('placement','=',placement)]" />
+                    <field name="section_id" domain="[('department','=',department_id)]" />
+                </field>
+            </field>
+        </record>
+        <record id="view_department_filter" model="ir.ui.view">
+            <field name="name">Section</field>
+            <field name="model">hr.department</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="hr.view_department_filter" />
+            <field name="arch" type="xml">
+                <field name="manager_id" position="after">
+                    <separator orientation="vertical" />
+                    <filter icon="terp-personal" domain="[('placement','=','bsp')]" name="bsp" string="Kantor
+                        Pusat" groups="base.group_extended"/>
+                    <filter icon="terp-personal" domain="[('placement','=','bob')]" name="bob" string="BOB"
+                        groups="base.group_extended"/>
+                    <newline/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Placement" icon="terp-personal+" domain="[]" context="{'group_by':'placement'}"/>
+                    </group>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

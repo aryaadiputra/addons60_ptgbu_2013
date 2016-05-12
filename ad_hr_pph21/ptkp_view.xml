@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_employee_form">
+			<field name="name">Employee Form</field>
+			<field name="model">hr.employee</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<field name="birthday" position="after">
+					<field name="ptkp" readonly="1" />
+				</field>
+			</field>
+		</record>
+
+		<menuitem 	name='PTKP'
+					id='menu_ptkp' 
+				  	parent='hr.menu_hr_configuration'
+				  	sequence='25'/>
+				  	
+		<record model="ir.ui.view" id="view_ptkp_tree">
+            <field name="name">view.ptkp.tree</field>            
+            <field name="model">ptkp.conf</field>            
+            <field name="type">tree</field>							
+            <field name="arch" type="xml">
+            	<tree string="PTKP">
+            		<field name="name" />
+            		<field name="ptkp_amount" />
+            		<field name="note" />
+            	</tree>
+            </field>
+        </record>
+        
+		<record model="ir.ui.view" id="view_ptkp_form">
+            <field name="name">view.ptkp.form</field>            
+            <field name="model">ptkp.conf</field>            
+            <field name="type">form</field>							
+            <field name="arch" type="xml">
+            	<form string="PTKP">
+            		<field name="name" />
+            		<field name="ptkp_amount" />
+            		<newline />
+            		<separator string="Note" colspan="4" />
+            		<field name="note" nolabel="1" colspan="4" />
+            	</form>
+            </field>
+        </record>
+
+		<record model="ir.ui.view" id="view_ptkp_search">
+            <field name="name">view.ptkp.search</field>            
+            <field name="model">ptkp.conf</field>            
+            <field name="type">search</field>							
+            <field name="arch" type="xml">
+            	<search string="PTKP">
+            		<field name="name" />
+            		<field name="ptkp_amount" />
+            	</search>
+            </field>
+        </record>
+        
+		<act_window id='act_menu_ptkp_form' 
+				    res_model='ptkp.conf' 
+					name='PTKP' 
+					domain="[]" 
+					view_type='form' 
+					view_mode='tree,form'/>
+
+		<menuitem 	name='PTKP'
+					id='menu_ptkp_form' 
+				  	parent='menu_ptkp'
+				  	action='act_menu_ptkp_form'
+				  	sequence='5'/>
+
+	</data>
+</openerp>

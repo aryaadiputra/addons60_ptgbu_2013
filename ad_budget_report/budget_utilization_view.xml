@@ -1,0 +1,65 @@
+<openerp>
+	<data>
+		<menuitem id="menu_budgets_reporting" name="Budget Reporting" parent="ad_budget.menu_budget_c2c" sequence="100"/>
+		
+		<record model="ir.ui.view" id="view_print_budgets_wizard">
+			<field name="name">Budgets</field>
+			<field name="model">br.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form col="4" string="Budget Utilization">
+					<separator string="Budget Utilization" colspan="4"/>
+                      <group colspan="4">
+						<field name="period_id" />
+						<field name="cut_date" on_change="onchange_date(cut_date,period_id)"/>
+						<field name="name" />
+						<field name="without_zero"/>
+						<field name="display_account_level"/>
+                      </group>
+					<newline/>
+                      <group colspan="4">
+                          <group colspan="2">
+                            <separator string="Department" colspan="4"/>
+	                        <field name="dept_relation2" nolabel="1">
+	                        	<tree>
+	                        		<field name="name" string="Name"/>
+	                        		<field name="manager_id"/>                        	
+	                        	</tree>                        
+	                        </field>
+	                      </group>
+                      	  <group colspan="2">
+                      	    <separator string="Account Budget" colspan="4"/>
+                      	    <field name="budget_item2" required="1" nolabel="1">
+	                        	<tree>
+	                        		<field name="name"/>
+	                        		<field name="code"/>
+	                        		<field name="type"/>                        	
+	                        	</tree>                        
+	                        </field>
+	                      </group>
+                      </group>
+                      <newline/>
+					<group colspan="4" col="4">
+						<button icon="gtk-cancel" string="_Cancel" special="cancel" />
+						<button icon="gtk-print" string="Print Report" name="report_budget" type="object" />	
+					</group>
+				</form>
+			</field>
+		</record>
+		<record id="action_print_budgets_wizard" model="ir.actions.act_window">
+            <field name="name">Budgets</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">br.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_print_budgets_wizard"/>
+        </record>
+        <menuitem id="print_budgets_reporting" 
+        		  name="Budget Utilization" 
+        		  action="action_print_budgets_wizard"
+        		  parent="menu_budgets_reporting"
+        		  icon='STOCK_PRINT'
+        		  sequence="5" />
+	</data>
+</openerp>

@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_account_invoice_pay_writeoff","account.invoice.pay.writeoff","account_cash_discount_us.model_account_invoice_pay_writeoff","account.group_account_user",1,0,0,0
+"access_account_invoice_pay_writeoff_manager","account.invoice.pay.writeoff","account_cash_discount_us.model_account_invoice_pay_writeoff","account.group_account_manager",1,1,1,1
+"access_account_invoice_pay","account.invoice.pay","account_cash_discount_us.model_account_invoice_pay","account.group_account_user",1,0,0,0
+"access_account_invoice_pay_manager","account.invoice.pay","account_cash_discount_us.model_account_invoice_pay","account.group_account_manager",1,1,1,1
+"access_account_voucher_line_discount_to_use","account.voucher.line.discount_to_usey","account_cash_discount_us.model_account_voucher_line_discount_to_use","account.group_account_user",1,0,0,0
+"access_account_voucher_line_discount_to_use_manager","account.voucher.line.discount_to_use","account_cash_discount_us.model_account_voucher_line_discount_to_use","account.group_account_manager",1,1,1,1

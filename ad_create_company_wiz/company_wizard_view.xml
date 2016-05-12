@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="menu_corporate_conf" name="Corporate" parent="base.menu_base_config" sequence="10" />
+		
+				<!--###    MENU "Create New Company" [START]	###-->
+		<wizard id="action_create_new_company" model="res.partner" name="new.company.wizard" string="New Company Wizard"/>
+		<menuitem id="menu_create_new_company" name="Create New Company" parent="menu_corporate_conf" sequence="10" action="action_create_new_company" icon="terp-partner" type="wizard" />
+		    	<!--###     MENU "Create New Company" [END]		###-->
+        
+	</data>
+</openerp>

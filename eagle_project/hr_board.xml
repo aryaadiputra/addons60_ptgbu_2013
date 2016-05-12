@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+  File: hr_board.xml
+  Module: eagle_project
+
+  Created by cyp@open-net.ch
+
+  Copyright (c) 2012 Open-Net Ltd. All rights reserved.
+-->
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="eagle_base_hr_board_form">
+			<field name="name">Eagle Base HR Board Form</field>
+			<field name="model">board.board</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="RH Monitoring">
+				<vpaned>
+					<child1>
+						<action colspan="4" height="100" width="800" name="%(eagle_base_hr_attendance_action)d" 
+						string="Who is there"/>
+						<action colspan="4" height="100" width="800" name="%(eagle_base.eagle_action_current_requests)d" 
+						string="Who is doing what"/>
+						<action colspan="4" height="100" width="800" name="%(eagle_base_hr_timesheet_action)d" 
+						string="Who did what today" />
+					</child1>
+					<child2>
+					
+					</child2>
+				</vpaned>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="eagle_base_hr_board_action">
+			<field name="name">HR Monitoring Dashboard</field>
+			<field name="res_model">board.board</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="usage">menu</field>
+			<field name="view_id" ref="eagle_base_hr_board_form"/>
+		</record>
+		<menuitem action="eagle_base_hr_board_action" icon="terp-graph" id="eagle_base_hr_board_menu" parent="eagle_base.eagle_menu_contracts_root" sequence="1"/>
+	</data>
+</openerp>

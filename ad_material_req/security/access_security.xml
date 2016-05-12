@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		
+		<record id="ad_material_req.group_warehouse_extra" model="res.groups">
+		    <field name="name">Warehouse / Warehouse Extra </field>
+		</record>
+		
+		<record id="ad_material_req.group_warehouse_user_validation" model="res.groups">
+		    <field name="name">Warehouse / Warehouse User Validation </field>
+		</record>
+		
+		<record id="ad_material_req.group_warehouse_manager_validation" model="res.groups">
+		    <field name="name">Warehouse / Warehouse manager Validation </field>
+		</record>
+		
+	</data>
+</openerp>

@@ -1,0 +1,90 @@
+<openerp>
+    <data>
+        <menuitem name='Travel' id='menu_hr_travel' parent='hr.menu_hr_root' sequence='6'/>
+        
+        <record model="ir.ui.view" id="view_travel_tree">
+            <field name="name">Travel Tree</field>
+            <field name="model">hr.travel</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Ijin Khusus">
+                    <field name="employee_id"/>
+                    <field name="partner_id" />
+                    <field name="date_invoice"/>
+                    <field name="reserve_date"/>
+                    <field name="request_date"/>
+                    <field name="description"/>
+                    <field name="states"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_travel_form" model="ir.ui.view">
+            <field name="name">Travel Form</field>
+            <field name="model">hr.travel</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Hr Travel">
+                    <group col="8" colspan="4">
+                        <field name="journal_id" invisible="True"/>
+                        <field name="number" readonly="1"/>
+                        <field name="currency_id" width="50"/>
+                        <newline/>
+                        <field name="employee_id" on_change="onchange_employee(employee_id)" required="1"/>
+                        <field name="department_id" required="1"/>
+                        <newline/>
+                        <field name="partner_id" on_change="onchange_partner(partner_id)" invisible="True"/>
+                        <field domain="[('partner_id','=',partner_id)]" name="address_invoice_id" invisible="True"/>
+                        <field name="fiscal_position" invisible="True" groups="base.group_extended" widget="selection" required="1"/>
+                        <newline/>
+                        <!--                        <field name="date_invoice"/-->
+                        <field name="period_id" domain="[('state', '=', 'draft')]" groups="account.group_account_user" widget="selection" required="1"/>
+                        <group colspan="2" col="1" groups="account.group_account_user">
+                            <label align="0.0" string="(keep empty to use the current period)"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="reserve_date" required="1"/>
+                        <field name="request_date" required="1"/>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Travel">
+                            <field domain="[('company_id', '=', company_id), ('type', '=', 'payable')]" name="account_id" groups="account.group_account_user" invisible="True"/>
+                            <field name="date_due"/>
+                            <field colspan="4" name="travel_line" nolabel="1">
+                                <tree string="Travel lines">
+                                    <field name="name"/>
+                                    <field domain="[('company_id', '=', parent.company_id), ('journal_id', '=', parent.journal_id),
+                                        ('type', '&lt;&gt;', 'view')]" name="account_id"
+                                        on_change="onchange_account_id(parent.fiscal_position,account_id)"/>
+                                    <field name="invoice_line_tax_id" />
+                                    <field domain="[('type','&lt;&gt;','view'), ('company_id', '=', parent.company_id),
+                                        ('parent_id', '!=', False)]" name="account_analytic_id"
+                                        groups="analytic.group_analytic_accounting"/>
+                                    <field name="quantity"/>
+                                    <field name="price_unit"/>
+                                    <field name="price_subtotal"/>
+                                    <field invisible="True" name="uos_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                    <group colspan="4">
+                        <field name="states"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <act_window id='view_hr_travel_form' res_model='hr.travel' name='HR Travel' domain="[]"
+            view_type='form' view_mode='tree,form'/>
+        <menuitem name='Travel Ticket Request' id='travel_tiket_request' parent='menu_hr_travel'
+            action='view_hr_travel_form' sequence='5'/>
+        
+        
+        
+    </data>
+</openerp>  

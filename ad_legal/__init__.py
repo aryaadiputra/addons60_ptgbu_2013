@@ -1,0 +1,3 @@
+import legal_wizard
+import res_partner
+import res_partner_contact

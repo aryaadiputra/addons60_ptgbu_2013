@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem name='Family' id='menu_hr_family' parent='hr.menu_hr_root' sequence='6'/>
+		<record model="ir.ui.view" id="employee_family_form_view">
+			<field name="name">hr.employee.family.from</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<page string="Notes" groups="base.group_hr_user" position="before">
+					<page string="Family" groups="base.group_hr_user">
+						<field name="family_id" nolabel="1" colspan="4" mode="tree,form">
+							<tree string="Family List" editable="bottom">
+								<field name="is_borned" string=""/>
+								<field name="name" />
+								<field name="relation" widget="selection"/>
+								<field name="job" widget="selection"/>
+								<field name="place_of_birth" />
+								<field name="birthday" />
+							</tree>
+							<form string="Family List">
+								<group colspan="2" col="4">
+                        			<group colspan="2" col="2">	
+										<field name="name"/>
+										<field name="gender" />
+										<field name="relation" widget="selection" />
+										<field name="place_of_birth" />
+									</group>
+								</group>
+								<group colspan="2" col="1">
+									<field name="photo" widget='image' nolabel="1"/>
+								</group>
+								<group colspan="4" col="4">
+									<field name="birthday" />
+									<field name="job" widget="selection"/>
+									<field name="religion" />
+									<field name="education" />
+									<field name="father" />
+									<field name="mother" />
+									<field name="is_borned" />									
+								</group>
+								<newline />
+								<group colspan="4" col="4">
+									<separator string="Address" colspan="4" col="4" /><newline />
+									<field name="address" colspan="4" nolabel="1" />
+								</group>
+								<group colspan="4" col="4">
+									<separator string="City &amp; Phone" colspan="4" col="4" /><newline />
+									<field name="city" /><newline />
+									<field name="phone" />
+								</group>
+							</form>
+						</field>
+					</page>
+				</page>
+			</field>
+		</record>
+		<act_window id='act_menu_dummy2'
+				    res_model='hr.employee'
+					name='Family'
+					domain="[]"
+					view_type='form'
+					view_mode='tree,form'/>        
+		<menuitem name='Family' id='menu_dummy2' parent='menu_hr_family' action='act_menu_dummy2' sequence='7'/>
+	</data>
+</openerp>

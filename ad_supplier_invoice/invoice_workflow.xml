@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+		<record id="act_confirm" model="workflow.activity">
+            <field name="wkf_id" ref="account.wkf"/>
+            <field name="name">confirm</field>
+            <field name="kind">function</field>
+            <field name="action">invoice_confirm()</field>
+        </record>
+		
+        
+        
+        <record id="t1" model="workflow.transition">
+            <field name="act_from" ref="account.act_draft"/>
+            <field name="act_to" ref="act_confirm"/>
+            <field name="signal">invoice_confirm</field>
+        </record>
+        
+        
+	</data>
+</openerp>

@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+
+		<menuitem id="menu_Cheque" name="Cheque" parent="account.menu_finance" />
+
+		<!--{{{ account.cheque -->
+		<record id="view_cheque_tree" model="ir.ui.view">
+			<field name="name">account.cheque.tree</field>
+			<field name="model">account.cheque</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Cheques">
+					<field name="type" />
+					<!--<field name="vouch_id" />-->
+					<field name="name" />
+					<field name="voucher" />
+					<!--<field name="method" />-->
+					<field name="date" />
+					<field name="date_end" />
+					<field name="partner_id" />
+					<field name="amount" />
+					<field name="bank_id" />
+					<!--<field name="branch" />-->
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_cheque_form" model="ir.ui.view">
+			<field name="name">account.cheque.form</field>
+			<field name="model">account.cheque</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Cheque">
+					<field name="name" />
+					<field name="voucher" />
+					<!--<field name="method" on_change="onchange_method(method)" />-->
+					<field name="type" />
+					<!--<field name="vouch_id" domain="[('type','=',type)]" />-->
+					<field name="date" />
+					<field name="date_end" />
+					<field name="partner_id" />
+					<field name="amount" />
+					<field name="bank_id" />
+					<field name="branch" />
+					<separator colspan="4" />
+					<field name="state" />
+					<!-- 
+					<group col="3" colspan="2">
+						<button string="Paid" name="button_paid" type="object"
+							states="released" />
+						<button string="Cancel" name="button_cancel" type="object"
+							states="released" icon="gtk-cancel" />
+						<button string="Released" name="button_released" type="object"
+							states="hold" icon="terp-camera_test" />
+					</group>-->
+				</form>
+			</field>
+		</record>
+		<!--}}} -->
+		
+		<act_window id="act_view_cheque" name="Cheques" res_model="account.cheque"
+			view_type="form" view_mode="tree,form" />
+		<!--<act_window id="act_view_cheque_in" name="Incoming Cheques"
+			res_model="account.cheque" view_type="form" view_mode="tree,form"
+			domain="[('type','=','receipt')]" />
+		<act_window id="act_view_cheque_out" name="Outgoing Cheques"
+			res_model="account.cheque" view_type="form" view_mode="tree,form"
+			domain="[('type','=','payment')]" />
+		<act_window id="act_new_cheque_in" name="New Incoming Cheque"
+			res_model="account.cheque" view_type="form" view_mode="form"
+			domain="[('type','=','receipt')]" />
+		<act_window id="act_new_cheque_out" name="New Outgoing Cheque"
+			res_model="account.cheque" view_type="form" view_mode="form"
+			domain="[('type','=','payment')]" />
+		-->
+		<menuitem id="menu_view_cheque" parent="menu_Cheque" action="act_view_cheque"
+			sequence="1" />
+		<!--
+		<menuitem id="menu_new_cheque_in" parent="menu_Cheque"
+			action="act_new_cheque_in" />
+
+		<menuitem id="menu_new_cheque_out" parent="menu_Cheque"
+			action="act_new_cheque_out" sequence="3" />
+
+		<menuitem id="menu_cheque_in" parent="menu_new_cheque_in"
+			action="act_view_cheque_in" sequence="2" />
+		<menuitem id="menu_cheque_out" parent="menu_new_cheque_out"
+			action="act_view_cheque_out" sequence="3" />
+
+		*** -->
+		<!--}}} -->
+
+
+
+	</data>
+</openerp>
+<!-- vim: set fdm=marker : -->

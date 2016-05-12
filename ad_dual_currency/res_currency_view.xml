@@ -1,0 +1,15 @@
+<openerp>
+	<data>
+		<record id="view_currency_form2" model="ir.ui.view">
+            <field name="name">res.currency.form2</field>
+            <field name="model">res.currency</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_currency_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//form/group/field[@name='symbol']" position="after">
+            		<field name="currency_dual"/>           	
+            	</xpath>          
+            </field>
+    	</record>
+	</data>
+</openerp>

@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <!-- cash discount -->
+
+        <record id="invoice_supplier_form_jdc" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.jdc</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="priority">2</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="/form/notebook/page/field[@name='check_total']" position="after">
+					<field name="date_discount"/>
+					<field name="amount_discounted"/>
+				</xpath>
+			</field>
+		</record>
+        <record id="invoice_form_jdc1" model="ir.ui.view">
+            <field name="name">account.invoice.form.jdc1</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="/form/notebook/page[@string='Invoice']/field[@name='invoice_line']" position="before">
+					<group colspan="2" col="4">
+						<field name="date_discount"/>
+						<field name="amount_discounted"/>
+					</group>
+				</xpath>
+			</field>
+		</record>
+
+
+         <!--
+        Invoice Line
+        -->
+        <record id="view_invoice_line_form_discount" model="ir.ui.view">
+            <field name="name">account.invoice.line.form.discount</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+				<xpath expr="/form/notebook/page/field[@name='discount']" position="after">
+					<field name="cash_discount"/>
+				</xpath>
+			</field>
+		</record>
+
+        <!--
+        Products
+        -->
+        <record id="product_normal_form_view_discount" model="ir.ui.view">
+            <field name="name">product.normal.form.discount</field>
+            <field name="model">product.product</field>
+            <field name="type">form</field>
+            <field eval="7" name="priority"/>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+				<xpath expr="/form/notebook/page[@string='Suppliers']/field[@name='seller_ids']" position="after">
+					<field name="cash_discount"/>
+				</xpath>
+			</field>
+		</record>
+
+        <!--
+        Company
+        -->
+        <record id="view_company_form_jdc2" model="ir.ui.view">
+            <field name="name">res.company.form.jdc2</field>
+            <field name="model">res.company</field>
+            <field name="type">form</field>
+			<field name="inherit_id"  ref="account_voucher_credits_us.view_company_form_jdc3"/>
+			<field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+				<xpath expr="/form/notebook/page[@string='Accounting']/field[@name='writeoff_account']" position="before">
+                     <field name="sales_discount_account" colspan="2" />
+                     <field name="purchase_discount_account" colspan="2" />
+                     <field name="sales_discount_journal" colspan="2"/>
+                     <field name="purchase_discount_journal" colspan="2"/>
+	            </xpath>
+            </field>
+        </record>
+
+	<!--     Discount         -->
+
+        <record model="ir.ui.view" id="view_account_wizard_discount_form">
+            <field name="name">account.wizard.discount.form</field>
+            <field name="model">account.wizard.discount</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Discount">
+                    <field name="use_discount" select="1"/>
+                    <field name="inv_payment_terms" select="1" readonly="1"/>
+                    <field name="discount_window_date" select="1"/>
+                    <field name="proposed_discount" select="1"/>
+                    <field name="discount_amount" select="1"/>
+                    <field name="gl_account" select="1"/>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_account_wizard_discount_tree">
+            <field name="name">account.wizard.discount.tree</field>
+            <field name="model">account.wizard.discount</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Discount" editable="bottom">
+                    <field name="use_discount" select="1"/>
+                    <field name="inv_payment_terms" select="1" readonly="1"/>
+                    <field name="discount_window_date" select="1"/>
+                    <field name="proposed_discount" select="1"/>
+                    <field name="discount_amount" select="1"/>
+                    <field name="gl_account" select="1"/>
+                </tree>
+            </field>
+        </record>
+	<!--      credit        -->
+
+        <record model="ir.ui.view" id="view_account_wizard_credit_form">
+            <field name="name">account.wizard.credit.form</field>
+            <field name="model">account.wizard.credit</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Credits">
+                    <field name="use_credit" select="1"/>
+                    <field name="inv_credit" select="1" readonly="1"/>
+                    <field name="discount_window_date" select="1" readonly="1"/>
+                    <field name="proposed_discount" select="1" readonly="1"/>
+                    <field name="discount_amount" select="1" />
+                    <field name="credit_bal" select="1" readonly="1"/>
+                    <field name="gl_account" select="1" readonly="1"/>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_account_wizard_credit_tree">
+            <field name="name">account.wizard.credit.tree</field>
+            <field name="model">account.wizard.credit</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Credits" editable="bottom">
+                    <field name="use_credit" select="1"/>
+                    <field name="inv_credit" select="1" readonly="1"/>
+                    <field name="discount_window_date" select="1" readonly="1"/>
+                    <field name="proposed_discount" select="1" readonly="1"/>
+                    <field name="discount_amount" select="1" />
+                    <field name="credit_bal" select="1" readonly="1"/>
+                    <field name="gl_account" select="1"  readonly="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        
+     	<!--      credit used        -->   
+        
+        <record model="ir.ui.view" id="view_account_wizard_credit_used_form">
+            <field name="name">account.wizard.credit.used.form</field>
+            <field name="model">account.wizard.credit.used</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Previously Applied Credit">
+                    <field name="date_used" select="1"/>
+                    <field name="inv_credit" select="1"/>
+                    <field name="discount_window_date" select="1"/>
+                    <field name="proposed_discount" select="1"/>
+                    <field name="amt_used" select="1"/>
+                    <field name="inv_move" select="1"/>
+                    <field name="gl_account" select="1"/>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_account_wizard_credit_used_tree">
+            <field name="name">account.wizard.credit.used.tree</field>
+            <field name="model">account.wizard.credit.used</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Previously Applied Credit" editable="bottom">
+                    <field name="date_used" select="1"/>
+                    <field name="inv_credit" select="1"/>
+                    <field name="discount_window_date" select="1"/>
+                    <field name="proposed_discount" select="1"/>
+                    <field name="amt_used" select="1"/>
+                    <field name="inv_move" select="1"/>
+                    <field name="gl_account" select="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!--      Supplier payment form modification for discount      -->   
+        <record model="ir.ui.view" id="view_vendor_payment_form_inherit">
+            <field name="name">account.voucher.payment.form.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="/form/group/field[@name='amount']" position="attributes" >
+                    <attribute name='on_change'>onchange_amount(amount)</attribute>            
+                </xpath>
+				<xpath expr="/form/group[@col='10']/button[@name='cancel_voucher']" position="after">
+                    <button name="calc_supp_diff" string="Calculate" type="object" states="draft" icon="gtk-execute"  />
+				</xpath>
+				<xpath expr="//field[@name='line_dr_ids']" position="replace">
+					<field name="line_dr_ids" default_get="{'journal_id':journal_id, 'type':type, 'partner_id':partner_id}" colspan="4" nolabel="1" height="140" string="Payment Modification">
+						<tree string="Invoices and Outstanding Transactions" editable="bottom">
+	                        <field name="move_line_id" context="{'journal_id':parent.journal_id, 'partner_id':parent.partner_id}"
+	                            on_change="onchange_move_line_id(move_line_id)"
+	                            domain="[('account_id.type','in',('receivable','payable')), ('reconcile_id','=', False), ('partner_id','=',parent.partner_id)]"
+	                            />
+	                        <field name="date_original" readonly="1"/>
+	                        <field name="date_due" readonly="1"/>
+	                        <field name="amount_original" readonly="1"/>
+	                        <field name="amount_unreconciled" sum="Open Balance" readonly="1"/>
+							<field name="pay" on_change="onchange_supp_pay(amount, pay, amount_unreconciled, parent.line_cr_ids, parent.amount, credit_used, discount_used, writeoff_amount)"/>
+	                        <field name="amount" sum="Payment"/>
+	                        <field name="discount" />
+							<field name="supp_amount_difference"/>
+							
+							<field name="credit_used"/>
+							<field name="account_id"/>
+							<field name="discount_used" invisible="1"/>
+							<field name="writeoff_amount" invisible="1"/>
+	                    </tree>						
+					
+						<form string="Supplier Invoices and Outstanding transactions" >
+							<field name="move_line_id" context="{'journal_id':parent.journal_id, 'partner_id':parent.partner_id}"
+		                        on_change="onchange_move_line_id(move_line_id)"
+		                        domain="[('account_id.type','=','payable'), ('reconcile_id','=', False), ('partner_id','=',parent.partner_id)]"
+		                        />
+		                    <field name="account_id" groups="base.group_extended" domain="[('type','=','payable')]"/>
+		                    <field name="invoice_id"/>
+		                    <field name="date_original" readonly="1"/>
+		                    <field name="date_due" readonly="1"/>
+		                    <field name="amount_original" readonly="1"/>
+		                    <field name="amount_unreconciled" sum="Open Balance" readonly="1"/>
+		                    <field name="amount" sum="Payment"/>
+							<field name="supp_amount_difference"/>
+							<field name="discount_used"/>	                    
+						    <notebook tabpos="up" colspan="4" >
+								<page string="Discount">
+						            <field name="available_discounts" nolabel="1" colspan="4" string="Avilable Discounts" view_mode="tree" />
+						        </page>
+								<page string="Other Info" readonly="1">
+									<field name='partner_id' readonly="1"/>
+									<field name='untax_amount' readonly="1"/>
+									<field name='type' readonly="1"/>
+									<field name='account_analytic_id' readonly="1"/>
+									<field name='company_id' readonly="1"/>
+									<field name='pay'  on_change="onchange_pay(amount, pay, amount_unreconciled, parent.line_dr_ids, parent.amount, credit_used, discount_used, writeoff_amount)"/>
+								</page>
+						    </notebook>
+						    <newline/>
+	                		<button name="clear_values" icon='gtk-clear' string="Clear" type="object" colspan="1"/>
+	                		<button name="recalculate_supp_values" icon='gtk-refresh' string="Re-Calculate" type="object" colspan="1"/>
+						</form>
+					</field>
+				</xpath>    
+    
+            </field>
+        </record>
+    
+        
+        <!--      customer payment form modification for discount      -->   
+        
+        
+        <record model="ir.ui.view" id="view_vendor_receipt_form_2">
+            <field name="name">account.voucher.receipt.form.2</field>
+            <field name="model">account.voucher</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_voucher_credits_us.view_vendor_receipt_form_1"/>
+            <field name="arch" type="xml">
+				<xpath expr="/form/notebook/page[@string='Payment Information']/field[@name='line_cr_ids']/form/group[@string='Invoice']/group[@color='red']/field[@name='credit_used']" position="before">
+					<field name="discount_used"/>
+					<newline />
+				</xpath>
+				<xpath expr="/form/notebook/page[@string='Payment Information']/field/tree/field[@name='credit_used']" position="before">
+					<field name="discount_used"/>
+					<newline/>
+				</xpath>
+				<xpath expr="/form/notebook/page[@string='Payment Information']/field[@name='line_cr_ids']/form/notebook/page[@string='Credit']" position="before">
+					<page string="Discount">
+			            <field name="available_discounts" nolabel="1" colspan="4" string="Avilable Discounts" view_mode="tree" />
+			        </page>
+				</xpath>
+            </field>
+        </record>
+        
+        
+        <record model="ir.ui.view" id="view_account_voucher_line_discount_to_use_tree">
+            <field name="name">account.voucher.line.discount_to_use.tree</field>
+            <field name="model">account.voucher.line.discount_to_use</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+            	<tree string="Available Discounts" editable="top">
+            		<field name="use_discount" width="125" on_change="onchage_use_discount(use_discount, proposed_discount)"/>
+            		<field name="inv_payment_terms"/>
+            		<field name="discount_window_date"/>
+            		<field name="proposed_discount"/>
+            		<field name="discount_amount" on_change="onchage_discount_amount(proposed_discount, discount_amount)"/>
+            		<field name="gl_account"/>			            		
+            	</tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_payment_term_form_inherited">
+            <field name="name">account.payment.term.form.inherited</field>
+            <field name="model">account.payment.term</field>
+            <field name="inherit_id" ref="account_cash_discount.view_payment_term_form"/>
+            <field name="arch" type="xml">
+                <separator string="Cash Discount" colspan="4" position="replace"/>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_payment_term_form_inherited2">
+            <field name="name">account.payment.term.form.inherited2</field>
+            <field name="model">account.payment.term</field>
+            <field name="inherit_id" ref="view_payment_term_form_inherited"/>
+            <field name="arch" type="xml">
+                <field name="cash_discount_ids" colspan="4" position="replace">
+                	<separator string="Cash Discount" colspan="4"/>
+                    <field name="cash_discount_ids" colspan="4" nolabel="1"/>
+                </field>
+            </field>
+        </record>
+
+        	
+    </data>
+</openerp>

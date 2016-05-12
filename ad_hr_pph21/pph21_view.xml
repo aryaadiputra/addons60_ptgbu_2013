@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_tax_structure_tab">
+            <field name="name">view.tax.structure.tab</field>            
+            <field name="model">hr.contract</field>            
+            <field name="type">form</field>							
+			<field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+            	<page string="Work Permit" position="after">
+            		<page string="Tax Structure">
+            			<separator string="Amenability and Nontaxable Wages (NW)" colspan="4"/> <newline />
+            			<group colspan="4" col="6">
+            				<field name="ptkp" on_change="onchange_ptkp(ptkp)" />
+		            		<field name="amenability" />
+		            		<field name="familiy_doc" />
+		            		<field name="ptkp_amount" colspan="4" />
+            			</group>
+            			<separator string="NPWP" colspan="4" /> <newline />
+	            		<field name="has_npwp" />
+	            		<field name="npwp_no" attrs="{'readonly':[('has_npwp','=',False)]}" />
+            		</page>
+            	</page>
+            	<field name="employee_id" position="replace">
+            		<field name="employee_id" on_change="onchange_employeeid(employee_id)" select="1" />
+            	</field>
+            </field>
+    	</record>
+
+<!--     	<record model="ir.ui.view" id="view_pph21_block"> -->
+<!--             <field name="name">view.pph21.block</field>             -->
+<!--             <field name="model">hr.payslip</field>             -->
+<!--             <field name="type">form</field>							 -->
+<!-- 			<field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/> -->
+<!-- 			<field name="priority" eval="16"/> -->
+<!--             <field name="arch" type="xml"> -->
+<!--             	<field name="total_pay" position="after"> -->
+<!--             		<group colspan="4"> -->
+<!--             			<separator string="PPh 21 (Deduction)" colspan="4"/> -->
+<!--             			<field name="ptkp_amount" /> -->
+<!--             			<field name="pkp" /> -->
+<!--             			<field name="pph_percent" /> -->
+<!--             			<field name="pph21" /> -->
+<!--             		</group> -->
+<!--             		<group colspan="2"> -->
+<!--             			<separator string="Overtime (Allowance)" colspan="4" /> -->
+<!--             			<field name="wageperhour" colspan="4" /> -->
+<!--             			<field name="overtime_fee" colspan="4" /> -->
+<!--             		</group> -->
+<!--             		<group colspan="6" col="6"> -->
+<!--             			<separator string="Summary Calculation" colspan="6" /> -->
+<!--             			<field name="final_gross" /> -->
+<!--             			<field name="final_net" /> -->
+<!--             			<field name="final_payment" /> -->
+<!--             		</group> -->
+<!--             	</field> -->
+<!--             	<field name="line_ids" position="attributes"> -->
+<!--             		<attribute name="invisible">True</attribute> -->
+<!--             	</field> -->
+<!--             </field> -->
+<!--         </record> -->
+    	
+
+		<record model="ir.ui.view" id="view_jamsostek_block">
+            <field name="name">Jamsostek</field>            
+            <field name="model">hr.payslip</field>            
+            <field name="type">form</field>							
+			<field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+			<field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <!--
+                <xpath expr="/form/notebook/page[@string='Salary Computation']/group[1]/field[@name='total_pay']" position="before">
+					<field name="thr_amount"/>
+            	    <field name="bonus_amount"/>                                
+                </xpath>
+                -->
+            	<field name="allounce" position="replace">
+            		<group colspan="2">
+            			<separator string="Allowance" colspan="4"/>
+            			<field name="fix_allowance" colspan="4"/>
+            			<field name="jsostek_comp" colspan="4"/>
+            			<field name="com_pension" colspan="4"/>
+            			<field name="allounce" colspan="4"/>
+            		</group>
+            	</field>
+            	<field name="deduction" position="replace"> 		
+            		<group colspan="2">	
+            			<separator string="Deduction" colspan="4" /><newline />
+            			<field name="office_cost" colspan="4"/>
+            		    <field name="jsostek_emp" colspan="4"/>
+            			<field name="self_pension" colspan="4"/>
+            			<field name="deduction" colspan="4"/>
+            		</group>
+            	</field>
+            	<field name="other_pay" position="replace"> 
+            		<group colspan="2">	
+            		<separator string="Other Info" colspan="4" /><newline />
+            			<field name="ptkp_amount" colspan="4"/>
+            			<field name="pkp" colspan="4"/>
+            			<field name="pph_percent" invisible="1" />
+            			<field name="pph21" colspan="4"/>
+	            		<field name="jsostek_amount" colspan="4" invisible="1"/>
+            		</group>
+            		<group colspan="4" col="4">
+            			<separator string="THR &amp; Bonus" colspan="4" />
+            				<field name="thr_amount"/>
+		            	    <field name="bonus_amount"/>
+					</group>
+            		<group colspan="6" col="6">
+            			<separator string="Summary Calculation" colspan="6" />
+            		</group>
+            	</field>
+            	<field name="line_ids" position="replace"></field>
+            </field>
+        </record>
+
+    	<record model="ir.ui.view" id="view_hr_payslip_form">
+            <field name="name">Some tabs</field>            
+            <field name="model">hr.payslip</field>            
+            <field name="type">form</field>							
+			<field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+            	<page string="Salary Computation" position="after">
+<!--             		<page string="Account &amp; Category"> -->
+<!--             			<group colspan="4" col="6"> -->
+<!-- 	            			<group colspan="2"> -->
+<!-- 	            				<separator string="Account" colspan="4" /> -->
+<!-- 	            				<field name="pph21_acc" colspan="4" /> -->
+<!-- 			            		<field name="com_jamsostek_acc" colspan="4" /> -->
+<!-- 			            		<field name="emp_jamsostek_acc" colspan="4" /> -->
+<!-- 			            		<field name="com_retiring_acc" colspan="4" /> -->
+<!-- 			            		<field name="emp_retiring_acc" colspan="4" /> -->
+<!-- 			            		<field name="officecost_acc" colspan="4" /> -->
+<!-- 	            				<field name="overtime_acc" colspan="4" /> -->
+<!-- 	            			</group> -->
+<!-- 	            			<group colspan="2"> -->
+<!-- 	            				<separator string="Allowance/Deduction Category" colspan="4" /> -->
+<!-- 	            				<field name="pph21_cat" colspan="4" /> -->
+<!-- 			            		<field name="com_jamsostek_cat" colspan="4" /> -->
+<!-- 			            		<field name="emp_jamsostek_cat" colspan="4"/> -->
+<!-- 			            		<field name="com_retiring_cat" colspan="4" /> -->
+<!-- 			            		<field name="emp_retiring_cat" colspan="4" /> -->
+<!-- 			            		<field name="officecost_cat" colspan="4" /> -->
+<!-- 	            				<field name="overtime_cat" colspan="4" /> -->
+<!-- 	            			</group> -->
+<!-- 	            			<group colspan="2"> -->
+<!-- 	            				<separator string="Analytic Account" colspan="4" /> -->
+<!-- 	            				<field name="pph21_aacc" colspan="4" /> -->
+<!-- 				 				<field name="com_jamsostek_aacc" colspan="4" /> -->
+<!-- 				 				<field name="emp_jamsostek_aacc" colspan="4" /> -->
+<!-- 				        		<field name="com_retiring_aacc" colspan="4" /> -->
+<!-- 				        		<field name="emp_retiring_aacc" colspan="4" /> -->
+<!-- 				 				<field name="officecost_aacc" colspan="4" /> -->
+<!-- 	            				<field name="overtime_aacc" colspan="4" /> -->
+<!-- 	            			</group> -->
+<!--             			</group> -->
+<!--             		</page> -->
+            		<page string="Salary Structure">
+	                    <field name="line_ids" colspan="4" nolabel="1">
+	                        <tree string="Salary Structure" editable="bottom">
+	                            <field name="category_id" on_change="onchange_category(category_id)"/>
+	                            <field name="sequence" groups="base.group_extended"/>
+	                            <field name="name"/>
+	                            <field name="code"/>
+	                            <field name="type"/>
+	                            <field name="amount_type"/>
+	                            <field name="amount" on_change="onchange_amount(amount, amount_type)"/>
+	                            <field name="total"/>
+	                            <field name="account_id" required="1"/>
+	                            <field name="analytic_account_id"/>
+	                        </tree>
+	                        <form string="Payslip Line">
+	                            <group col="6" colspan="4">
+	                                <field name="name" colspan="4" select="1"/>
+	                                <field name="code" select="1"/>
+	                            </group>
+	                            <group col="2" colspan="2">
+	                                <separator colspan="4" string="Calculations"/>
+	                                <field name="category_id" on_change="onchange_category(category_id)"/>
+	                                <field name="type"/>
+	                                <field name="amount_type"/>
+	                                <field name="amount" on_change="onchange_amount(amount, amount_type)" attrs="{'readonly':[('amount_type','=','func')]}"/>
+	                                <field name="sequence" groups="base.group_extended"/>
+	                            </group>
+	                            <group col="2" colspan="2">
+	                                <separator colspan="4" string="Company contribution"/>
+	                                <field name="company_contrib"/>
+	                                <field name="account_id" required="1"/>
+	                                <field name="analytic_account_id"/>
+	                            </group>
+	                            <notebook colspan="4">
+	                                <page string="Function">
+	                                    <field name="line_ids" colspan="4" nolabel="1" attrs="{'readonly':[('amount_type','!=','func')]}">
+	                                        <tree string="Function Arguments" editable="bottom">
+	                                            <field name="name"/>
+	                                            <field name="sequence" groups="base.group_extended"/>
+	                                            <field name="from_val"/>
+	                                            <field name="to_val"/>
+	                                            <field name="amount_type"/>
+	                                            <field name="value"/>
+	                                        </tree>
+	                                    </field>
+	                                </page>
+	                                <page string="Description">
+	                                    <separator colspan="4" string="Description"/>
+	                                    <field name="note" colspan="4" nolabel="1"/>
+	                                </page>
+	                            </notebook>
+	                        </form>
+	                    </field>
+            		</page>
+            	</page>
+            </field>
+        </record>
+    	
+	</data>
+</openerp>

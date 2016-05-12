@@ -1,0 +1,14 @@
+<openerp>
+	<data>
+		<report
+			id="report_ad_account_balancesheet_new" 
+			name="ad.account.balancesheet.new"
+			string="Report Balance Sheet"
+			model="account.account"
+			file="ad_account_optimization/report/account_balance_sheet_new.mako"
+			report_type="webkit"
+			auto="False"
+			menu="False"
+		/>
+	</data>
+</openerp>

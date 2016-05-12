@@ -1,0 +1,2 @@
+import partner_template
+import partner_category

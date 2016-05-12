@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="menu_hr_pension" parent="hr.menu_hr_root" name="Pensiun"
+			sequence="10" />
+		
+		<record id="view_pensiun_karyawan_tree" model="ir.ui.view">
+			<field name="name">Pensiun Karyawan </field>
+			<field name="model">hr.employee.retirement</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Pensiun">
+					<field name="name"/>
+					<field name="nik"/>
+					<field name="tmt_bsp"/>
+					<field name="sk_number"/>
+					<field name="date_of_birth"/>
+					<field name="date_of_retirement"/>
+					<field name="retirement"/>
+				</tree>
+			</field>
+		</record>
+		
+		
+		<record id="view_pensiun_karyawan_form" model="ir.ui.view">
+			<field name="name">Pensiun Karyawan Form </field>
+			<field name="model">hr.employee.retirement</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Pensiun">
+					<group colspan="4" col="4">
+						<field name="period_id" on_change="onchange_period_id(period_id)"/>
+						<label string ="" colspan="2"/><newline />
+						<field name="name" on_change="onchange_employee_id(name,period_id)" />
+						<field name="nik"/>
+						<field name="date_of_birth"/>
+						<field name="date_of_retirement"/>
+						<field name="tmt_bsp"/>
+						<field name="sk_number"/>
+					</group>
+					<notebook colspan="4">
+						<page string="Pensiun Information">
+							<group>						
+								<separator string="Calculation" colspan="4" col="4"/>
+								<field name="wage"/>
+								<field name="total" readonly="1"/>
+								<field name="tot_by_employee" readonly="1"/>
+								<field name="tot_by_company" readonly="1"/>
+							</group>
+							<newline/>
+							<group colspan="4" col="4">
+								<separator string="Total Pension Amount" colspan="2" col="2"/>
+								<newline/>
+								<field name="total_pension" readonly="1"/>
+							</group>
+						</page>
+					</notebook>
+					<group colspan="4" col="6">
+						<field name="state"/>
+<!--						<button string="Compute" icon="terp-stock_format-scientific" type="object" name="compute_pensiun" /-->
+            			<button name="cancel" type="object" string="Cancel" icon="gtk-cancel" states="registered"/>
+						<button name="compute_pensiun" type="object" string="Register" icon="gtk-apply" states="draft"/>
+						<label string="" colspan="4" />
+					</group>
+				</form>
+			</field>
+		</record>
+		
+			<record id="view_pensiun_karyawan_search" model="ir.ui.view">
+			<field name="name">Pensiun Karyawan</field>
+			<field name="model">hr.employee.retirement</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Pensiun Karyawan">
+					<field name="name" />
+					<field name="date_of_retirement" />
+				</search>
+			</field>
+		</record>
+			
+		<record id="action_view_pensiun_karyawan" model="ir.actions.act_window">
+		    <field name="name">Pensiun Karyawan</field>
+		    <field name="res_model">hr.employee.retirement</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">tree,form</field>
+		    <field name="view_id" ref="view_pensiun_karyawan_tree"/>
+		    <field name="search_view_id" ref="view_pensiun_karyawan_search"/>
+		</record>
+			
+		<menuitem name="Pensiun" 
+        		  action="action_view_pensiun_karyawan" 
+        		  id="menu_view_pensiun_karyawan" 
+        		  parent="menu_hr_pension" 
+        		  sequence="5" />
+			
+			<record id="view_iuran_pensiun_search" model="ir.ui.view">
+			<field name="name">Iuran Pensiun</field>
+			<field name="model">iuran.pensiun</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Iuran Pensiun Search">
+					<field name="name" />
+					<field name="period" />
+					<field name="state" />
+				</search>
+			</field>
+		</record>
+		
+		<record id="view_iuran_pensiun_tree" model="ir.ui.view">
+			<field name="name">Iuran Pensiun Tree</field>
+			<field name="model">iuran.pensiun</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Iuran Pensiun">
+					<field name="name" />
+					<field name="period" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+			
+		
+		<record id="view_iuran_pensiun_form" model="ir.ui.view">
+			<field name="name">Iuran Pensiun Form</field>
+			<field name="model">iuran.pensiun</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Iuran Pensiun">
+					<field name="period" />
+					<field name="name" />
+					<notebook colspan="4">
+						<page string="Employee">
+							<field name="employee" colspan="4" nolabel="1" on_change="onchange_employee_list(employee)"/>
+						</page>
+					</notebook>
+                    <group col="6" colspan="4">
+                    	<group colspan="2">
+	                    	<field name="state" colspan="2" />
+	                    	<label string="" />
+                    	</group>
+                        <button name="button_cancel" states="draft" string="Cancel" type="object" icon="gtk-no"/>
+                        <button name="button_approve" states="draft" string="Approve" type="object" icon="gtk-apply"/>
+                        <button name="button_draft" states="approved" string="Reviews" type="object" icon="gtk-convert"/>
+                        <button name="button_paid" states="approved" string="Done" type="object" icon="gtk-go-forward" groups="base.group_hr_user"/>
+                    </group>
+				</form>
+			</field>
+		</record>
+		
+		<record id="action_view_iuran_pensiun" model="ir.actions.act_window">
+		    <field name="name">Iuran Pensiun</field>
+		    <field name="res_model">iuran.pensiun</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">tree,form</field>
+		    <field name="view_id" ref="view_iuran_pensiun_tree"/>
+		    <field name="search_view_id" ref="view_iuran_pensiun_search"/>
+		</record>
+		
+        <menuitem name="Iuran Pensiun" 
+        		  action="action_view_iuran_pensiun" 
+        		  id="menu_view_iuran_pensiun" 
+        		  parent="menu_hr_pension" 
+        		  sequence="5" />
+        		  
+        <report
+            id="print_iuran_pensiun"
+            model="iuran.pensiun"
+            name="print.iuran.pensiun"
+            file="ad_hr_iuran_pensiun/report/iuran_pensiun.mako" 
+            string="Iuran Pensiun"
+			report_type="webkit" auto="False"/>
+	</data>
+</openerp>

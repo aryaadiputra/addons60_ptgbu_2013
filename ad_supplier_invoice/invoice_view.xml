@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="view_supplier_invoice_wkf" model="ir.ui.view">
+            <field name="name">view.supplier.invoice.wkf</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="state" position="replace">
+                	<field name="state"/>
+                </field>
+                
+	           	<xpath expr="/form[@string='Supplier Invoice']/notebook/page[@string='Invoice']/group/group/button[@name='action_cancel_draft'] " position="after">
+	            	<button name="button_confirm" states="draft" string="Confirm" type="object" icon="gtk-apply"/>
+				</xpath>
+				
+				<xpath expr="/form[@string='Supplier Invoice']/notebook/page[@string='Invoice']/group/group/button[@name='invoice_open'] " position="replace">
+	            	<button name="invoice_open" states="confirm,proforma2" string="Approve" icon="terp-camera_test"/>
+				</xpath>
+				
+				<xpath expr="/form[@string='Supplier Invoice']/notebook/page[@string='Invoice']/group/group/button[@name='invoice_open']" position="before">
+	            	<button name="confirm_cancel" states="confirm" string="Reject" type="object" icon="gtk-cancel"/>
+				</xpath>
+                
+            </field>
+            
+           
+           
+           
+           
+           
+           
+       </record>
+	</data>
+</openerp>

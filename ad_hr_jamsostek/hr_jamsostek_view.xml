@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem 	name='Jamsostek'
+					id='menu_jamsostek' 
+				  	parent='hr.menu_hr_root'
+				  	sequence='15'/>
+		<record model="ir.ui.view" id="view_jamsostek_tree">
+            <field name="name">view.jamsostek.ree</field>            
+            <field name="model">hr.jamsostek</field>            
+            <field name="type">tree</field>							
+            <field name="arch" type="xml">
+            	<tree string="Jamsostek">
+            		<field name="period_id" />
+            		<field name="name" />
+            		<field name="jnumber" />
+            		<field name="reg_date" />
+            		<field name="branch_office" />
+            	</tree>
+            </field>
+		</record>
+		<record model="ir.ui.view" id="view_jamsostek_form">
+            <field name="name">view.jamsostek.form</field>            
+            <field name="model">hr.jamsostek</field>            
+            <field name="type">form</field>							
+            <field name="arch" type="xml">
+            	<form string="Jamsostek">
+            		<field name="name" on_change="onchange_employee_id(name)"/>
+            		<field name="jnumber"/>
+            		<field name="period_id" on_change="onchange_period(name, period_id)"/>
+            		<field name="contract_id"/>
+            		<field name="department_id"/>
+            		<field name="section_id"/>
+            		<field name="job_id"/>
+            		<field name="current_job_level_id"/>
+	            	<notebook colspan="4">
+	            		<page string="Kepesertaan Jamsostek">	
+	            			<field name="emp_status" invisible="1"/>
+	            			<field name="reg_date"/>
+	            			<field name="branch_office"/>
+            				<group col="10" colspan="10">
+	            				<field name="jht"/>
+	            				<field name="jpk"/>
+	            				<field name="jkk"/>
+	            				<field name="jk"/>
+	            				<field name="tk_lhk"/>
+            				</group>
+	            			<newline />
+	            			<separator string="Notes" colspan="4" /> 
+	            			<newline />
+	            			<field name="note" colspan="4" nolabel="1" />
+	            		</page>
+	            		<page string="Premi Calculation">
+	            			<group col="6" colspan="6">
+	            			    <field name="contract_wage" />
+	        			    	<newline/>
+	        			    	<separator string="Jaminan Hari Tua" colspan="6" /> <newline/>
+	        			    	<field name="jht_amount" />
+	            				<field name="jht_by_employee"/>
+	            				<field name="jht_by_company"/>
+	            				<newline/>
+	            				<group col="2" colspan="2">
+	            					<separator string="Jaminan Pemeliharaan Kesehatan" colspan="2" /> <newline/>
+	            					<field name="jpk_amount" />            			
+	            				</group>
+		            			<group col="2" colspan="2">
+		            				<separator string="Jaminan Keselamatan Kerja" colspan="2" /> <newline/>
+		            				<field name="jkk_amount" />
+		            			</group>
+		            			<group col="2" colspan="2">
+		            				<separator string="Jaminan Kematian" colspan="2" /> <newline/>
+		            				<field name="jk_amount" />
+		            			</group>
+								<group col="2" colspan="2">
+		            				<separator string="Luar Hubungan Kerja" colspan="2" /> <newline/>
+		            				<field name="tk_lhk_amount" />
+		            			</group><newline/>
+		            			<group col="4" colspan="4">
+		            				<separator string="Total" colspan="4" /> <newline/>
+		            				<field name="total" />
+		            			</group>
+	            			</group>
+	            		</page>
+	            		
+	            	</notebook>
+            	<newline/>
+            	<group col="4" colspan="4">
+            		<field name="state"/>
+            		<button name="cancel" type="object" string="Cancel" icon="gtk-cancel" states="registered"/>
+					<button name="register" type="object" string="Register" icon="gtk-apply" states="draft"/>
+            	</group>
+				</form>
+            </field>
+		</record>
+		<act_window id='act_menu_jamsostek_form' 
+				    res_model='hr.jamsostek' 
+					name='Jamsostek' 
+					domain="[]" 
+					view_type='form' 
+					view_mode='tree,form'/>
+		<menuitem 	name='Jamsostek'
+					id='menu_jamsostek_form' 
+				  	parent='menu_jamsostek'
+				  	action='act_menu_jamsostek_form'
+				  	sequence='5'/>
+				  	
+		
+	</data>
+</openerp>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+		<report id="budget_detail_pdf"  
+			string="Budget Detail" 
+			model="ad_budget.item"   
+			name="budget.detail.pdf" 
+			file="ad_budget_detail/report/budget_detail.mako"
+			report_type="webkit" 
+			auto="False" 
+			menu="False"/>	
+			
+		
+    </data>
+</openerp>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+       <record id="account.check_journal" model="account.journal">
+            <field name="allow_check_writing">1</field>
+        </record>
+    </data>
+</openerp>

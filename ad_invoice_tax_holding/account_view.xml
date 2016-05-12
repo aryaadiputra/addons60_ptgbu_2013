@@ -1,0 +1,33 @@
+<openerp>
+	<data>
+		<record id="view_tax_code_form" model="ir.ui.view">
+            <field name="name">account.tax.code.form</field>
+            <field name="model">account.tax.code</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_tax_code_form"/>
+            <field name="arch" type="xml">
+				<xpath expr='/form/group[2]/field[@name="notprintable"]' position='after'>
+                  <field name='ppn'/>
+              	</xpath>
+            </field>
+        </record>
+        
+        <record id="view_invoice_supplier_form_witholding_form" model="ir.ui.view">
+            <field name="name">view.invoice.supplier.form.witholding.form</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">comment
+            	<xpath expr='/form/notebook/page[@string="Invoice"]/field[@name="reference"]' position='replace'>
+                  <field name='reference' attrs="{'required':[('state','=','draft')],'readonly':[('state','!=','draft')]}" nolabel="1"/>
+              	</xpath>
+              	<xpath expr='/form/notebook/page[@string="Other Info"]/field[@name="name"]' position='replace'>
+                  <field name='name' attrs="{'required':[('state','=','draft')]}"/>
+              	</xpath>
+            </field>
+        </record>
+        
+	</data>
+</openerp>
+
+

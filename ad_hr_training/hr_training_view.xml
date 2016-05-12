@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem 	name='Training'
+					id='menu_training' 
+				  	parent='hr.menu_hr_root'
+				  	sequence='15'
+				  	groups="base.group_hr_manager" />
+		
+		<record model="ir.ui.view" id="view_training_tree">
+            <field name="name">view.training.tree</field>            
+            <field name="model">hr.training</field>            
+            <field name="type">tree</field>							
+            <field name="arch" type="xml">
+            	<tree string="Training Submission" colors="red:state=='proposed';blue:state=='draft'">
+            		<field name="name" />
+            		<field name="provider" />
+            		<field name="type" />
+            		<field name="date_start" />
+            		<field name="date_end" />
+            		<field name="cost" />
+            		<field name="currency" />
+            		<field name="state" />
+            	</tree>
+            </field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_training_form">
+            <field name="name">view.training.form</field>            
+            <field name="model">hr.training</field>            
+            <field name="type">form</field>							
+            <field name="arch" type="xml">
+            	<form string="Training Submission">
+            		<group col="6" colspan="6">
+            			<group colspan="2">
+            				<separator string="Proposer" colspan="2" /> <newline />
+            				<field name="pengusul" on_change="onchange_proposer(pengusul)" /> <newline />
+            				<field name="job_id" /> <newline />
+            				<field name="department" /> <newline />
+            			</group>
+            			<group colspan="2">
+            				<separator string="Training Info" colspan="4" /> <newline />
+		            		<field name="name" colspan="4" /> <newline />
+		            		<field name="type" colspan="4" widget="selection" /> <newline />
+		            		<field name="date_start" on_change="onchange_dateGo(date_start,date_end)" /> 
+		            		<field name="date_end" on_change="onchange_dateReturn(date_start,date_end)"/> <newline />
+		            		<field name="cost" />
+		            		<field name="currency" />
+		            		<field name="duration" colspan="4" readonly="1" />
+            			</group>
+            			<group colspan="2">
+            				<separator string="Training Supplier" colspan="2" /> <newline />
+		            		<field name="provider" on_change="onchange_provider(provider)" /> <newline />
+		            		<field name="location" /><newline />
+		            		<field name="location_type" /> <newline />
+            			</group>
+            		</group>
+            		<newline />
+            		<notebook colspan="4">
+	            		<page string="Proposed Employee">
+		            		<field name="employee" colspan="4" nolabel="1" view_mode="tree,form">
+		            			<tree>
+		            				<field name="name" />
+		            				<field name="status" />
+		            				<field name="department_id" />
+		            				<field name="current_job_level" />
+		            			</tree>
+		            		</field>
+	            		</page>
+	            		<page string="Accounting">
+	            			<separator string="Accounting" colspan="4" />
+	            			<field name="product_id" />
+	            			<field name="account_id" />
+	            			<field name="journal_id" />
+	            		</page>
+	            		<page string="Purpose">
+	            			<field name="purpose" colspan="4" nolabel="1" />
+	            		</page>
+            		</notebook>
+            		<newline />
+            		<group col="6" colspan="6">
+	            		<field name="state" />
+	                    <group colspan="4">
+	                        <button name="button_proposed" states="draft" string="Propose" type="object" icon="gtk-apply"/>
+	                        <button name="button_draft" states="proposed,approved" string="Reviews" type="object" icon="gtk-convert"/>
+	                        <button name="button_approved" groups="base.group_hr_manager" states="proposed" string="Approve" type="object" icon="gtk-go-forward" />
+	                        <button name="button_done" states="approved" string="Done" type="object" icon="gtk-apply"/>
+	                    </group>
+            		</group>
+            	</form>
+            </field>
+		</record>
+		
+		<record id="view_training_search" model="ir.ui.view">
+            <field name="name">view.training.search</field>
+            <field name="model">hr.training</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Training">
+                	<filter icon="terp-document-new" domain="[('state','=','draft')]" string="Draft" help="Draft"/>
+                	<filter icon="terp-camera_test" domain="[('state','=','approved')]" string="Approved" help="Approved"/>
+                	<filter icon="terp-gtk-media-pause" domain="[('state','=','proposed')]" string="Proposed" help="Proposed"/>
+                	<filter icon="terp-check" domain="[('state','=','done')]" string="Done" help="Done"/>
+                	<separator orientation="vertical"/>
+                    <field name="name" />
+                    <field name="provider" />
+                    <field name="location" />
+                    <field name="pengusul" />
+                </search>
+            </field>
+        </record>
+        
+		<act_window id='act_menu_training_submission_form' 
+				    res_model='hr.training' 
+					name='Training Submission' 
+					domain="[]" 
+					view_type='form' 
+					view_mode='tree,form'/>
+
+		<menuitem 	name='Training Submission'
+					id='menu_training_submission_form' 
+				  	parent='menu_training'
+				  	action='act_menu_training_submission_form'
+				  	sequence='5'/>
+		
+		<!-- Training Type -->
+		<record model="ir.ui.view" id="view_training_type_tree">
+            <field name="name">view.training.type.tree</field>            
+            <field name="model">training.type</field>            
+            <field name="type">tree</field>							
+            <field name="arch" type="xml">
+            	<tree string="Training Type">
+            		<field name="name" />
+            		<field name="desc" />
+            	</tree>
+            </field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_training_type_form">
+            <field name="name">view.training.type.form</field>            
+            <field name="model">training.type</field>            
+            <field name="type">form</field>							
+            <field name="arch" type="xml">
+            	<form string="Training Type">
+            		<field name="name" colspan="2" /> <newline />
+            		<separator string="Description.." colspan="4" /><newline />
+            		<field name="desc" colspan="4" nolabel="1" />
+            	</form>
+            </field>
+		</record>
+		
+		<act_window id='act_menu_training_type_tree' 
+				    res_model='training.type' 
+					name='Training Type' 
+					domain="[]" 
+					view_type='form' 
+					view_mode='tree,form'/>
+
+		<menuitem 	name='Training Type'
+					id='menu_training_type_tree' 
+				  	parent='menu_training'
+				  	action='act_menu_training_type_tree'
+				  	sequence='10'/>
+
+		<!-- Training Predicate -->
+		<record model="ir.ui.view" id="view_training_predicate_tree">
+            <field name="name">view.training.predicate.tree</field>            
+            <field name="model">training.predicate</field>            
+            <field name="type">tree</field>							
+            <field name="arch" type="xml">
+            	<tree string="Training Predicate">
+            		<field name="name" />
+            		<field name="desc" />
+            	</tree>
+            </field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_training_predicate_form">
+            <field name="name">view.training.predicate.form</field>            
+            <field name="model">training.predicate</field>            
+            <field name="type">form</field>							
+            <field name="arch" type="xml">
+            	<form string="Training Predicate">
+            		<field name="name" colspan="2" /> <newline />
+            		<separator string="Description.." colspan="4" /><newline />
+            		<field name="desc" colspan="4" nolabel="1" />
+            	</form>
+            </field>
+		</record>
+		
+		<act_window id='act_menu_training_predicate_tree' 
+				    res_model='training.predicate' 
+					name='Training Type' 
+					domain="[]" 
+					view_type='form' 
+					view_mode='tree,form'/>
+
+		<menuitem 	name='Training Predicate'
+					id='menu_training_predicate_tree' 
+				  	parent='menu_training'
+				  	action='act_menu_training_predicate_tree'
+				  	sequence='10'/>
+
+		<!-- Training tab in Employee form -->
+		<record model="ir.ui.view" id="view_training_lines_tab">
+            <field name="name">view.training.lines.tab</field>            
+            <field name="model">hr.employee</field>            
+            <field name="type">form</field>							
+			<field name="inherit_id" ref="ad_hr_indonesia.employee_education_form_view"/>
+            <field name="arch" type="xml">
+                <page string="Education" position="after">
+                	<page string="Training" groups="base.group_hr_user">
+	                	<field name="training_line" nolabel="1" mode="tree,form" colspan="4">
+	                		<tree string="Training History">
+			            		<field name="type" width="70"/>
+			            		<field name="date_start" />
+			            		<field name="date_end" />
+			            		<field name="name" width="400"/>
+			            		<field name="provider" width="100"/>
+			            		<field name="cost" invisible="1"/>
+			            		<field name="currency" invisible="1"/>
+			            		<field name="category" />
+			            		<field name="predicate" />
+	                		</tree>
+	                		<form string="Training">
+	                			<separator string="Training Info" colspan="4"  /><newline />
+			            		<field name="name" />
+			            		<field name="submission" />
+			            		<field name="type" widget="selection" />
+			            		<field name="provider" on_change="onchange_provider(provider)" />
+			            		<field name="location" />
+			            		<field name="location_type" />
+			            		<newline />
+			            		<field name="date_start" on_change="onchange_dateGo(date_start,date_end)" /> 
+			            		<field name="date_end" on_change="onchange_dateReturn(date_start,date_end)"/> <newline />
+			            		<field name="duration" /><newline/>
+			            		<field name="cost" invisible="1" />
+			            		<field name="currency" invisible="1"/>
+			            		<field name="predicate" widget="selection" />
+			            		<field name="category" /><newline />
+			            		<separator string="Certificate" colspan="4" /><newline />
+			            		<field name="certification" /><newline />
+			            		<field name="certificate" colspan="4" attrs="{'invisible':[('certification','!=','certified')]}" />
+	                		</form>
+	                	</field>
+                	</page>
+                </page>
+            </field>		
+        </record>
+		
+		<report
+            id="print_training_proposal"
+            model="hr.training"
+            name="print.training.proposal"
+            file="ad_hr_training/report/print_training_proposal.mako" 
+            string="Training Proposal"
+			report_type="webkit" auto="False"/>
+			
+		<act_window id='act_menu_dummy1' 
+				    res_model='hr.training.lines' 
+					name='Training' 
+					domain="[]" 
+					view_type='form' 
+					view_mode='tree,form'/>
+		<menuitem 	name='Training Employee'
+					id='menu_dummy1' 
+				  	parent='menu_training'
+				  	action='act_menu_dummy1'
+				  	sequence='5'/>
+	</data>
+</openerp>

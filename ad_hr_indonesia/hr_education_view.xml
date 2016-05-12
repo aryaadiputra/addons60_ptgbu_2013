@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem name='Education' id='menu_hr_education' parent='hr.menu_hr_root' sequence='6'/>
+		<record model="ir.ui.view" id="employee_education_form_view">
+			<field name="name">hr.employee.education.from</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="ad_hr_indonesia.view_employee_form" />
+			<field name="arch" type="xml">
+				<page string="Job" position="after">
+					<page string="Education" groups="base.group_hr_user">
+						<field name="education_id" nolabel="1" colspan="4" mode="tree,form">
+							<tree string="Education List" editable="bottom">
+								<field name="edu_from"/>
+								<field name="edu_to"/>
+								<field name="name"/>
+								<field name="subject"/>
+								<field name="degree" />
+							</tree>
+							<form string="Education List">
+								<field name="edu_from"/>
+								<field name="edu_to"/>
+								<field name="name" />
+								<field name="type" />
+								<field name="subject" />
+								<field name="degree" attrs="{'invisible':[('type','!=','formal')]}" />
+								<notebook colspan="4">
+									<page string="Certificate">
+										<separator string="Certificate" colspan="4"/>
+										<field name="certificate" nolabel="1" colspan="4"/>
+									</page>
+								</notebook>
+							</form>
+						</field>
+						<field name="association" nolabel="1" colspan="4" mode="tree,form">
+							<tree string="Association" editable="bottom">
+								<field name="from" />
+								<field name="to" />
+								<field name="association" />
+								<field name="position" />
+								<field name="notes" />
+							</tree>
+							<form string="Association">
+								<group colspan="4" col="4">
+									<field name="from" />
+									<field name="to" />
+									<field name="association" />
+									<field name="position" />
+									<separator string="Notes" colspan="4" />
+									<field name="notes" nolabel="1" colspan="4" />
+								</group>
+							</form>
+						</field>
+					</page>
+				</page>
+			</field>
+		</record>
+		<act_window id='act_menu_dummy' 
+				    res_model='hr.education' 
+					name='Education' 
+					domain="[]" 
+					view_type='form' 
+					view_mode='tree,form'/>
+		<menuitem 	name='Education'
+					id='menu_dummy' 
+				  	parent='menu_hr_education'
+				  	action='act_menu_dummy'
+				  	sequence='5'/>
+	</data>
+</openerp>

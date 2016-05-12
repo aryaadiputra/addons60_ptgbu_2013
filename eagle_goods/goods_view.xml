@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!--
+  File: goods_view.xml
+  Module: eagle_goods
+
+  Created by cyp@open-net.ch
+
+  Copyright (c) 2011 Open-Net Ltd. All rights reserved.
+-->
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="eagle_goods_object_integrated_ctrl_view">
+			<field name="name">Eagle Goods Objects Integrated Ctrl View</field>
+			<field name="model">eagle.contract</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="eagle_base.eagle_view_contract_form"/>
+			<field name="arch" type="xml">
+				<group name="top" position="inside">
+					<field name="activeTab_goods" invisible="1"/>
+				</group>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="eagle_goods_object_integrated_view">
+			<field name="name">Eagle Goods Objects Integrated View</field>
+			<field name="model">eagle.contract</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="eagle_base.eagle_view_contract_form"/>
+			<field name="arch" type="xml">
+				<page string="Content" position="after">
+					<page string="Goods" attrs="{'invisible':[('activeTab_goods','=',False),('eagle_parm_show_all_meta_tabs','=',False)]}">
+						<field name="goods_ids" nolabel="1" mode="tree,form">
+							<tree string="Goods">
+								<field name="seq"/>
+								<field name="name"/>
+								<field name="parent_id"/>
+							</tree>
+							<form string="Good">
+								<group name="good_form" col="4" colspan="4">
+								<field name="name" colspan="4"/>
+								<field name="seq" colspan="2"/>
+								<field name="parent_id" colspan="2" domain="[('contract_id','=',parent.id)]"/>
+								</group>
+								<notebook>
+									<page string="Description">
+										<field name="description" colspan="4" nolabel="1"/>
+									</page>
+									<page string="Location">
+										<field name="street" colspan="4"/>
+										<field name="street2" colspan="4"/>
+										<field name="zip" colspan="2"/>
+										<field name="city" colspan="2"/>
+										<separator string="Person to contact" colspan="4"/>
+										<field name="contact" colspan="4"/>
+										<field name="phone" colspan="2"/>
+									</page>
+									<page string="Characteristics">
+										<field name="attributs" nolabel="1" mode="tree">
+											<tree editable="bottom" string="Characteristics">
+												<field name="seq"/>
+												<field name="name"/>
+												<field name="value"/>
+											</tree>
+										</field>
+									</page>
+								</notebook>
+							</form>
+						</field>
+					</page>
+				</page>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="eagle_goods_object_standalone_view">
+			<field name="name">Eagle Goods Objects Standalone View</field>
+			<field name="model">eagle.good.object</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Good">
+					<group name="good_form" col="4" colspan="4">
+					<field name="name" colspan="4"/>
+					<field name="seq" colspan="2"/>
+					<field name="parent_id" colspan="2"/>
+					<field name="contract_id" colspan="2"/>
+					</group>
+					<notebook>
+						<page string="Description">
+							<field name="description" colspan="4" nolabel="1"/>
+						</page>
+						<page string="Location">
+							<field name="street" colspan="4"/>
+							<field name="street2" colspan="4"/>
+							<field name="zip" colspan="2"/>
+							<field name="city" colspan="2"/>
+							<separator string="Person to contact" colspan="4"/>
+							<field name="contact" colspan="4"/>
+							<field name="phone" colspan="2"/>
+						</page>
+						<page string="Characteristics">
+							<field name="attributs" nolabel="1" mode="tree">
+								<tree editable="bottom" string="Characteristics">
+									<field name="seq"/>
+									<field name="name"/>
+									<field name="value"/>
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="eagle_goods_object_standalone_list">
+			<field name="name">Eagle Goods Objects Standalone List</field>
+			<field name="model">eagle.good.object</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Goods">
+					<field name="contract_id" colspan="2"/>
+					<field name="seq" colspan="2"/>
+					<field name="name" colspan="4"/>
+					<field name="parent_id" colspan="2"/>
+				</tree>
+			</field>
+		</record>
+
+	</data>
+</openerp>

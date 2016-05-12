@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+		<record model="ir.ui.view" id="view_company_structure_tree">
+	        <field name="name">Company Structure</field>
+	        <field name="model">res.organization.structures</field>
+	        <field name="type">tree</field>
+	        <field name="field_parent">parent_id</field>
+	        <field name="arch" type="xml">
+	            <tree string="Company Structure">
+	                <field name="name" />
+					<field name="head" />
+	                <field name="parent_id" />
+	                <field name="child" />
+	                <field name="job_id" />
+	                <field name="job_level" />
+	                <field name="type" />
+	            </tree>
+	        </field>
+	    </record>
+	    
+	    <record model="ir.ui.view" id="view_company_structure_form">
+	        <field name="name">Company Structure</field>
+	        <field name="model">res.organization.structures</field>
+	        <field name="type">form</field>
+	        <field name="arch" type="xml">
+	            <form string="Company Structure">
+	                <field name="name" />
+					<field name="job_id" on_change="onchange_job_id(job_id)"/>
+	                <field name="job_level" />
+	                <field name="parent_id" />
+	                <field name="head" domain="[('active','=',True)]"/>
+					<field name="type" />
+	                
+					<newline />
+					<notebook colspan="4">
+						<page string="Child">
+							<field name="child" nolabel="1" widget="many2many" colspan="4" readonly="1"/>					
+						</page>
+						<page string="History">
+							<field name="history_ids" nolabel="1" widget="many2many" colspan="4" readonly="1">
+								<tree>
+									<field name="employee_id" />
+									<field name="date_changed" />					
+								</tree>						
+							</field>					
+						</page>	
+					</notebook>
+	                
+	            </form>
+	        </field>
+	    </record>
+		
+		<record id="action_view_company_structure_tree" model="ir.actions.act_window">
+		    <field name="name">Company Structure</field>
+		    <field name="res_model">res.organization.structures</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">tree,form</field>
+		    <field name="view_id" ref="view_company_structure_tree"/>
+		</record>
+		
+		<menuitem action="action_view_company_structure_tree"
+	    		  id="menu_company_structure_tree"
+	    		  parent="hr.menu_view_employee_category_configuration_form" sequence="2"/>
+		
+		<record model="ir.ui.view" id="view_company_structure">
+	        <field name="name">Company Structure</field>
+	        <field name="model">res.organization.structures</field>
+	        <field name="type">tree</field>
+	        <field name="field_parent">child</field>
+	        <field name="arch" type="xml">
+	            <tree string="Company Structure">
+	            	<field name="name" />
+	                <field name="head" />
+	                <field name="job_id" />
+	                <field name="job_level" />
+	            </tree>
+	        </field>
+	    </record>
+	    
+	    <record model="ir.actions.act_window" id="action_company_structure">
+	        <field name="name">Company Structure</field>
+	        <field name="res_model">res.organization.structures</field>
+	        <field name="view_type">tree</field>
+	        <field name="view_id" ref="view_company_structure"/>
+	        <field name="domain">[('parent_id','=',False),('type','=','bsp')]</field>
+	    </record>
+	    
+		<record model="ir.actions.act_window" id="action_company_structure_bob">
+	        <field name="name">Company Structure BOB</field>
+	        <field name="res_model">res.organization.structures</field>
+	        <field name="view_type">tree</field>
+	        <field name="view_id" ref="view_company_structure"/>
+	        <field name="domain">[('parent_id','=',False),('type','=','bob')]</field>
+	    </record>
+	    
+	    <menuitem action="action_company_structure"
+	    		  id="menu_company_structure"
+	    		  parent="menu_company_structure_tree" sequence="100"/>
+	   	
+		<menuitem action="action_company_structure_bob"
+	    		  id="menu_company_structure_bob"
+	    		  parent="menu_company_structure_tree" sequence="101"/>
+
+	    <record id="company_structure_action_tree" model="ir.actions.act_window">
+            <field name="name">Employees</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+
+
+		<!-- start wizard-->
+
+		<record model="ir.ui.view" id="view_company_structure2">
+	        <field name="name">Company Structures</field>
+	        <field name="model">res.organization.structures</field>
+	        <field name="type">tree</field>
+	        <field name="field_parent">child</field>
+	        <field name="arch" type="xml">
+	            <tree string="Company Structure">
+					<field name="name" />
+					<field name="head" />
+	                <field name="job_id" />
+	                <field name="job_level" />
+	            </tree>
+	        </field>
+	    </record>
+	    
+	    <record model="ir.actions.act_window" id="action_company_structure2">
+	        <field name="name">Company Structures</field>
+	        <field name="res_model">res.organization.structures</field>
+	        <field name="view_type">tree</field>
+	        <field name="view_id" ref="view_company_structure"/>
+	        <field name="domain">[('parent_id','=',False),('type','=','head')]</field>
+	    </record>
+	    <record model="ir.actions.act_window" id="action_company_structure3">
+	        <field name="name">Company Structures</field>
+	        <field name="res_model">res.organization.structures</field>
+	        <field name="view_type">tree</field>
+	        <field name="view_id" ref="view_company_structure"/>
+	        <field name="domain">[('parent_id','=',False),('type','=','bob')]</field>
+	    </record>
+
+		<record id="view_res_org_struct_wiz" model="ir.ui.view">
+            <field name="name">res.organization.structures.wiz</field>
+            <field name="model">res.organization.structures.wiz</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Organization Structure">
+                    <group colspan="4" col="4">
+                    	<field name="type" colspan="4"/>
+                    </group>
+                    <group colspan="4" col="4">
+                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                        <button icon="terp-gtk-go-back-rtl" string="Open Structure" name="org_struct_open_window" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_res_org_struct_wiz" model="ir.actions.act_window">
+            <field name="name">Organization Structure Wizard</field>
+            <field name="res_model">res.organization.structures.wiz</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_res_org_struct_wiz"/>
+            <field name="target">new</field>
+            <field name="help">Display your Organization Structure</field>
+        </record>
+
+        <menuitem icon="STOCK_INDENT" action="action_view_res_org_struct_wiz"
+            id="menu_action_view_res_org_struct_wiz"
+            parent="menu_company_structure_tree" sequence="102"/>
+
+
+
+
+
+
+
+
+
+
+
+<!--         <record id="company_structure_action_tree_open" model="ir.values"> -->
+<!--             <field eval="'tree_but_open'" name="key2"/> -->
+<!--             <field eval="'res.organization.structures'" name="model"/> -->
+<!--             <field name="name">Employees by Categories</field> -->
+<!--             <field eval="'ir.actions.act_window,%d'%hr_employee_normal_action_tree" name="value"/> -->
+<!--             <field eval="True" name="object"/> -->
+<!--         </record> -->
+	</data>
+</openerp>

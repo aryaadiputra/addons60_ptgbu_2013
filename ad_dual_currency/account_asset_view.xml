@@ -1,0 +1,15 @@
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_account_asset_asset_form">
+			<field name="name">account.asset.asset.form</field>
+			<field name="model">account.asset.asset</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="ad_account_asset.view_account_asset_asset_form" />
+			<field name="arch" type="xml">
+				<field name="company_id" position="after">
+					<field name="asset_rate" required="1"/>		
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report auto="False" id="eagle_contract_webkit" model="eagle.contract" name="webkiteagle.contract"  file="eagle_base/report/eagle_contract_webkit.mako" string="WebKit Contract" report_type="webkit" />
+    </data>
+</openerp>

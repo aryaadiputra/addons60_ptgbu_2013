@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <!--Menu Time Tracking  >> Rosters Work Schedule-->
+        
+        <record model="ir.ui.view" id="view_rosters_workschedule_calendar">
+            <field name="name">view.rosters.workschedule.calendar</field>
+            <field name="model">rosters.schedule</field>
+            <field name="type">calendar</field>
+            <field name="arch" type="xml">
+                
+                
+                <calendar string="Schedule" date_start="start_work_date" color="end_work_date" >
+                    <field name="employee"/>
+                    <field name="department_id" />
+                </calendar>
+                
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_rosters_workschedule_tree">
+            <field name="name">view.rosters.workschedule.tree</field>
+            <field name="model">rosters.schedule</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee" />
+                    <field name="start_work_date" />
+                    <field name="end_work_date" />
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_rosters_workschedule_form">
+            <field name="name">view.rosters.workschedule.form</field>
+            <field name="model">rosters.schedule</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    
+                    <group col="6" colspan="4">
+                        <field name="employee" on_change="onchange_department_id(employee)"/>
+                        <field name="department_id" />
+                    </group>
+                    
+                    <separator string='Rosters Working Schedule' colspan="4"/>
+                    <newline/>
+                    <notebook>
+                        <page string="Schedule">
+                            <field name="start_work_date" />
+                            <field name="end_work_date" />
+                            <field name="type" />
+                            
+                            <field name="line_ids" colspan="4" nolabel="1" mode="tree,form,calendar">
+                                <tree string="Rosters Schedule" colors="violet: start_holiday_date;">
+                                    <field name="start_work_date" />
+                                    <field name="end_work_date" />
+                                    <field name="start_holiday_date" />
+                                    <field name="end_holiday_date" />
+                                    <button name="generate_ticket" string="generate tiket" type="object" icon="gtk-convert"/>
+                                </tree>
+                                <form string="Rosters Schedule">
+                                    <group string="Working Schedule">
+                                        <field name="start_work_date" colspan="4" />
+                                        <field name="end_work_date" colspan="4" />
+                                        <field name="start_holiday_date" colspan="4" />
+                                        <field name="end_holiday_date" colspan="4" />
+                                    </group>
+                                    <group string="Extends Work">
+                                        <field name="start_work_date_extends" colspan="4" readonly="1"/>
+                                        <field name="end_work_date_extends" colspan="4" readonly="1"/>
+                                        <field name="start_holiday_date_extends" colspan="4" readonly="1"/>
+                                        <field name="end_holiday_date_extends" colspan="4" readonly="1"/>
+                                        <button name="%(action_wizard_view_extends)d" string="Extends" type="action" icon="gtk-execute" attrs="{'invisible':[('status_extends','in',('waiting'))]}"/>
+                                        <button name="ask_extends" string="Ask Extends" type="object" icon="gtk-ok" confirm="Are you sure to confirm this extends ?" attrs="{'invisible':[('status_extends','in',('waiting','confirm'))]}"/>
+                                        <button name="confirm_extends" string="Confirm Extends" type="object" icon="gtk-ok" confirm="Are you sure to confirm this extends ?" attrs="{'invisible':[('status_extends','!=','waiting')]}"/>
+                                        <field name="status_extends" invisible="1"/>
+                                    </group>
+                                    <newline/>
+                                    <group>
+                                        <button name="depart" string="depart" type="object" icon="gtk-ok" attrs="{'invisible':[('status_depart','=','ready')]}"
+                                            confirm="Are you sure to confirm this record ?"/>
+                                        <button name="arrival" string="arrival" type="object" icon="gtk-ok" attrs="{'invisible':[('status_arrival','=','ready')]}"
+                                            confirm="Are you sure to confirm this record ?"/>
+                                        <field name="status_depart" invisible="1"/>
+                                        <field name="status_arrival" invisible="1"/>
+                                    </group>
+                                    <newline/>
+                                    <group string="Rosters Schedule History" colspan="4">
+                                        <field name="roster_history_ids" nolabel="1">
+                                            <tree string="">
+                                                <field name="start_work_date_history" />
+                                                <field name="end_work_date_history"/>
+                                                <field name="start_holiday_date_history"/>
+                                                <field name="end_holiday_date_history" />
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </form>
+                            </field>
+                            <field name="rest_of_the_day" />
+                            
+                            
+                            <group col="6" colspan="4">
+                                <button name="compute" states="draft, confirm" string="Compute" type="object" icon="gtk-execute"/>
+                                <button name="button_confirm" states="draft" string="Confirm" type="object" icon="gtk-apply"/>
+                                <button name="button_draft" states="confirm" string="Set to Draft" type="object" icon="gtk-convert"/>
+                                <button name="button_approve" states="confirm" string="Approve" type="object" icon="gtk-apply"/>
+                                <button name="button_draft" states="cancelled" string="Refuse" type="object" icon="gtk-apply"/>
+                            </group>
+                            
+                        </page>
+                        <page string="Extends Schedule">
+                            <field name="end_ext_date" colspan="6" />
+                            <newline/>
+                            <separator string='Reason' colspan="4"/>
+                            <newline/>
+                            <field name="reason"  colspan="4" nolabel="1"/>
+                        </page>
+                    </notebook>
+                    <newline />
+                    
+                    <field name="state" />
+                    
+                    
+                </form>
+            </field>
+        </record>
+        
+        
+        <act_window id='act_rosters_workschedule' res_model='rosters.schedule' name='Rosters Work Schedule' domain="[]" view_type='form' view_mode='tree,form,calendar'/>
+        <menuitem id='menu_schedule_action' parent='hr_attendance.menu_hr_time_tracking' action='act_rosters_workschedule'
+            sequence='20'/>
+        
+    </data>
+</openerp>

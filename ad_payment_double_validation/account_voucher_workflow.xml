@@ -1,0 +1,71 @@
+<openerp>
+	<data>
+		<record id="act_check1" model="workflow.activity">
+            <field name="wkf_id" ref="account_voucher.wkf"/>
+            <field name="flow_start">True</field>
+            <field name="name">check1</field>
+            <field name="action">write({'state':'draft'})</field>
+            <field name="kind">function</field>
+        </record>
+        
+        <record id="act_check2" model="workflow.activity">
+            <field name="wkf_id" ref="account_voucher.wkf"/>
+            
+            <field name="name">check2</field>
+            <field name="action">write({'state':'check2'})</field>
+            <field name="kind">function</field>
+        </record>
+        
+        <record id="account_voucher.act_proforma" model="workflow.activity">
+            <field name="wkf_id" ref="account_voucher.wkf"/>
+            <field name="name">proforma</field>
+            <field name="action">write({'state':'wait'})</field>
+            <field name="kind">function</field>
+        </record>
+        
+        
+        
+        <record id="t0" model="workflow.transition">
+            <field name="act_from" ref="act_check1"/>
+            <field name="act_to" ref="act_check2"/>
+            <field name="signal">check1</field>
+            <field name="condition">True</field>
+        </record>
+        
+        <record id="t10" model="workflow.transition">
+            <field name="act_from" ref="act_check2"/>
+            <field name="act_to" ref="account_voucher.act_proforma"/>
+            <field name="condition">amount &gt;= 50000000</field>
+            <field name="signal">confirm</field>
+            <field name="group_id" ref="ad_acc_inv_double_validation.group_cfo"/>
+        </record>
+        
+        <record id="t20" model="workflow.transition">
+            <field name="act_from" ref="act_check2"/>
+            <field name="act_to" ref="account_voucher.act_proforma"/>
+            <field name="condition">amount &lt; 50000000</field>
+        </record>
+        <!-- 
+        <record id="30" model="workflow.transition">
+            <field name="act_from" ref="act_check1"/>
+            <field name="act_to" ref="act_check2"/>
+            <field name="signal">check2</field>
+            <field name="condition">True</field>
+        </record>
+        -->
+        
+        <record id="account_voucher.t2" model="workflow.transition">
+            <field name="act_from" ref="account_voucher.act_proforma"/>
+            <field name="act_to" ref="account_voucher.act_done"/>
+            <field name="signal">proforma_voucher</field>
+            <field name="condition">True</field>
+        </record>
+        
+        <record id="account_voucher.t8" model="workflow.transition">
+            <field name="act_from" ref="account_voucher.act_cancel"/>
+            <field name="act_to" ref="act_check1"/>
+            <field name="signal">cancel_to_draft</field>
+        </record>
+        
+	</data>
+</openerp>

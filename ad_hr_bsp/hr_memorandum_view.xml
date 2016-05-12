@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_memorandum_page">
+			<field name="name">Memorandum</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="view_availability_page" />
+			<field name="arch" type="xml">
+				<page string="Availabilities" position="after">
+					<page string="Warning Letter" groups="base.group_hr_user">
+						<field name="memorandum" nolabel="1" colspan="4" mode="tree,form">
+							<tree string="Warning Letter List">
+								<field name="wl" />
+								<field name="date_issued" />
+								<field name="reason" />
+								<field name="letter"/>
+							</tree>
+							<form string="Warning Letter">
+								<group colspan="4" col="6">
+									<field name="wl" />
+									<field name="date_issued" on_change="onchange_date_issued(date_issued)"/>
+									<field name="valid_until" /> <newline />
+									<separator string="Reason" colspan="6" />
+									<field name="reason" nolabel="1" colspan="6" />
+									<separator string="Attachment" colspan="6" />
+									<field name="letter" nolabel="1" colspan="6" />
+								</group>
+							</form>
+						</field>
+					</page>
+				</page>
+			</field>
+		</record>
+	</data>
+</openerp>

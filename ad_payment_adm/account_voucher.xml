@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!-- supplier payment -->
+        
+		<record model="ir.ui.view" id="supplier_payment_adm_form">
+            <field name="name">supplier.payment.adm.form</field>            
+            <field name="model">account.voucher</field>            
+            <field name="type">form</field>							
+			<field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                	<field name="payment_adm"/>
+                </field>
+                <xpath expr="/form/notebook/page[@string='Payment Information']/group[2]/separator" position="before">
+                    <group col="4" colspan="2"> 
+	                    <field name="adm_amount" colspan="4"  
+	                           attrs="{'invisible':[('payment_adm','not in',('transfer','cheque'))]}"/>
+	                    <field name="adm_acc_id" colspan="4"
+	                           attrs="{'invisible':[('payment_adm','not in',('transfer','cheque'))], 'readonly':[('adm_amount','&lt;=',0)], 'required':[('payment_adm','in',('transfer','cheque')),('adm_amount','!=',0)]}" domain="[('type','=','other')]"/>
+	                    <field name="adm_comment" colspan="4"
+	                           attrs="{'invisible':['|',('payment_adm','=','cheque'),('payment_adm','=','cash')], 'required':['|',('payment_adm','=','transfer'),('payment_adm','=','free_transfer')]}"/> 
+	                    <!--<field name="adm_comment" colspan="4"
+	                           attrs="{'invisible':[('payment_adm','!=','transfer')], 'required':[('payment_adm','=','transfer')]}"/> -->
+	                    <field name="cheque_number" colspan="4"
+	                           attrs="{'invisible':[('payment_adm','!=','cheque')]}"/>
+	                    <field name="cheque_start_date" colspan="2"
+	                           attrs="{'invisible':[('payment_adm','!=','cheque')]}" domain="[('type','=','other')]"/> 
+	                    <field name="cheque_end_date" colspan="2"
+	                           attrs="{'invisible':[('payment_adm','!=','cheque')], 'required':[('payment_adm','=','cheque')]}"/>
+	                    <field name="bank_id" colspan="4"
+	                           attrs="{'invisible':[('payment_adm','!=','cheque')]}"/>
+                    </group>
+				</xpath>
+            </field>		
+		</record>
+
+	</data>
+</openerp>

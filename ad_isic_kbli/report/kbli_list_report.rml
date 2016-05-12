@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<document filename="kbli_list.pdf">
+  <template pageSize="(612.0,792.0)" title="Test" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="57.0" y1="57.0" width="498" height="678"/>
+    </pageTemplate>
+  </template>
+	<stylesheet>
+		<blockTableStyle id="Standard_Outline">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+		</blockTableStyle>
+		<blockTableStyle id="line-above">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+			<lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="-1,-1"/>
+		</blockTableStyle>
+		<blockTableStyle id="Table0">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+		</blockTableStyle>
+		<blockTableStyle id="Table1">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+			<lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="-1,-1"/>
+			<lineStyle kind="LINEBELOW" colorName="#000000" start="0,0" stop="-1,-1"/>
+		</blockTableStyle>
+		<initialize>
+			<paraStyle name="all" alignment="justify"/>
+		</initialize>
+		<paraStyle name="Standard" fontName="Helvetica"/>
+		<paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" alignment="center" spaceBefore="12.0" spaceAfter="6.0"/>
+		<paraStyle name="header_center" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="CENTER" spaceBefore="12.0" spaceAfter="6.0"/>
+		<paraStyle name="Text body" fontName="Helvetica" alignment="left" spaceBefore="3.0" spaceAfter="0.0"/>
+		<paraStyle name="TextNo" fontName="Helvetica" alignment="right" spaceBefore="3.0" spaceAfter="0.0"/>
+		<paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+		<paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+		<paraStyle name="Index" fontName="Helvetica"/>
+		<paraStyle name="Heading1" fontName="Helvetica-Bold" fontSize="18.0" alignment="center" spaceBefore="0.0" spaceAfter="12.0"/>
+		<paraStyle name="Heading2" fontName="Helvetica-Bold" fontSize="14.0" alignment="center" spaceBefore="0.0" spaceAfter="20.0"/>
+		<paraStyle name="Heading3" fontName="Helvetica-Bold" fontSize="12.0" alignment="left" spaceBefore="6.0" spaceAfter="10.0"/>
+		<paraStyle name="Heading4" fontName="Helvetica-Bold" fontSize="11.0" alignment="left" spaceBefore="6.0" spaceAfter="10.0"/>
+		<paraStyle name="Table Contents" fontName="Times-Roman"/>
+		<paraStyle name="Signature" fontName="Times-Roman"/>
+		<paraStyle name="Table Heading" fontName="Times-Roman" alignment="CENTER"/>
+    	<paraStyle name="P14" rightIndent="17.0" leftIndent="-0.0" fontName="Helvetica" fontSize="10.0" leading="10" spaceBefore="0.0" spaceAfter="6.0"/>
+	</stylesheet>
+	<images/>
+	<story>
+		<para style="Heading1">KBLI (Klasifikasi Baku Lapangan Usaha Indonesia)</para>
+		<para style="Heading2">ISIC (Indonesian Standard Industrial Classification)</para>
+		<section>
+		<para style="Standard">[[ repeatIn( objects, 'o' ) ]]</para>
+		<para style="Standard">[[ setLang( o.lang ) ]]</para>
+		<blockTable colWidths="40.0,120.0,338.0" style="Table0">
+			<tr>
+				<td>
+					<illustration width="498" height="10">
+						<stroke color="grey"/>
+						<lineMode width="3"/>
+						<lines>0 0 498 0</lines>
+						<para><font color="white">[[ o.type=='category' or removeParentNode('illustration')]]</font></para>
+					</illustration>
+					<illustration width="498" height="10">
+						<stroke color="blue"/>
+						<lineMode width="2"/>
+						<lines>0 0 160 0</lines>
+						<para><font color="white">[[ o.type=='main_class' or removeParentNode('illustration')]]</font></para>
+					</illustration>
+					<illustration width="498" height="10">
+						<stroke color="red"/>
+						<lineMode width="2"/>
+						<lines>0 0 160 0</lines>
+						<para><font color="white">[[ o.type=='class' or removeParentNode('illustration')]]</font></para>
+					</illustration>
+					<illustration width="498" height="10">
+						<stroke color="green"/>
+						<lineMode width="2"/>
+						<lines>0 0 160 0</lines>
+						<para><font color="white">[[ o.type=='sub_class' or removeParentNode('illustration')]]</font></para>
+					</illustration>
+				</td>
+			</tr>
+			<tr>
+				<td>
+        			<para style="TextNo"><font>[[ (o.type&lt;&gt;'group' and setTag('para','para',{'fontName':"Helvetica-Bold"})) or removeParentNode('font') ]]</font><font>[[ o.code ]]</font></para>
+				</td>
+				<td>
+        			<para style="Text body"><font>[[ (o.type&lt;&gt;'group' and setTag('para','para',{'fontName':"Helvetica-Bold"})) or removeParentNode('font') ]]</font><font>[[ o.name ]]</font></para>
+				</td>
+				<td>
+        			<para style="Text body"><font>[[ (o.type&lt;&gt;'group' and setTag('para','para',{'fontName':"Helvetica-Bold"})) or removeParentNode('font') ]]</font><font>[[ o.note ]]</font></para>
+				</td>
+			</tr>
+		</blockTable>
+		</section>
+	</story>
+</document>

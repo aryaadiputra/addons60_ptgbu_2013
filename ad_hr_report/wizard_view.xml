@@ -1,0 +1,41 @@
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_hr_report_wizard">
+            <field name="name">hr.report.wizard.view</field>
+            <field name="model">hr.report.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+				<form string="Create Employee Report">
+					<field name="type"/>
+					<field name="placement" on_change="onchange_placement(placement)"/>
+					<field name="group"/>
+					<field name="active"/>
+					<group colspan="4" col="4">
+						<notebook colspan="4">
+							<page string="Filter Department">
+								<field name="filter_dept" nolabel="1" on_change="onchange_dept(filter_dept,placement)"/>				
+							</page>
+							<page string="Filter Section">
+								<field name="filter_sect" nolabel="1"/>				
+							</page>
+						</notebook>
+					</group>
+					<group colspan="4">
+						<button special="cancel" string="Cancel" icon="gtk-cancel"/>
+		               	<button name="report_hr_custom" string="Print Report" type="object"  icon="gtk-print"/>	
+					</group>
+				</form>
+            </field>
+        </record>
+              
+        <record model="ir.actions.act_window" id="action_hr_report_wizard">
+            <field name="name">Create Employee Report</field>
+            <field name="res_model">hr.report.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+		<menuitem id="menu_action_hr_report_wizard" name="Create Employee Report" action="action_hr_report_wizard" parent="hr.menu_hr_main" icon='STOCK_PRINT'/>		   	
+
+	</data>
+</openerp>

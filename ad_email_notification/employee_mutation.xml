@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="mutation_form" model="ir.ui.view">
+			<field name="name">Mutation Form</field>
+			<field name="model">employee.mutation</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Employee Mutation">
+					<field name="name" on_change="onchange_employee(name)"/>
+					<field name="mutation_date" />
+					<field name="send_mail" />
+					<notebook colspan="4">
+						<page string="Job Information">
+							<separator string="Job Information" colspan="4" />
+							<field name="old_position" />
+							<field name="new_position" on_change="onchange_new_position(new_position)"/>
+							<field name="old_section" />
+							<field name="new_section" />
+							<field name="old_department" />
+							<field name="new_department" />
+							<field name="old_level" />
+							<field name="new_level" />
+							<field name="old_type" />
+							<field name="new_type" />
+						</page>
+					</notebook>
+					<group colspan="4" col="6">
+						<button special="cancel" string="Cancel" icon="gtk-cancel"/>
+						<button name="mutate_employee" string="OK" type="object" icon="gtk-ok"/>
+					</group>
+				</form>
+			</field>
+		</record>
+		
+		<record id="action_mutation_form" model="ir.actions.act_window">
+            <field name="name">Mutation Form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employee.mutation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="mutation_form"/>
+            <field name="target">new</field>
+        </record>
+        
+		<menuitem name="Mutation" 
+        		  id="menu_mutation" 
+        		  parent="hr.menu_hr_root" 
+        		  sequence="16" />
+		
+		<menuitem name="Mutation Form" 
+        		  action="action_mutation_form" 
+        		  id="menu_mutation_form" 
+        		  parent="menu_mutation" 
+        		  sequence="5" 
+        		  icon="terp-document-new"/>
+		
+		<record id="mutation_history_tree" model="ir.ui.view">
+			<field name="name">Mutation History Tree</field>
+			<field name="model">mutation.history</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Mutation History">
+					<field name="name" />
+					<field name="mutation_date"/>
+					<field name="new_level"/>
+					<field name="old_position" />
+					<field name="new_position" />
+					<field name="old_type" />
+					<field name="new_type" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mutation_history_form" model="ir.ui.view">
+			<field name="name">Mutation History Form</field>
+			<field name="model">mutation.history</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Mutation History">
+					<field name="name" /><newline/>
+					<field name="send_mail" attrs="{'readonly':[('state','!=','draft')]}"/>
+					<notebook colspan="4">
+						<page string="Job Information">
+							<field name="mutation_date" attrs="{'readonly':[('state','!=','draft')]}" /><newline/>
+							<separator string="Before" colspan="2" />
+							<separator string="Current" colspan="2" />
+							<field name="old_position" />
+							<field name="new_position" attrs="{'readonly':[('state','!=','draft')]}"/>
+							<field name="old_section" />
+							<field name="new_section" attrs="{'readonly':[('state','!=','draft')]}"/>
+							<field name="old_department" />
+							<field name="new_department" attrs="{'readonly':[('state','!=','draft')]}"/>
+							<field name="old_level" />
+							<field name="new_level" attrs="{'readonly':[('state','!=','draft')]}"/>
+							<field name="old_type" />
+							<field name="new_type" attrs="{'readonly':[('state','!=','draft')]}"/>
+						</page>
+						<page string="Recipient" attrs="{'invisible':[('send_mail','=',False)]}">
+							<separator string="Please select employee to send notification email" colspan="4" />
+							<field name="recipient" attrs="{'required':[('send_mail','=',True)], 'readonly':[('state','=','done')]}" on_change="onchange_recipient(recipient)" colspan="4" nolabel="1" />
+						</page>
+						<page string="Mail" attrs="{'invisible':[('send_mail','=',False)]}">
+							<group colspan="4" col="6">
+								<group colspan="4" col="4" height="350" width="880">
+									<separator string="Please type text you would like to send to the recipient." colspan="4" /><newline />
+									<field name="body" colspan="4" nolabel="1" attrs="{'readonly':[('state','=','done')]}"/>
+								</group>
+								<group colspan="2" col="4">
+									<separator string="Legends" colspan="4" />
+									<label string="[name]"/>
+									<label string=": People that is being mutated" /> <newline />
+									<label string="[past_position] "/>
+									<label string=": Position before mutated" /> <newline />
+									<label string="[past_department] "/>
+									<label string=": Department before mutated" /> <newline />
+									<label string="[past_section] "/>
+									<label string=": Section before mutated" /> <newline />
+									<label string="[current_position] "/>
+									<label string=": Position after mutated" /> <newline />
+									<label string="[current_department] "/>
+									<label string=": Department after mutated" /> <newline />
+									<label string="[current_section] "/>
+									<label string=": Section after mutated" /> <newline />
+									<label string="INFO: HTML element is allowed." />
+								</group>
+							</group>
+						</page>
+					</notebook>
+					<group col="6" colspan="4">
+						<field name="state" />
+						<group colspan="4">
+	                        <button name="button_proposed" states="draft" string="OK" type="object" icon="gtk-apply"/>
+	                        <button name="button_draft" states="approved,waiting" string="Reviews" type="object" icon="gtk-convert"/>
+	                        <button name="button_approved" groups="base.group_hr_manager" states="waiting" string="Approve" type="object" icon="gtk-go-forward" />
+	                        <button name="button_done" groups="base.group_hr_manager" states="approved" string="Done" type="object" icon="gtk-apply"/>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+		
+		<act_window name="Mutation" 
+					res_model="employee.mutation"
+					src_model="hr.employee" 
+					view_mode="form" 
+					target="new" 
+					key2="client_action_multi"
+					id="action_mutation_form" />
+
+		<record model="ir.ui.view" id="view_mutation_history_search">
+            <field name="name">view.mutation.history.search</field>            
+            <field name="model">mutation.history</field>            
+            <field name="type">search</field>							
+            <field name="arch" type="xml">
+            	<search string="Mutation History">
+                    <filter name="filter_draft" string="Draft" icon="terp-document-new" domain="[('state','=','draft')]" />
+                    <filter name="filter_done" string="Done" icon="terp-check" domain="[('state','=','done')]" />
+					<separator orientation="vertical" />
+            		<field name="name" />
+            		<field name="old_position" />
+            	</search>
+            </field>
+        </record>
+
+		<record id="action_all_mutation" model="ir.actions.act_window">
+            <field name="name">All Mutation</field>
+            <field name="res_model">mutation.history</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="mutation_history_tree" />
+            <field name="search-view_id" ref="view_mutation_history_search" />
+        </record>
+        <menuitem name="All Mutation Data" 
+        		  action="action_all_mutation" 
+        		  id="menu_all_mutation_data" 
+        		  parent="menu_mutation" 
+        		  sequence="10" />
+        
+		<record model="ir.ui.view" id="mutation_history_employee_form_view">
+            <field name="name">mutation.history.employee.form.view</field>            
+            <field name="model">hr.employee</field>            
+            <field name="type">form</field>							
+			<field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <page string="Notes" groups="base.group_hr_user" position="before">
+                	<page string="Mutation History" groups="base.group_hr_user">
+						<field name="mutation_ids" mode="tree,form" readonly="1" nolabel="1">
+							<tree string="Mutation History">
+								<field name="mutation_date"/>
+								<field name="old_position" />
+								<field name="new_position" />
+								<field name="old_level" />
+								<field name="new_level" />
+								<field name="old_type" />
+								<field name="new_type" />
+							</tree>
+							<form string="Mutation History">
+								<field name="mutation_date" /><newline/>
+								<separator string="Before" colspan="2" />
+								<separator string="Current" colspan="2" />
+								<field name="old_position" />
+								<field name="new_position" />
+								<field name="old_section" />
+								<field name="new_section" />
+								<field name="old_department" />
+								<field name="new_department" />
+								<field name="old_level" />
+								<field name="new_level" />
+								<field name="old_type" />
+								<field name="new_type" />
+							</form>
+						</field>
+					</page>
+                </page>
+            </field>		
+		</record>
+	</data>
+</openerp>

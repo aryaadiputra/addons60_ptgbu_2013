@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+  File: hr_view.xml
+  Module: eagle_project
+
+  Created by cyp@open-net.ch
+
+  Copyright (c) 2012 Open-Net Ltd. All rights reserved.
+-->
+<openerp>
+	<data>		
+		<record model="ir.ui.view" id="eagle_base_hr_attendance_tree">
+			<field name="name">Eagle Base HR Attendance List</field>
+			<field name="model">hr.attendance</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Who is there">
+					<field name="employee_id"/>
+                    <field name="name"/>
+					<field name="action"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="eagle_base_hr_attendance_action">
+            <field name="name">Who is there</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.attendance</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="eagle_base_hr_attendance_tree"/>
+			<field name="domain">[('action','in',['sign_in','sign_out']),('name::date','=',current_date)]</field>
+        </record>
+		
+		<record model="ir.ui.view" id="eagle_base_hr_timesheet_tree">
+			<field name="name">Eagle Base HR Time</field>
+			<field name="model">hr.analytic.timesheet</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Who did what today">
+                    <field name="user_id" />
+                    <field domain="[('type','=','normal')]" name="account_id"/>
+                    <field name="name"/>
+                    <field name="product_id" on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id,journal_id)" required="1" domain="[('type','=','service')]" invisible="1"/>
+                    <field name="unit_amount" on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id,journal_id)" sum="Total time"/>
+                    <field name="product_uom_id" on_change="on_change_unit_amount(product_id, unit_amount, False, product_uom_id,journal_id)" invisible="1"/>
+                    <field name="amount" sum="Total cost" invisible="1"/>
+                    <field name="general_account_id" invisible="1"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="eagle_base_hr_timesheet_action">
+            <field name="name">Who did what today</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.analytic.timesheet</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="eagle_base_hr_timesheet_tree"/>
+            <field name="domain">[('date', '=', time.strftime('%Y-%m-%d'))]</field>
+        </record>
+	</data>
+</openerp>

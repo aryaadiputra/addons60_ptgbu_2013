@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="user_state_form_view">
+		    <field name="name">res.users.state.form</field>            
+		    <field name="model">res.users</field>            
+		    <field name="type">form</field>							
+			<field name="inherit_id" ref="base.view_users_form"/>
+		    <field name="arch" type="xml">
+		        <notebook position="inside">
+		        	<page string="State on Invoice" groups="base.group_extended">
+		        		<field name="draft"/>
+		        		<field name="open"/>
+		        		<field name="approve_lv2_1"/>
+		        		<field name="approve_lv2"/>
+		        		<field name="approve_lv3"/>
+		        		<field name="approve_lv4"/>
+		        		<field name="approve_lv5"/>
+		        	</page>
+		        </notebook>
+		    </field>		
+		</record>
+	</data>
+</openerp>

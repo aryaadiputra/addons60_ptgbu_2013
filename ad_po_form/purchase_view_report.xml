@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		
+		<report id="purchase_order_form" string="Purchase Order Form" model="purchase.order"
+			name="purchase.order.form" 
+			file="ad_po_form/report/purchase_order_form.mako"
+			report_type="webkit"
+			auto="False"
+			menu="True"/>
+
+		<report id="request_for_quotation_form" string="Request for Quotation Form" model="purchase.order"
+			name="request.for.quotation.form" 
+			file="ad_po_form/report/request_for_quotation_form.mako"
+			report_type="webkit"
+			auto="False"
+			menu="True"/>
+		
+		<record model="ir.ui.view" id="view_counter">
+			<field name="name">View Counter</field>
+			<field name="type">form</field>
+			<field name="model">purchase.order</field>
+			<field name="inherit_id" ref="ad_second_uom.purchase_order_form_second_uom" />
+			<field name="arch" type="xml">
+				<field name="payment_inv_date" position="after">
+					<newline />
+					<field name="print_seq" invisible="0" />
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

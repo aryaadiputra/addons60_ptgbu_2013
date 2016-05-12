@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+          
+     	<record id="invoice_tree" model="ir.ui.view">
+            <field name="name">account.invoice.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="account.invoice_tree" />
+            <field name="arch" type="xml">
+            	<xpath expr="//tree/field[@name='date_invoice']" position="before">
+	                <field name="create_record_date" />
+	            </xpath>
+            </field>
+        </record>
+
+        <record id="invoice_supplier_form_view" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.view</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/group/field[@name='date_invoice']" position="replace">
+	                <field name="date_invoice" />
+	            </xpath>
+	            <xpath expr="//form/group/field[@name='date_invoice']" position="after">
+	                <field name="date_invoice_validation" />
+	                <field name="date_invoice_out"/>
+	                <!--Payment Date Di Remove-->
+	                <!--<field name="payment_date" attrs="{'readonly':[('state','&lt;&gt;','approve_lv3')],'required':[('state','=','approve_lv3')]}" />-->
+	                <field name="payment_date" invisible="1" />
+	            </xpath>
+	            
+	            <xpath expr="//form/notebook/page[@string='Invoice']/group[2]/group[1]/button[@name='invoice_open']" position="after">
+	            	
+	                <button groups="ad_acc_inv_double_validation.group_treasury_validation" name="tres_check" states="wait_approve" string="Confirm" icon="terp-camera_test"/>
+	            	
+	            </xpath>
+	            
+	            <xpath expr="//form/notebook/page[@string='Invoice']/group[2]/group[1]/button[@name='invoice_cancel']" position="replace">
+	            	<button name="invoice_cancel" states="draft,approve_lv2,approve_lv2-1,approve_lv3,approve_lv4,approve_lv5,approve_lv6,proforma2,sale,open" string="Cancel" icon="gtk-cancel"/>
+	            </xpath>
+	            
+	             <xpath expr="//form/notebook/page[@string='Payments']" position="after">
+	            	<page string="Notes">
+	            		<separator colspan="4" string="Insert Your Cancel Reason In Here"/>
+	            		<field name="text" nolabel="1"/>
+	            		
+	            		<separator colspan="4" string="Canceled Reason"/>
+	            		<field name="user" readonly="1"/>
+	            		<newline/>
+	            		<field name="note" nolabel="1"/>
+	            		<newline/>
+	            	</page>
+	            </xpath>
+	            	
+	            <xpath expr="//form/notebook/page[@string='Invoice']/group[2]/group[1]" position="attributes">
+	                <attribute name="col">16</attribute>
+	                <attribute name="colspan">12</attribute>
+	            </xpath>
+	            
+	            <xpath expr="//form/notebook/page[@string='Invoice']/group[2]/group[1]/button[@name='invoice_cancel']" position="after">
+	           		<button name="approve_lv2" states="approve_lv2" string="Validate Invoice" icon="terp-camera_test"/>
+	            	<button name="approve_lv2-1" states="approve_lv2-1" string="Validate CEO Invoice" icon="terp-camera_test"/>
+	            	<button name="approve_lv3" states="approve_lv3" string="Treasury Validate" icon="terp-camera_test" />
+	            	<button name="approve_lv4" states="approve_lv4" string="Payment Validate" icon="terp-camera_test" />
+	            	<button name="approve_lv5" states="approve_lv5" string="CEO Validate" icon="terp-camera_test"/>
+	            	<button name="approve_lv6" states="approve_lv6" string="Treasury Validate2" icon="terp-camera_test"/>
+	                <button name="reject" states="approved" string="Reject" icon="gtk-cancel"/>
+	            </xpath>
+	            
+            </field>
+        </record>
+        
+        <record id="invoice_supplier_form" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
+            <field name="priority">2</field>
+            <field name="arch" type="xml">        
+				<xpath expr="//form/notebook/page[@string='Invoice']/group[2]/group[1]/button[@string='Refund']" position="replace">
+	                <button name="%(account.action_account_invoice_refund)d" type='action' string='Refund' states='open,paid' icon="gtk-execute" groups="ad_acc_inv_double_validation.group_treasury_validation"/>
+	            </xpath>
+	        </field>
+        </record>
+        
+        
+        
+        <record id="customer_invoice_form" model="ir.ui.view">
+            <field name="name">customer.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+            	<xpath expr="//form/notebook/page[@string='Invoice']/group[2]/group[1]/button[@name='invoice_open']" position="after">
+	            	
+	                <button groups="ad_acc_inv_double_validation.group_treasury_validation" name="tres_check" states="wait_approve" string="Confirm" icon="terp-camera_test"/>
+	            	
+	            </xpath>
+	            
+	            <xpath expr="//form/notebook/page[@string='Invoice']/group[2]/group[1]/button[@name='invoice_cancel']" position="replace">
+	            	<button name="invoice_cancel" states="draft,approve_lv2,approve_lv2-1,approve_lv3,approve_lv4,approve_lv5,approve_lv6,proforma2,sale,open" string="Cancel" icon="gtk-cancel"/>
+	            </xpath>
+	            
+	             <xpath expr="//form/notebook/page[@string='Payments']" position="after">
+	            	<page string="Notes">
+	            		<separator colspan="4" string="Insert Your Cancel Reason In Here"/>
+	            		<field name="text" nolabel="1"/>
+	            		
+	            		<separator colspan="4" string="Canceled Reason"/>
+	            		<field name="user" readonly="1"/>
+	            		<newline/>
+	            		<field name="note" nolabel="1"/>
+	            		<newline/>
+	            	</page>
+	            </xpath>
+	            	
+	            <xpath expr="//form/notebook/page[@string='Invoice']/group[2]/group[1]" position="attributes">
+	                <attribute name="col">16</attribute>
+	                <attribute name="colspan">12</attribute>
+	            </xpath>
+	            
+	            <xpath expr="//form/notebook/page[@string='Invoice']/group[2]/group[1]/button[@name='invoice_cancel']" position="after">
+	           		<button name="approve_lv2" states="approve_lv2" string="Validate Invoice" icon="terp-camera_test"/>
+	            	<button name="approve_lv2-1" states="approve_lv2-1" string="Validate CEO Invoice" icon="terp-camera_test"/>
+	            	<button name="approve_lv3" states="approve_lv3" string="Treasury Validate" icon="terp-camera_test" />
+	            	<button name="approve_lv4" states="approve_lv4" string="Payment Validate" icon="terp-camera_test" />
+	            	<button name="approve_lv5" states="approve_lv5" string="CEO Validate" icon="terp-camera_test"/>
+	            	<button name="approve_lv6" states="approve_lv6" string="Treasury Validate2" icon="terp-camera_test"/>
+	                <button name="reject" states="approved" string="Reject" icon="gtk-cancel"/>
+	            </xpath>
+            </field>
+    	</record>
+	</data>
+</openerp>

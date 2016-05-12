@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_cash_advance_report_group" model="ir.ui.view">
+            <field name="name">Report Cash Advance</field>
+            <field name="model">cash.advance.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Create Report Cash Advance">
+                    <separator string="Create Report Cash Advance" colspan="4"/>
+                    <newline/>
+                    <button name="merge_orders" string="Create Report Cash Advance" type="object" icon="gtk-convert"/>
+                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_cash_advance_notification" model="ir.ui.view">
+            <field name="name">Cash Advance Report Notification</field>
+            <field name="model">cash.advance.report.notification</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Cash Advance">
+                    <label string="You Report Cash Advance has been successfully created!" />
+                    <newline />
+                    <separator string="" colspan="4"/>
+                    <group colspan="4">
+                        <button special="cancel" string="OK" icon="gtk-ok"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_view_cash_advance_notification" model="ir.actions.act_window">
+            <field name="name">Cash Advance Report Notification</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cash.advance.report.notification</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <act_window name="Create Report Cash Advance" res_model="cash.advance.report" src_model="cash.advance"
+            view_mode="form" target="new" multi="True" key2="client_action_multi"
+            groups="base.group_extended" id="action_cash_advance_report_group"/>
+    </data>
+</openerp>

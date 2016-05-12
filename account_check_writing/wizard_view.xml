@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<wizard
+			string="Print Checks in Batch"
+			model="account.voucher"
+			name="print.check.report"
+			id="print_check_report"
+			multi="True" />
+			
+        <!-- menuitem id="summary_report" 
+        parent="shipping_api.shipping_menu" 
+        sequence="20" name="Print Summary Report" 
+        action="print_summary_report" 
+        type="wizard"/-->          
+    </data>
+</openerp>

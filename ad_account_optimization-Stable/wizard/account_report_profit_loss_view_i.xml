@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="account_partner_ledger_opti_view">
+        <field name="name">Partner Profit Loss</field>
+        <field name="model">account.pl.report</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.account_pl_report_view"/>
+        <field name="arch" type="xml">
+            <field name="display_account" position="after">
+                <field name="type"/>
+                <newline/>
+            </field>
+            <field name="display_type" position="replace">
+                <!--<field name="currency_rate"/>-->
+                <newline/>
+            </field>    
+        </field>
+    </record>
+
+</data>
+</openerp>
+

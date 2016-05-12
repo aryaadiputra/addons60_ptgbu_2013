@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            id="form_f1_report"
+            model="form.f1"
+            name="jamsostek.f1.print"
+            string="Form Jamsostek F1"
+			auto="False"/>
+    </data>
+</openerp>

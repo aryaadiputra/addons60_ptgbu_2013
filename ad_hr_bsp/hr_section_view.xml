@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_section_form" model="ir.ui.view">
+			<field name="name">Section</field>
+			<field name="model">hr.section</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Section">
+					<group col="6" colspan="4">
+						<field name="name" select="1" />
+						<field name="code" />
+						<field name="department" domain="[('placement','=',placement)]" />
+						<field name="chief_id" select="1" />
+						<field name="company_id" select="1" widget="selection" groups="base.group_multi_company"/>
+						<field name="placement" select="1" />
+					</group>
+					<notebook colspan="4">
+						<page string="Members">
+							<field name="employee" nolabel="1" colspan="4" widget="many2many" mode="tree,form"/>
+						</page>
+						<page string="Notes">
+							<field name="note" colspan="4" nolabel="1" />
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+		<record id="view_section_tree" model="ir.ui.view">
+			<field name="name">Section</field>
+			<field name="model">hr.section</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Section">
+					<field name="name" />
+					<field name="department" />
+					<field name="company_id" />
+					<field name="placement" />
+					<field name="chief_id" />
+				</tree>
+			</field>
+		</record>
+		<record id="view_section_filter" model="ir.ui.view">
+            <field name="name">Section</field>
+            <field name="model">hr.section</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Section">
+					<filter icon="terp-personal" domain="[('placement','=','bsp')]" name="bsp" string="Kantor Pusat" groups="base.group_extended"/>
+					<filter icon="terp-personal" domain="[('placement','=','bob')]" name="bob" string="BOB" groups="base.group_extended"/>
+					<separator orientation="vertical" />
+					<field name="name" />
+                    <newline/>
+                    <group expand="0" string="Group By...">
+                    <filter string="Department" icon="terp-personal+" domain="[]" context="{'group_by':'department'}"/>
+                    </group>
+                </search>
+             </field>
+         </record>
+        <record id="open_section_tree" model="ir.actions.act_window">
+            <field name="name">Section</field>
+            <field name="res_model">hr.section</field>
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="view_section_filter"/>
+        </record>
+        <menuitem action="open_section_tree" id="menu_hr_section_tree" parent="hr.menu_hr_management" sequence="7" />
+		
+	</data>
+</openerp>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="ad_acc_inv_double_validation.act_lv4" model="workflow.activity">
+			<field name="wkf_id" ref="account.wkf"/>
+			<field name="name">lv4</field>
+			<!--#########Remove Payment Date##########-->
+			<!--
+<field name="action">write({'state':'approve_lv4','text':''})
+			update_payment_date()</field>-->
+
+			<field name="action">write({'state':'approve_lv4','text':''})</field>
+			<field name="kind">function</field>
+		</record>
+
+		
+
+	</data>
+</openerp>

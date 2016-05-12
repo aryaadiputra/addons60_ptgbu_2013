@@ -1,0 +1,15 @@
+<openerp>
+    <data>
+        <record id="view_invoice_supplier" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.pay</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_voucher.view_invoice_supplier"/>
+            <field name="arch" type="xml">
+                <button name="invoice_pay_customer" position="replace">
+                    <button groups="ad_acc_inv_double_validation.group_treasury_validation" name="invoice_pay_customer" type="object" string="Pay Invoice" states="open" icon="gtk-go-forward"/>
+                </button>
+            </field>
+        </record>
+    </data>
+</openerp>

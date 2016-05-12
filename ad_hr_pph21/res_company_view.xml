@@ -1,0 +1,57 @@
+<openerp>
+	<data>
+		<record id="view_company_payroll_conf" model="ir.ui.view">
+			<field name="name">Payroll Configuration</field>
+			<field name="model">res.company</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_company_form"/>
+			<field name="arch" type="xml">
+				<page string="Configuration" position="after">
+					<page string="Payroll">
+						<separator string="Payroll Configuration" colspan="4"/>
+						<group colspan="2" col="2" string="PPh 21">
+							<field name='pph21_acc' /> <newline />
+							<field name='pph21_aacc' /> <newline />
+							<field name='pph21_cat' /> <newline />
+						</group>
+						<group colspan="2" col="2" string="Functional Expense">
+							<field name='officecost_acc' /> <newline />
+							<field name='officecost_aacc' /> <newline />
+							<field name='officecost_cat' /> <newline />
+						</group>
+						<group colspan="2" col="2" string="Jamsostek by Company">
+							<field name='com_jamsostek_acc' /> <newline />
+							<field name='com_jamsostek_aacc' /> <newline />
+							<field name='com_jamsostek_cat' /> <newline />
+						</group>
+						<group colspan="2" col="2" string="Jamsostek by Employee">
+							<field name='emp_jamsostek_acc' /> <newline />
+							<field name='emp_jamsostek_aacc' /> <newline />
+							<field name='emp_jamsostek_cat' /> <newline />
+						</group>
+						<group colspan="2" col="2" string="Retiring by Company">
+							<field name='com_retiring_acc' /> <newline />
+							<field name='com_retiring_aacc' /> <newline />
+							<field name='com_retiring_cat' /> <newline />
+						</group>
+						<group colspan="2" col="2" string="Retiring by Employee">
+							<field name='emp_retiring_acc' /> <newline />
+							<field name='emp_retiring_aacc' /> <newline />
+							<field name='emp_retiring_cat' /> <newline />
+						</group>
+						<group colspan="2" col="2" string="THR">
+							<field name='emp_thr_acc' /> <newline />
+							<field name='emp_thr_aacc' /> <newline />
+							<field name='emp_thr_cat' /> <newline />
+						</group>
+						<group colspan="2" col="2" string="Bonus">
+							<field name='emp_bonus_acc' /> <newline />
+							<field name='emp_bonus_aacc' /> <newline />
+							<field name='emp_bonus_cat' /> <newline />
+						</group>
+					</page>
+				</page>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<report auto="False" file="ad_budget/report/report_ad_budget_item.mako"
+			id="report_ad_budget_tree_webkit" model="ad_budget.item" name="ad_budget.tree_webkit"
+			report_type="webkit" string="Item Chart Webkit" />
+	</data>
+</openerp>
+

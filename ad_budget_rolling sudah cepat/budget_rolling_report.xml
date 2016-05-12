@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+		<report id="budget_rolling_pdf"  
+			string="Budget Rolling" 
+			model="ad_budget.item"   
+			name="budget.rolling.pdf"  
+			file="ad_budget_rolling/report/budget_rolling.mako" 
+			report_type="webkit" 
+			auto="False" 
+			menu="False"/>	
+			
+		
+    </data>
+</openerp>

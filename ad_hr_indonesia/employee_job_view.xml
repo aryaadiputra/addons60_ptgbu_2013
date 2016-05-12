@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_employee_form">
+			<field name="name">hr.employee.family.from</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<xpath expr="/form/notebook/page[@string='Personal Information']/group[4]" position="replace">
+					<group col="2" colspan="2">
+						<separator string="Emergency contact" colspan="2" />
+						<field name="emergency_contact" />
+						<field name="emergency_relation" />
+						<field name="emergency_phone" />
+					</group>
+				</xpath>
+				<page string="Personal Information" position="after">
+					<page string="Job" groups="base.group_hr_user">
+						<group col="4" colspan="4">
+							<separator string="Position" colspan="6" />
+							<button name="check_employee_contract" string="cek contract" type="object" icon="gtk-convert"/>
+							<field name="job_id" domain="[('state','!=','old')]" />
+							<field name="current_job_level" /><newline />
+							<field name="coach_id" /><newline />
+						</group>
+					</page>
+				</page>
+				<field name="coach_id" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

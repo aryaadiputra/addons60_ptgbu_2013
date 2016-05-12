@@ -1,0 +1,540 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* ad_hr_pph21
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-07-15 16:19+0000\n"
+"PO-Revision-Date: 2012-07-16 00:58+0700\n"
+"Last-Translator: Togar Hutabarat <to.garnet@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: ad_hr_pph21
+#: help:hr.payslip,pph_percent:0
+msgid "PPh in percent"
+msgstr "PPh (%)"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:315
+#, python-format
+msgid "Please define Category of Salary Head for Overtime"
+msgstr "Tentukan dahulu Komponen Gaji untuk Lembur"
+
+#. module: ad_hr_pph21
+#: field:hr.contract,has_npwp:0
+msgid "Has NPWP?"
+msgstr "NPWP"
+
+#. module: ad_hr_pph21
+#: field:hr.contract,familiy_doc:0
+msgid "Family Document"
+msgstr "Kartu Keluarga"
+
+#. module: ad_hr_pph21
+#: field:hr.payslip,final_net:0
+msgid "Final Net"
+msgstr "Upah Ber"
+
+#. module: ad_hr_pph21
+#: model:ir.model,name:ad_hr_pph21.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Slip Pembayaran"
+
+#. module: ad_hr_pph21
+#: help:hr.payslip,final_net:0
+msgid "Final Net Salary after calculation with PPh21, overtime"
+msgstr "Final Net Salary after calculation with PPh21, overtime"
+
+#. module: ad_hr_pph21
+#: view:hr.payslip:0
+msgid "Account"
+msgstr "Akun"
+
+#. module: ad_hr_pph21
+#: view:hr.payslip:0
+msgid "Salary Computation"
+msgstr "Perhitungan Gaji"
+
+#. module: ad_hr_pph21
+#: help:hr.payslip,officecost_acc:0
+msgid "Select account used for Ofice Cost."
+msgstr "Pilih akun untuk Biaya Jabatan."
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:119
+#: code:addons/ad_hr_pph21/pph21.py:126
+#: code:addons/ad_hr_pph21/pph21.py:129
+#: code:addons/ad_hr_pph21/pph21.py:143
+#: code:addons/ad_hr_pph21/pph21.py:166
+#: code:addons/ad_hr_pph21/pph21.py:274
+#: code:addons/ad_hr_pph21/pph21.py:315
+#: code:addons/ad_hr_pph21/pph21.py:393
+#: code:addons/ad_hr_pph21/pph21.py:400
+#: code:addons/ad_hr_pph21/pph21.py:403
+#: code:addons/ad_hr_pph21/pph21.py:420
+#: code:addons/ad_hr_pph21/pph21.py:454
+#, python-format
+msgid "Warning !"
+msgstr "Warning !"
+
+#. module: ad_hr_pph21
+#: view:hr.contract:0
+msgid "Amenability and Nontaxable Wages (NW)"
+msgstr "Tanggungan dan PTKP"
+
+#. module: ad_hr_pph21
+#: view:hr.payslip:0
+msgid "Analytic Account"
+msgstr "Analytic Account"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:166
+#, python-format
+msgid "Please define Employee Payable Account for %s."
+msgstr "Tentukan Akun Payable untuk %s."
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:234
+#, python-format
+msgid "Please Configure Partners Receivable Account!!"
+msgstr "Please Configure Partners Receivable Account!!"
+
+#. module: ad_hr_pph21
+#: field:hr.payslip,officecost_aacc:0
+msgid "Office Cost"
+msgstr "Biaya Jabatan"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:104
+#, python-format
+msgid "Please define bank account for %s !"
+msgstr "Please define bank account for %s !"
+
+#. module: ad_hr_pph21
+#: selection:hr.contract,ptkp:0
+#: selection:ptkp.conf,name:0
+msgid "K/-"
+msgstr "K/-"
+
+#. module: ad_hr_pph21
+#: view:hr.payslip:0
+msgid "Function Arguments"
+msgstr "Fungsi Argumen"
+
+#. module: ad_hr_pph21
+#: selection:hr.contract,ptkp:0
+#: selection:ptkp.conf,name:0
+msgid "K/1"
+msgstr "K/1"
+
+#. module: ad_hr_pph21
+#: selection:hr.contract,ptkp:0
+#: selection:ptkp.conf,name:0
+msgid "K/3"
+msgstr "K/3"
+
+#. module: ad_hr_pph21
+#: selection:hr.contract,ptkp:0
+#: selection:ptkp.conf,name:0
+msgid "K/2"
+msgstr "K/2"
+
+#. module: ad_hr_pph21
+#: view:hr.payslip:0
+msgid "Account & Category"
+msgstr "Akun & Kategori"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:119
+#: code:addons/ad_hr_pph21/pph21.py:393
+#, python-format
+msgid "Please define fiscal year for perticular contract"
+msgstr "Please define fiscal year for perticular contract"
+
+#. module: ad_hr_pph21
+#: field:hr.payslip,officecost_cat:0
+msgid "Office Cost A/D Category"
+msgstr "Komponen Biaya Jabatan"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:569
+#, python-format
+msgid "Variable Error !"
+msgstr "Eror variabel !"
+
+#. module: ad_hr_pph21
+#: field:hr.payslip,pph21_cat:0
+msgid "PPh 21 A/D Category"
+msgstr "Komponen PPh 21"
+
+#. module: ad_hr_pph21
+#: constraint:hr.employee:0
+msgid ""
+"Bad NPWP format ! \n"
+"The NPWP format should be like this '01.855.081.4-005.000' or '018550814005000'"
+msgstr ""
+"Format NPWP salah ! \n"
+"Format NPWP seharusnya diketik seperti berikut '01.855.081.4-005.000' atau '018550814005000'"
+
+#. module: ad_hr_pph21
+#: field:hr.contract,ptkp_amount:0
+#: field:ptkp.conf,ptkp_amount:0
+msgid "NW Amount (monthly)"
+msgstr "PTKP (bulanan)"
+
+#. module: ad_hr_pph21
+#: constraint:hr.contract:0
+msgid "Error! contract start-date must be lower then contract end-date."
+msgstr "Error! kontrak  tanggal mulai harus lebih rendah  daripada tanggal kontrak berakhir"
+
+#. module: ad_hr_pph21
+#: help:hr.payslip,pph21_cat:0
+msgid "Select Allowance/Deduction category used for PPh 21."
+msgstr "Tentukan komponen gaji untuk PPh21"
+
+#. module: ad_hr_pph21
+#: selection:hr.contract,ptkp:0
+#: selection:ptkp.conf,name:0
+msgid "TK/2"
+msgstr "TK/2"
+
+#. module: ad_hr_pph21
+#: selection:hr.contract,ptkp:0
+#: selection:ptkp.conf,name:0
+msgid "TK/3"
+msgstr "TK/3"
+
+#. module: ad_hr_pph21
+#: selection:hr.contract,ptkp:0
+#: selection:ptkp.conf,name:0
+msgid "TK/1"
+msgstr "TK/1"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:126
+#: code:addons/ad_hr_pph21/pph21.py:400
+#, python-format
+msgid "Fiscal Year is not defined for slip date %s"
+msgstr "Fiscal Year is not defined for slip date %s"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:274
+#, python-format
+msgid "Please define Category of Salary Head for PPh 21"
+msgstr "Please define Category of Salary Head for PPh 21"
+
+#. module: ad_hr_pph21
+#: selection:hr.contract,ptkp:0
+#: selection:ptkp.conf,name:0
+msgid "TK/-"
+msgstr "TK/-"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:129
+#: code:addons/ad_hr_pph21/pph21.py:403
+#, python-format
+msgid "Period is not defined for slip date %s"
+msgstr "Period is not defined for slip date %s"
+
+#. module: ad_hr_pph21
+#: field:hr.payslip,pph21_aacc:0
+msgid "PPh 21"
+msgstr "PPh 21"
+
+#. module: ad_hr_pph21
+#: constraint:hr.employee:0
+msgid "ktp number is invalid. The format should be like this: 01.855.081.4-005.000"
+msgstr "Nomor KTP tidak valid. Format nomor KTP seharusnya seperti berikut: 01.855.081.4-005.000"
+
+#. module: ad_hr_pph21
+#: view:ptkp.conf:0
+#: field:ptkp.conf,note:0
+msgid "Note"
+msgstr "Note"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:104
+#: code:addons/ad_hr_pph21/pph21.py:107
+#: code:addons/ad_hr_pph21/pph21.py:210
+#: code:addons/ad_hr_pph21/pph21.py:217
+#: code:addons/ad_hr_pph21/pph21.py:234
+#, python-format
+msgid "Configuration Error !"
+msgstr "Configuration Error !"
+
+#. module: ad_hr_pph21
+#: model:ir.model,name:ad_hr_pph21.model_ptkp_conf
+msgid "ptkp.conf"
+msgstr "ptkp.conf"
+
+#. module: ad_hr_pph21
+#: field:hr.payslip,final_gross:0
+msgid "Final Gross"
+msgstr "Final Gross"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:107
+#, python-format
+msgid "Please define partner in bank account for %s !"
+msgstr "Please define partner in bank account for %s !"
+
+#. module: ad_hr_pph21
+#: constraint:hr.employee:0
+msgid "Error ! You cannot create recursive Hierarchy of Employees."
+msgstr "Error! Anda tidak dapat  membuat  Hirarki Karyawan secara rekursif  ."
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:143
+#, python-format
+msgid "Please define Salary Account for %s."
+msgstr "Please define Salary Account for %s."
+
+#. module: ad_hr_pph21
+#: model:ir.model,name:ad_hr_pph21.model_hr_contract
+msgid "Contract"
+msgstr "Kontrak"
+
+#. module: ad_hr_pph21
+#: field:hr.payslip,final_payment:0
+msgid "Final Payment"
+msgstr "Final Payment"
+
+#. module: ad_hr_pph21
+#: help:hr.payslip,officecost_cat:0
+msgid "Select Allowance/Deduction category used for Ofice Cost."
+msgstr "Select Allowance/Deduction category used for Ofice Cost."
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:569
+#, python-format
+msgid "Variable Error: %s "
+msgstr "Variable Error: %s "
+
+#. module: ad_hr_pph21
+#: view:hr.payslip:0
+msgid "Company contribution"
+msgstr "Konstribusi Perusahaan"
+
+#. module: ad_hr_pph21
+#: selection:hr.contract,ptkp:0
+#: selection:ptkp.conf,name:0
+msgid "K/I/3"
+msgstr "K/I/3"
+
+#. module: ad_hr_pph21
+#: selection:hr.contract,ptkp:0
+#: selection:ptkp.conf,name:0
+msgid "K/I/2"
+msgstr "K/I/2"
+
+#. module: ad_hr_pph21
+#: selection:hr.contract,ptkp:0
+#: selection:ptkp.conf,name:0
+msgid "K/I/1"
+msgstr "K/I/1"
+
+#. module: ad_hr_pph21
+#: field:hr.payslip,pph21_acc:0
+msgid "PPh 21 Account"
+msgstr "PPh 21 Account"
+
+#. module: ad_hr_pph21
+#: sql_constraint:hr.employee:0
+msgid "NIK must be unique per employee !"
+msgstr "NIK harus unik untuk setiap karyawan !"
+
+#. module: ad_hr_pph21
+#: help:hr.payslip,pph21_acc:0
+msgid "Select account used for PPh 21."
+msgstr "Select account used for PPh 21."
+
+#. module: ad_hr_pph21
+#: field:hr.contract,marital:0
+msgid "Marital Status"
+msgstr "Marital Status"
+
+#. module: ad_hr_pph21
+#: help:hr.payslip,pkp:0
+msgid "Taxable Wages (monthly)"
+msgstr "Taxable Wages (monthly)"
+
+#. module: ad_hr_pph21
+#: view:hr.payslip:0
+msgid "Salary Structure"
+msgstr "Struktur Gaji"
+
+#. module: ad_hr_pph21
+#: field:hr.payslip,pph21:0
+msgid "PPh (monthly)"
+msgstr "PPh (monthly)"
+
+#. module: ad_hr_pph21
+#: selection:hr.contract,ptkp:0
+#: selection:ptkp.conf,name:0
+msgid "K/I/-"
+msgstr "K/I/-"
+
+#. module: ad_hr_pph21
+#: field:hr.payslip,pph_percent:0
+msgid "PPh (%)"
+msgstr "PPh (%)"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:67
+#, python-format
+msgid ""
+"This PTKP not defined yet. Please go to menu:\n"
+"Human Resources - Configuration - PTKP - PTKP"
+msgstr ""
+"This PTKP not defined yet. Please go to menu:\n"
+"Human Resources - Configuration - PTKP - PTKP"
+
+#. module: ad_hr_pph21
+#: model:ir.model,name:ad_hr_pph21.model_hr_employee
+msgid "Employee"
+msgstr "Karyawan"
+
+#. module: ad_hr_pph21
+#: field:hr.payslip,ptkp_amount:0
+msgid "PTKP (monthly)"
+msgstr "PTKP (monthly)"
+
+#. module: ad_hr_pph21
+#: view:hr.payslip:0
+msgid "Calculations"
+msgstr "Kalkulasi"
+
+#. module: ad_hr_pph21
+#: help:hr.payslip,pph21_aacc:0
+msgid "Select analytic account used for PPh 21."
+msgstr "Select analytic account used for PPh 21."
+
+#. module: ad_hr_pph21
+#: help:hr.payslip,officecost_aacc:0
+msgid "Select analytic account used for Ofice Cost."
+msgstr "Select analytic account used for Ofice Cost."
+
+#. module: ad_hr_pph21
+#: view:hr.payslip:0
+msgid "Function"
+msgstr "Fungsi"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:454
+#, python-format
+msgid "Please Confirm all Expense Invoice appear for Reimbursement"
+msgstr "Please Confirm all Expense Invoice appear for Reimbursement"
+
+#. module: ad_hr_pph21
+#: help:hr.payslip,final_gross:0
+msgid "Final Gross Salary after calculation with PPh21, overtime"
+msgstr "Final Gross Salary after calculation with PPh21, overtime"
+
+#. module: ad_hr_pph21
+#: view:hr.payslip:0
+msgid "Description"
+msgstr "Keterangan"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:67
+#, python-format
+msgid "PTKP Not Defined!"
+msgstr "PTKP Not Defined!"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:210
+#, python-format
+msgid ""
+"Payslip cannot be approved due to one of the following reasons: \n"
+" 1. The Structure line %s has not been linked with an analytic account. \n"
+" Or \n"
+" 2. Payslip for %s is missing the configuration of Designation from 'Accounting Details"
+msgstr ""
+"Payslip cannot be approved due to one of the following reasons: \n"
+" 1. The Structure line %s has not been linked with an analytic account. \n"
+" Or \n"
+" 2. Payslip for %s is missing the configuration of Designation from 'Accounting Details"
+
+#. module: ad_hr_pph21
+#: view:hr.contract:0
+msgid "Work Permit"
+msgstr "Ijin Kerja"
+
+#. module: ad_hr_pph21
+#: view:hr.contract:0
+msgid "Tax Structure"
+msgstr "Tax Structure"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:420
+#, python-format
+msgid "Employee Bank Account is not defined for %s"
+msgstr "Employee Bank Account is not defined for %s"
+
+#. module: ad_hr_pph21
+#: view:hr.payslip:0
+msgid "Allowance/Deduction Category"
+msgstr "Allowance/Deduction Category"
+
+#. module: ad_hr_pph21
+#: view:hr.payslip:0
+#: field:hr.payslip,line_ids2:0
+msgid "Payslip Line"
+msgstr "Payslip Line"
+
+#. module: ad_hr_pph21
+#: field:hr.payslip,pkp:0
+msgid "PKP (monthly)"
+msgstr "PKP (monthly)"
+
+#. module: ad_hr_pph21
+#: help:hr.payslip,final_payment:0
+msgid "Payment Gross Salary after calculation with PPh21, overtime"
+msgstr "Payment Gross Salary after calculation with PPh21, overtime"
+
+#. module: ad_hr_pph21
+#: field:hr.contract,ptkp:0
+#: field:hr.employee,ptkp:0
+#: model:ir.actions.act_window,name:ad_hr_pph21.act_menu_ptkp_form
+#: model:ir.ui.menu,name:ad_hr_pph21.menu_ptkp
+#: model:ir.ui.menu,name:ad_hr_pph21.menu_ptkp_form
+#: view:ptkp.conf:0
+#: field:ptkp.conf,name:0
+msgid "PTKP"
+msgstr "PTKP"
+
+#. module: ad_hr_pph21
+#: field:hr.contract,amenability:0
+msgid "Amenability"
+msgstr "Amenability"
+
+#. module: ad_hr_pph21
+#: field:hr.payslip,officecost_acc:0
+msgid "Ofice Cost Account"
+msgstr "Ofice Cost Account"
+
+#. module: ad_hr_pph21
+#: help:hr.contract,ptkp_amount:0
+#: help:hr.payslip,ptkp_amount:0
+#: help:ptkp.conf,ptkp_amount:0
+msgid "Nontaxable Wages Amount (monthly)"
+msgstr "Nontaxable Wages Amount (monthly)"
+
+#. module: ad_hr_pph21
+#: code:addons/ad_hr_pph21/pph21.py:217
+#, python-format
+msgid "Please Configure Partners Payable Account!!"
+msgstr "Please Configure Partners Payable Account!!"
+
+#. module: ad_hr_pph21
+#: view:hr.contract:0
+#: field:hr.contract,npwp_no:0
+msgid "NPWP"
+msgstr "NPWP"
+

@@ -1,0 +1,7 @@
+<openerp>
+	<data>
+		<menuitem icon="terp-partner" id="base.menu_base_partner"
+			name="Corporates" sequence="0"
+			groups="base.group_sale_salesman,base.group_sale_manager" />
+	</data>
+</openerp>

@@ -1,0 +1,14 @@
+<openerp>
+	<data>
+        		  
+       	<report id="report_budget"   
+				name="budgets.report.pdf"
+				string="Report Budget"
+				file="ad_budget_report/report/print_budgets_report.mako"
+				report_type="webkit" 
+				model="ad_budget.line"
+				auto="False" 
+				menu="False" />
+		
+	</data>
+</openerp>

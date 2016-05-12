@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem id="menu_hr_expenses_structure" name="Medical Expenses" parent="hr.menu_hr_configuration" sequence="1"/>
+    	
+		<record model="ir.ui.view" id="view_expenses_structure_tree">
+            <field name="name">view.expenses.structure.tree</field>            
+            <field name="model">expenses.structure</field>          
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+            	<tree>
+					<field name="name" />
+					<field name="code" />
+          		</tree>
+            </field>		
+		</record>
+		
+		
+		<record id="view_expenses_structure_line_tree" model="ir.ui.view">
+            <field name="name">view.expenses.structure.line.tree</field>
+            <field name="type">tree</field>
+            <field name="model">expenses.structure.line</field>
+            <field name="arch" type="xml">
+                <tree string="Expense Lines">
+                    <field name="name"/>
+                    <field name="ref"/>
+                    <field domain="[('type','=','normal'), ('parent_id','!=',False)]" name="analytic_account" groups="analytic.group_analytic_accounting"/>
+                    <field name="unit_amount"/>
+                    <field name="unit_quantity"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_expenses_structure_line_form" model="ir.ui.view">
+            <field name="name">view.expenses.structure.line.form</field>
+            <field name="type">form</field>
+            <field name="model">expenses.structure.line</field>
+            <field name="arch" type="xml">
+                <form string="Expense Lines">
+                    <field name="name"/>
+                    <field name="ref"/>
+                    <field domain="[('type','=','normal'), ('parent_id','!=',False)]" name="analytic_account" groups="analytic.group_analytic_accounting"/>
+                    <newline />
+                    <field name="product_id" />
+                    <field name="unit_amount"/>
+                    <field name="uom_id" />
+                    <field name="unit_quantity"/>
+                    <field name="sequence" />
+                </form>
+            </field>
+        </record>
+		
+		<record model="ir.ui.view" id="view_expenses_structure_form">
+            <field name="name">view.expenses.structure.form</field>            
+            <field name="model">expenses.structure</field>          
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+            	<form>
+					<field name="name" />
+					<field name="code" />
+					<field colspan="4" name="line_ids" nolabel="1"/>
+          		</form>
+            </field>		
+		</record>
+        
+        <act_window id='act_expenses_structure' 
+				    res_model='expenses.structure' 
+					name='Medical Expenses Structure' 
+					domain="[]" 
+					view_type='form' 
+					view_mode='tree,form,graph'/>
+
+		<menuitem 	id='menu_schedule_action' 
+				  	parent='menu_hr_expenses_structure'
+					action='act_expenses_structure'
+				  	sequence='20'/>
+				  	
+		<record id="view_expense_structure_line" model="ir.ui.view">
+            <field name="name">view.expense.structure.line</field>
+            <field name="model">expenses.structure</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="hr_expense.view_expenses_form"/>
+            <field name="arch" type="xml">
+            	<!-- xpath untuk me-replace field 'Reference' menjadi field 'Expense Structure' -->
+            	<xpath expr="//form[@string='Expenses Sheet']/notebook/page[@string='Description']/field[@name='line_ids']" position='replace'>
+					<group col="6" colspan="4">
+						<field name="line_ids" nolabel="1" height="360" /><newline/>
+					</group>
+				</xpath>
+            </field>
+        </record>
+        
+        <record id="view_expense_structure" model="ir.ui.view">
+            <field name="name">view.expense.structure</field>
+            <field name="model">hr.expense.expense</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="hr_expense.view_expenses_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//form[@string='Expenses Sheet']/group/field[@name='ref']" position='replace'>
+					<field name="expense_structure" on_change="onchange_expense_structure(expense_structure)" />
+				</xpath>
+            </field>
+        </record>
+		
+	</data>
+</openerp>

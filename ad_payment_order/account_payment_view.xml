@@ -1,0 +1,20 @@
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_payment_order_form">
+	        <field name="name">payment.order.form</field>
+	        <field name="type">form</field>
+	        <field name="model">payment.order</field>
+	        <field name="inherit_id" ref="account_payment.view_payment_order_form"/>
+	        <field name="arch" type="xml">
+				<xpath expr="//form/group[2]" position="replace">
+                    <group col="6" colspan="2">
+                         <button name="cancel" states="draft,open" string="Cancel" icon="gtk-cancel"/>
+                         <button name="open" states="draft" string="Confirm Payments"  icon="gtk-apply"/>
+                         <button name="set_to_draft" states="cancel" string="Set to draft" type="object" icon="gtk-convert"/>
+                    </group>
+	            </xpath>
+	
+	        </field>
+	    </record>
+	</data>
+</openerp>

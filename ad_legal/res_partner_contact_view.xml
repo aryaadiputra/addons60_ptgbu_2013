@@ -1,0 +1,41 @@
+<openerp>
+	<data>
+		<record id="view_field_ktp" model="ir.ui.view">
+			<field name="name">view.field.ktp</field>
+			<field name="model">res.partner.contact</field>
+			<field name="inherit_id" ref="base_contact.view_partner_contact_form" />
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<field name="birthdate" position="after">
+					<separator string="Data Upload" colspan="4" /> <newline />
+					<field name="ktp" /> <newline />
+					<field name="npwp" /> <newline />
+				</field>
+				<page string="General" position="after">
+					<page string="Share owning">
+						<field name="shareowning" nolabel="1" readonly="1">
+							<tree string="Share Owning">
+								<field name="share_certificates" />
+								<field name="name" />
+								<field name="share" />
+								<field name="share_percent" />
+								<field name="share_value" />
+								<field name="start_date" />
+								<field name="stop_date" />
+							</tree>
+							<form string="Share Owning">
+								<field name="share_certificates" />
+								<field name="name" readonly="1" />
+								<field name="share" readonly="1" /><newline />
+								<field name="share_percent" />
+								<field name="share_value" />
+								<field name="start_date" />
+								<field name="stop_date" />
+							</form>
+						</field>
+					</page>
+				</page>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		
+		<record id="view_division_form" model="ir.ui.view">
+            <field name="name">hr.division.form</field>
+            <field name="model">hr.division</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="division">
+                    <group col="6" colspan="4">
+                        <field name="name" select="1"/>
+                        <field name="parent_id"/>
+                        <field name="manager_id" select="1"/>
+                        <field name="company_id" select="1" widget="selection" groups="base.group_multi_company"/>
+                    </group>
+                    <notebook colspan="4" >
+                        <!--
+<page string="Department">
+                            <field colspan="4" name="department_ids" nolabel="1"/>
+                        </page>-->
+
+                        <page string="Notes">
+                            <field colspan="4" name="note" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+        <record id="view_division_tree" model="ir.ui.view">
+            <field name="name">hr.division.tree</field>
+            <field name="model">hr.division</field>
+            <field name="type">tree</field>
+            <field name="field_parent">child_ids</field>
+            <field name="arch" type="xml">
+                <tree string="Companies">
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="manager_id"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="view_division_filter" model="ir.ui.view">
+            <field name="name">Divisions</field>
+            <field name="model">hr.division</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Divisions">
+                    <field name="name"/>
+                    <field name="manager_id" />
+                </search>
+             </field>
+         </record>
+
+        <record id="open_module_tree_division" model="ir.actions.act_window">
+            <field name="name">Divisions</field>
+            <field name="res_model">hr.division</field>
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="view_division_filter"/>
+            <field name="help">Your Company's Department Structure is used to manage all documents related to employees by divisions: expenses and timesheet validation, leaves management, recruitments, etc.</field>
+        </record>
+
+       <menuitem action="open_module_tree_division" id="menu_hr_division_tree" parent="hr.menu_hr_management" sequence="6" />
+	
+		
+	</data>
+</openerp>

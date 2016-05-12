@@ -1,0 +1,24 @@
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="inherit_hr_hr_employee_view_form">
+			<field name="name">inherit.hr.hr.employee.view.form</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr_evaluation.hr_hr_employee_view_form"/>
+			<field name="arch" type="xml">
+                <field name="evaluation_plan_id" position="before">
+                	<separator colspan="2" string="Evaluation Plan" />
+                	<newline/>
+                </field>
+				<field name="evaluation_date" position="after">
+					<field name="rate" nolabel="1" colspan="4" mode="tree,form">
+						<tree string="Rate Employee" editable="bottom">
+							<field name="year" />
+							<field name="rate" />
+							<field name="notes" />
+						</tree>
+					</field>
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

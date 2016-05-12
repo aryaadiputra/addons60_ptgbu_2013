@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_produksi" model="ir.ui.view">
+			<field name="name">laporan.produksi.form</field>
+			<field name="model">laporan.produksi</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Laporan Produksi">
+					<field name="name" required= "1"/>
+					<field name="date" required= "1"/>
+					<field name="period" required= "1"/>
+<!--					<field name="employee_id" required= "1"/-->
+					<button name="send_email" string="Send Email" type="object" icon="gtk-execute"/>
+<!--					<group colspan='4' col='4' -->
+						<field colspan="4" name="production_line" required= "1" mode="tree,form" nolabel="1">
+							<tree string="Production Value" editable="bottom">
+								<field name="name" required= "1" readonly="1"/>
+								<field name="value" required= "1"/>
+								<field name="uom" required= "1"/>
+							</tree>
+							<form>
+								<field name="name" required= "1" readonly="1"/>
+								<field name="value" required= "1"/>
+								<field name="uom" required= "1"/>
+							</form>
+						</field>
+<!--					</group-->
+				</form>
+			</field>
+		</record>
+
+		<record id="action_laporan_produksi" model="ir.actions.act_window">
+			<field name="name">Laporan Produksi</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">laporan.produksi</field>
+			<field name="view_type">form</field>
+		</record>
+		<menuitem id="menu_produksi_header" name="Produksi" sequence="20"/>
+		<menuitem action="action_laporan_produksi" id="menu_produksi" name="Produksi"
+			parent="menu_produksi_header" sequence="20"/>
+	</data>
+</openerp>

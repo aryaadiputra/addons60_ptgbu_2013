@@ -1,0 +1,93 @@
+<openerp>
+	<data>
+		<!--################Gabung Dengan MR################-->
+		<!--<record model="ir.ui.view" id="view_purchase_requisition_tree_pr1">
+			<field name="name">purchase.requisition.tree.pr1</field>
+			<field name="type">tree</field>
+			<field name="model">purchase.requisition</field>
+			<field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_tree"/>
+			<field name="arch" type="xml">
+				<field name="user_id" position="before">
+					<field name="delegate"/>	
+				</field>
+				<field name="delegate" position="after">
+					<field name="req_employee"/>			
+				</field>
+			</field>
+		</record>-->
+	
+		<record model="ir.ui.view" id="view_purchase_requisition_form_pr1">
+			<field name="name">purchase.requisition.form.pr1</field>
+			<field name="type">form</field>
+			<field name="model">purchase.requisition</field>
+			<field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//form/group" position="replace">
+					<group colspan="4" col="6">
+						<field name="name" attrs="{'readonly':[('state','&lt;&gt;','draft')]}" />
+						<field name="user_id" attrs="{'readonly':[('state','&lt;&gt;','draft')]}"
+							/>
+						<field name="exclusive" attrs="{'readonly':[('state','&lt;&gt;','draft')]}"
+							/>
+						<field name="date_start" attrs="{'readonly':[('state','&lt;&gt;','draft')]}"
+							/>
+						<field name="date_end" attrs="{'readonly':[('state','&lt;&gt;','draft')]}"
+							/>
+						<field name="origin"/>
+						<field name="warehouse_id" groups="base.group_extended" widget="selection"
+							attrs="{'readonly':[('state','&lt;&gt;','draft')]}" />
+						<field name="company_id" groups="base.group_multi_company" widget="selection"
+							attrs="{'readonly':[('state','&lt;&gt;','draft')]}" />
+					</group>
+				</xpath>
+				<xpath expr="//form/group/field[@name='user_id']" position="after">
+					<field name="req_employee" attrs="{'readonly':[('state','&lt;&gt;','draft')]}"/>
+					
+					<field name="delegate" attrs="{'readonly':[('state','&lt;&gt;','draft')],
+						'required':[('state','=','draft')]}" />
+				</xpath>
+
+				<xpath expr="//form/notebook/page[@string='Products']/group/button[@name='tender_cancel']"
+					position="replace">
+					<button name="tender_cancel" states="draft,done" string="Cancel" icon="gtk-cancel"
+						/>
+				</xpath>
+
+				<xpath expr="//form/notebook/page[@string='Products']/group/button[@name='tender_in_progress']"
+					position="replace">
+					<button name="tender_in_progress" states="draft" string="Confirm" icon="gtk-apply"
+						/>
+				</xpath>
+
+				<xpath expr="//form/notebook/page[@string='Products']/group/button[@name='tender_reset']"
+					position="replace">
+					<button name="tender_reset" states="cancel" string="Reset to Draft" icon="gtk-convert"
+						/>
+				</xpath>
+
+				<xpath expr="//form/notebook/page[@string='Products']/group/button[@name='tender_done']"
+					position="replace">
+					<button name="tender_done" states="in_progress" string="Done" icon="gtk-jump-to"
+						/>
+				</xpath>
+
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_purchase_requisition_form_pr2">
+			<field name="name">purchase.requisition.form.pr2</field>
+			<field name="type">form</field>
+			<field name="model">purchase.requisition</field>
+			<field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//form/notebook/page[@string='Notes']" position="after">
+					<page string="Approval Historical">
+						<field name="manager_approve_date" />
+						<field name="buyer_approve_date" />					
+					</page>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</openerp>

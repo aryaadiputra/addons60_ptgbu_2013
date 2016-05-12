@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <record id="ad_legal.group_legal_user" model="res.groups">
+        <field name="name">Legal / User</field>
+    </record>
+    
+    <record id="ad_legal.group_legal_manager" model="res.groups">
+        <field name="name">Legal / Manager</field>
+    </record>
+    
+</data>
+</openerp>

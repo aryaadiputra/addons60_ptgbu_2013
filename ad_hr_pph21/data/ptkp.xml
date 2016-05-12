@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+        <record id="ptkp_tk0" model="ptkp.conf">
+			<field name="name">tk0</field>
+			<field name="ptkp_amount">1320000</field>
+			<field name="note">PTKP untuk karyawan yang belum menikah, tidak punya tanggungan.</field>
+		</record>
+        <record id="ptkp_tk1" model="ptkp.conf">
+			<field name="name">tk1</field>
+			<field name="ptkp_amount">1430000</field>
+			<field name="note">PTKP untuk karyawan yang belum menikah, punya satu orang tanggungan.</field>
+		</record>
+        <record id="ptkp_tk2" model="ptkp.conf">
+			<field name="name">tk2</field>
+			<field name="ptkp_amount">1540000</field>
+			<field name="note">PTKP untuk karyawan yang belum menikah, punya dua orang tanggungan.</field>
+		</record>
+        <record id="ptkp_tk3" model="ptkp.conf">
+			<field name="name">tk3</field>
+			<field name="ptkp_amount">1650000</field>
+			<field name="note">PTKP untuk karyawan yang belum menikah, punya tiga orang tanggungan.</field>
+		</record>
+		
+        <record id="ptkp_k0" model="ptkp.conf">
+			<field name="name">k0</field>
+			<field name="ptkp_amount">1430000</field>
+			<field name="note">PTKP untuk karyawan yang sudah menikah, tidak punya tanggungan.</field>
+		</record>
+        <record id="ptkp_k1" model="ptkp.conf">
+			<field name="name">k1</field>
+			<field name="ptkp_amount">1540000</field>
+			<field name="note">PTKP untuk karyawan yang sudah menikah, punya satu orang tanggungan.</field>
+		</record>
+        <record id="ptkp_k2" model="ptkp.conf">
+			<field name="name">k2</field>
+			<field name="ptkp_amount">1650000</field>
+			<field name="note">PTKP untuk karyawan yang sudah menikah, punya dua orang tanggungan.</field>
+		</record>
+        <record id="ptkp_k3" model="ptkp.conf">
+			<field name="name">k3</field>
+			<field name="ptkp_amount">1760000</field>
+			<field name="note">PTKP untuk karyawan yang sudah menikah, punya tiga orang tanggungan.</field>
+		</record>
+
+        <record id="ptkp_ki0" model="ptkp.conf">
+			<field name="name">ki0</field>
+			<field name="ptkp_amount">2750000</field>
+			<field name="note">PTKP untuk karyawan yang sudah menikah, penghasilan suami/istri digabung, tidak punya tanggungan.</field>
+		</record>
+        <record id="ptkp_ki1" model="ptkp.conf">
+			<field name="name">ki1</field>
+			<field name="ptkp_amount">2860000</field>
+			<field name="note">PTKP untuk karyawan yang sudah menikah, penghasilan suami/istri digabung, punya satu orang tanggungan.</field>
+		</record>
+        <record id="ptkp_ki2" model="ptkp.conf">
+			<field name="name">ki2</field>
+			<field name="ptkp_amount">2970000</field>
+			<field name="note">PTKP untuk karyawan yang sudah menikah, penghasilan suami/istri digabung, punya dua orang tanggungan.</field>
+		</record>
+        <record id="ptkp_ki3" model="ptkp.conf">
+			<field name="name">ki3</field>
+			<field name="ptkp_amount">3080000</field>
+			<field name="note">PTKP untuk karyawan yang sudah menikah, penghasilan suami/istri digabung, punya tiga orang tanggungan.</field>
+		</record>
+	</data>
+</openerp>

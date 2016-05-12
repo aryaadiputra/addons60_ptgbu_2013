@@ -1,0 +1,63 @@
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_availability_page">
+			<field name="name">Available BSP</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form"/>
+			<field name="arch" type="xml">
+				<page string="Categories" position="after">
+					<page string="Availabilities" groups="base.group_hr_user">
+						<field name="allocation_state"/>
+						<field name="allocation_date_end"/>
+						<field name="allocation_department_id"/>
+						<newline/>
+						<field name="allocation_ids" colspan="4" nolabel="1">
+							<tree string="Allocations">
+								<field name="department_id"/>
+								<field name="grade" />
+								<!--<field name="function"/>-->
+								<field name="date_start"/>
+								<field name="date_end"/>
+								<field name="state"/>
+							</tree>
+							<form string="Allocations">
+								<field name="name"/>
+								<field name="department_id"/>
+								<!--<field name="function"/>-->
+								<field name="date_start"/>
+								<field name="date_end"/>
+								<field name="grade" />
+								<field name="wage" />
+								<field name="state"/>
+							</form>
+						</field>
+						<field name="mutation_ids" colspan="4" nolabel="1">
+							<tree string="Mutation History">
+								<field name="name" />
+								<field name="mutation_date"/>
+								<field name="new_level"/>
+								<field name="old_position" />
+								<field name="new_position" />
+								<field name="old_type" />
+								<field name="new_type" />
+							</tree>
+						</field>
+					</page>
+				</page>
+			</field>
+		</record>
+
+		<act_window name="Allocations"
+			domain="[('employee_id', '=', active_id)]"
+			res_model="hr.allocation"
+			src_model="hr.employee"
+			id="act_hr_employee_2_hr_allocation"/>
+
+		<act_window name="Allocations"
+			domain="[('department_id', '=', active_id)]"
+			res_model="hr.allocation"
+			src_model="res.company"
+			id="act_hr_company_2_hr_allocation"/>
+
+	</data>
+</openerp>

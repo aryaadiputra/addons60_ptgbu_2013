@@ -1,0 +1,15 @@
+<openerp>
+	<data>
+		<record id="view_department_form" model="ir.ui.view">
+            <field name="name">hr.department.form</field>
+            <field name="model">hr.department</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="hr.view_department_form" />
+            <field name="arch" type="xml">
+            	<field name="company_id" position="after">
+            		<field name="dept_general" on_change="onchange_dept_general(dept_general, division_id)"/>
+            	</field>           
+            </field>
+        </record>
+	</data>
+</openerp>

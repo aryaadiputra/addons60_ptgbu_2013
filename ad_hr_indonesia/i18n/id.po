@@ -1,0 +1,1369 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* ad_hr_indonesia
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-07-08 19:18+0000\n"
+"PO-Revision-Date: 2012-07-11 16:28+0700\n"
+"Last-Translator: Togar Hutabarat <to.garnet@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: ad_hr_indonesia
+#: wizard_view:print.tax.pph21,init:0
+msgid "Print Tax Form"
+msgstr "Cetak Form Pajak"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,address_ktp_id:0
+msgid "KTP Address"
+msgstr "Alamat KTP"
+
+#. module: ad_hr_indonesia
+#: field:hr.family,mother:0
+msgid "Mother"
+msgstr "Ibu"
+
+#. module: ad_hr_indonesia
+#: help:hr.employee,insurance_id:0
+msgid "Insurance Name or Number"
+msgstr "Nama/Nomor Jamsostek"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare,income_sal:0
+msgid "Income by Salary"
+msgstr "Income by Salary"
+
+#. module: ad_hr_indonesia
+#: view:family.job:0
+#: field:family.job,note:0
+msgid "Note"
+msgstr "Catatan"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,religion_id:0
+#: field:hr.family,religion:0
+#: model:ir.actions.act_window,name:ad_hr_indonesia.action_view_religion_form
+#: model:ir.ui.menu,name:ad_hr_indonesia.menu_religion_configure
+#: view:res.religion:0
+#: field:res.religion,name:0
+msgid "Religion"
+msgstr "Agama"
+
+#. module: ad_hr_indonesia
+#: help:hr.education,name:0
+msgid "Education name (ie. School/University Name)"
+msgstr "Nama Sekolah/Kampus"
+
+#. module: ad_hr_indonesia
+#: model:ir.actions.report.xml,name:ad_hr_indonesia.hr_employee_cv_report
+msgid "Employee's CV"
+msgstr "CV Karyawan"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare.line,income_id:0
+msgid "Income"
+msgstr "Pendapatan"
+
+#. module: ad_hr_indonesia
+#: field:mutation_history,department:0
+msgid "Department"
+msgstr "Departemen"
+
+#. module: ad_hr_indonesia
+#: model:ir.actions.act_window,name:ad_hr_indonesia.act_expenses_structure
+#: model:ir.model,name:ad_hr_indonesia.model_expenses_structure
+#: model:ir.ui.menu,name:ad_hr_indonesia.menu_schedule_action
+msgid "Expenses Structure"
+msgstr "Struktur Biaya"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,npwp:0
+#: report:hr.employee.cv:0
+msgid "NPWP No"
+msgstr "NPWP"
+
+#. module: ad_hr_indonesia
+#: help:res.religion,name:0
+msgid "Religion name"
+msgstr "Nama Agama"
+
+#. module: ad_hr_indonesia
+#: help:hr.education,subject:0
+msgid "Education subject"
+msgstr "Jurusan/Spesialisasi"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Jamsostek No"
+msgstr "Jamsostek"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,parent:0
+msgid "Parent"
+msgstr "Bin/Binti"
+
+#. module: ad_hr_indonesia
+#: model:ir.model,name:ad_hr_indonesia.model_mutation_history
+msgid "Mutation History of Employee"
+msgstr "Riwayat Mutasi Karyawan"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure,company_id:0
+#: report:hr.employee.cv:0
+#: field:hr.payroll.declare,company_id:0
+msgid "Company"
+msgstr "Perusahaan"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Work Experiences"
+msgstr "Pengalaman Bekerja"
+
+#. module: ad_hr_indonesia
+#: field:hr.experience,wage:0
+msgid "Last Wage"
+msgstr "Gaji Terakhir"
+
+#. module: ad_hr_indonesia
+#: view:expenses.structure.line:0
+msgid "Expense Linessss"
+msgstr "Daftar Beban"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,current_job_level:0
+msgid "Current job level"
+msgstr "Grade Sekarang"
+
+#. module: ad_hr_indonesia
+#: view:hr.family.relation:0
+#: model:ir.actions.act_window,name:ad_hr_indonesia.action_hr_relation_family
+#: model:ir.ui.menu,name:ad_hr_indonesia.hr_menu_relation_family
+msgid "Relation Family"
+msgstr "Hubungan Keluarga"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+msgid "Education List"
+msgstr "Daftar Pendidikan"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+msgid "Personal Information"
+msgstr "Informasi Pribadi"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "Others"
+msgstr "Lainnya"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare.line,allow_amount:0
+msgid "Allow Amount"
+msgstr "Allow Amount"
+
+#. module: ad_hr_indonesia
+#: field:hr.experience,name:0
+msgid "Company Name"
+msgstr "Nama Perusahaan"
+
+#. module: ad_hr_indonesia
+#: field:hr.job.level,job_level:0
+#: model:ir.actions.act_window,name:ad_hr_indonesia.act_hr_job_level
+#: model:ir.ui.menu,name:ad_hr_indonesia.menu_level_config
+msgid "Level"
+msgstr "Level"
+
+#. module: ad_hr_indonesia
+#: field:hr.education,notes:0
+#: view:hr.employee:0
+#: field:hr.experience,exp_notes:0
+#: view:hr.family.relation:0
+msgid "Notes"
+msgstr "Catatan"
+
+#. module: ad_hr_indonesia
+#: selection:hr.allounce.deduction.categoty,stmt_select:0
+msgid "Maximum"
+msgstr "Maximum"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure.line,total_amount:0
+msgid "Total Amount"
+msgstr "Total Amount"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare.line,amount:0
+msgid "Amount"
+msgstr "Amount"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare,income_ids:0
+msgid "Source Of Income"
+msgstr "Source Of Income"
+
+#. module: ad_hr_indonesia
+#: model:ir.model,name:ad_hr_indonesia.model_family_job
+msgid "family.job"
+msgstr "family.job"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "0 0 498 0"
+msgstr "0 0 498 0"
+
+#. module: ad_hr_indonesia
+#: view:hr.job.level:0
+msgid "Job level"
+msgstr "Grade"
+
+#. module: ad_hr_indonesia
+#: selection:hr.payroll.declare,state:0
+msgid "Approved by HR"
+msgstr "Approved by HR"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+msgid "Position"
+msgstr "Posisi"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+msgid "Experience List"
+msgstr "Daftar Pengalaman"
+
+#. module: ad_hr_indonesia
+#: code:addons/ad_hr_indonesia/hr_payroll_declare.py:83
+#, python-format
+msgid ""
+"No Contract Defined for : %s ' % (rs.employee_id.name)))\n"
+"            total = 0.0\n"
+"            \n"
+"            line_ids = []\n"
+"            for lines in rs.claim_ids:\n"
+"                line_ids += [lines.head_id.id]\n"
+"            \n"
+"            for ct in contracts:\n"
+"                allow = 0.0\n"
+"                \n"
+"                d1 = ct['start']\n"
+"                d2 = ct['end'] or fiscalyear_id.date_stop\n"
+"                td = datetime.fromtimestamp(time.mktime(time.strptime(d2, '%Y-%m-%d"
+msgstr ""
+"Belum ada kontrak untuk : %s ' % (rs.employee_id.name)))\n"
+"            total = 0.0\n"
+"            \n"
+"            line_ids = []\n"
+"            for lines in rs.claim_ids:\n"
+"                line_ids += [lines.head_id.id]\n"
+"            \n"
+"            for ct in contracts:\n"
+"                allow = 0.0\n"
+"                \n"
+"                d1 = ct['start']\n"
+"                d2 = ct['end'] or fiscalyear_id.date_stop\n"
+"                td = datetime.fromtimestamp(time.mktime(time.strptime(d2, '%Y-%m-%d"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,nik:0
+msgid "NIK"
+msgstr "NIK"
+
+#. module: ad_hr_indonesia
+#: help:hr.employee,emp_age:0
+msgid "It shows the age of the employee"
+msgstr "It shows the age of the employee"
+
+#. module: ad_hr_indonesia
+#: view:hr.payroll.declare:0
+#: view:hr.payroll.declare.line:0
+msgid "Decleration Forms"
+msgstr "Decleration Forms"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure.line,ref:0
+msgid "Reference"
+msgstr "Referensi"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,retiring_date:0
+msgid "Retiring Date"
+msgstr "Tanggal Pensiun"
+
+#. module: ad_hr_indonesia
+#: field:hr.education,to:0
+msgid "Finish (year)"
+msgstr "Selesai (tahun)"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,can_use_perso_email:0
+msgid "Can use personal email"
+msgstr "Can use personal email"
+
+#. module: ad_hr_indonesia
+#: selection:hr.allounce.deduction.categoty,calc_type:0
+msgid "Min / Max"
+msgstr "Min / Max"
+
+#. module: ad_hr_indonesia
+#: code:addons/ad_hr_indonesia/hr_npwp.py:18
+#, python-format
+msgid "The NPWP format should be like this '01.855.081.4-005.000' or '018550814005000'"
+msgstr "The NPWP format should be like this '01.855.081.4-005.000' or '018550814005000'"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "Mahasiswa"
+msgstr "Mahasiswa"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Employment Information:"
+msgstr "Infor Karyawan:"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,gender:0
+msgid "Female"
+msgstr "Perempuan"
+
+#. module: ad_hr_indonesia
+#: help:hr.employee,ktp:0
+msgid "Indonesian ID Card Number / Kartu Tanda Penduduk"
+msgstr "Indonesian ID Card Number / Kartu Tanda Penduduk"
+
+#. module: ad_hr_indonesia
+#: field:hr.allounce.deduction.categoty,max:0
+msgid "Max Value"
+msgstr "Max Value"
+
+#. module: ad_hr_indonesia
+#: model:ir.model,name:ad_hr_indonesia.model_res_partner
+msgid "Partner"
+msgstr "Rekanan"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare,income:0
+msgid "Taxable Income"
+msgstr "Taxable Income"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+#: field:hr.family,education:0
+#: model:ir.actions.act_window,name:ad_hr_indonesia.act_menu_dummy
+#: model:ir.ui.menu,name:ad_hr_indonesia.menu_dummy
+msgid "Education"
+msgstr "Pendidikan"
+
+#. module: ad_hr_indonesia
+#: field:hr.experience,exp_position:0
+msgid "Latest Position"
+msgstr "Jabatan Terakhir"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Contact Information"
+msgstr "Info Kontak"
+
+#. module: ad_hr_indonesia
+#: field:hr.allounce.deduction.categoty,stmt_ids:0
+msgid "Functions"
+msgstr "Jabatan"
+
+#. module: ad_hr_indonesia
+#: field:hr.experience,exp_from:0
+msgid "From"
+msgstr "Mulai"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Social IDs"
+msgstr "Nomor Identitas"
+
+#. module: ad_hr_indonesia
+#: selection:hr.payroll.declare,state:0
+msgid "Confirm"
+msgstr "Confirm"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Phone No"
+msgstr "Telepon"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+msgid "Masa Persiapan Pensiun"
+msgstr "Masa Persiapan Pensiun"
+
+#. module: ad_hr_indonesia
+#: view:hr.payroll.declare:0
+#: view:hr.payroll.declare.line:0
+#: model:ir.model,name:ad_hr_indonesia.model_hr_payroll_declare_line
+msgid "Decleration Line"
+msgstr "Decleration Line"
+
+#. module: ad_hr_indonesia
+#: field:hr.job.level,name:0
+msgid "Label"
+msgstr "Label"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure.line,analytic_account:0
+msgid "Analytic account"
+msgstr "Akun Analitik"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Personal Information:"
+msgstr "Informasi Pribadi:"
+
+#. module: ad_hr_indonesia
+#: model:ir.actions.act_window,name:ad_hr_indonesia.action_view_hr_decleration_form
+#: model:ir.model,name:ad_hr_indonesia.model_hr_payroll_declare
+#: model:ir.ui.menu,name:ad_hr_indonesia.menu_action_view_hr_decleration_form
+msgid "Decleration Form"
+msgstr "Decleration Form"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+msgid "Family List"
+msgstr "Daftar Keluarga"
+
+#. module: ad_hr_indonesia
+#: model:ir.model,name:ad_hr_indonesia.model_hr_family_relation
+msgid "Relation Family of Employee"
+msgstr "Hubungan Keluarga Karyawan"
+
+#. module: ad_hr_indonesia
+#: field:hr.education,employee:0
+#: field:hr.family,employee:0
+#: field:hr.payroll.declare,employee_id:0
+#: model:ir.model,name:ad_hr_indonesia.model_hr_employee
+msgid "Employee"
+msgstr "Karyawan"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,emp_status:0
+msgid "Employee Status"
+msgstr "Employee Status"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare,claims:0
+msgid "Total Allowance Claims"
+msgstr "Total Allowance Claims"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "S2"
+msgstr "S2"
+
+#. module: ad_hr_indonesia
+#: help:hr.education,to:0
+msgid "Education finish"
+msgstr "Selesai"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,blood_type:0
+msgid "Blood Type"
+msgstr "Gol. Darah"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Date of Birth"
+msgstr "Tanggal Lahir"
+
+#. module: ad_hr_indonesia
+#: wizard_button:print.tax.pph21,init,end:0
+#: view:wizard.print.tax:0
+msgid "Cancel"
+msgstr "Batal"
+
+#. module: ad_hr_indonesia
+#: field:family.job,name:0
+#: view:hr.employee:0
+#: field:hr.family,job:0
+#: field:hr.job.level,job_id:0
+msgid "Job"
+msgstr "Pekerjaan"
+
+#. module: ad_hr_indonesia
+#: selection:hr.allounce.deduction.categoty,stmt_select:0
+msgid "Minimum"
+msgstr "Minimum"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+#: field:hr.employee,experience_id:0
+msgid "Experiences"
+msgstr "Pengalaman"
+
+#. module: ad_hr_indonesia
+#: view:expenses.structure.line:0
+msgid "References"
+msgstr "Referensi"
+
+#. module: ad_hr_indonesia
+#: field:hr.education,subject:0
+msgid "Subject"
+msgstr "Subjek"
+
+#. module: ad_hr_indonesia
+#: model:ir.module.module,shortdesc:ad_hr_indonesia.module_meta_information
+msgid "Human Resources for Indonesia"
+msgstr "Sumber Daya Manusia untuk Indonesia"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,admission_letter:0
+msgid "Admission Letter"
+msgstr "Nomor SK"
+
+#. module: ad_hr_indonesia
+#: field:hr.experience,exp_to:0
+msgid "To"
+msgstr "Sampai"
+
+#. module: ad_hr_indonesia
+#: field:hr.education,passed:0
+#: report:hr.employee.cv:0
+msgid "Status"
+msgstr "Status"
+
+#. module: ad_hr_indonesia
+#: code:addons/ad_hr_indonesia/report/spt_pph2126_1721.py:78
+#, python-format
+msgid "Please check if package pdftk is installed!"
+msgstr "Please check if package pdftk is installed!"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,extension:0
+msgid "Extension"
+msgstr "Ekstensi"
+
+#. module: ad_hr_indonesia
+#: code:addons/ad_hr_indonesia/hr_npwp.py:89
+#: constraint:hr.employee:0
+#, python-format
+msgid ""
+"Bad NPWP format ! \n"
+"The NPWP format should be like this '01.855.081.4-005.000' or '018550814005000'"
+msgstr ""
+"Bad NPWP format ! \n"
+"The NPWP format should be like this '01.855.081.4-005.000' or '018550814005000'"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare,investment:0
+msgid "Total Investment"
+msgstr "Total Investment"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,age:0
+msgid "Age"
+msgstr "Umur"
+
+#. module: ad_hr_indonesia
+#: view:wizard.print.tax:0
+msgid "Print Tax Declaration"
+msgstr "Print Tax Declaration"
+
+#. module: ad_hr_indonesia
+#: selection:print.tax.pph21,init,tax_form:0
+msgid "SPT PPH 2126 1721"
+msgstr "SPT PPH 2126 1721"
+
+#. module: ad_hr_indonesia
+#: field:hr.allounce.deduction.categoty,stmt_select:0
+msgid "Selection Method"
+msgstr "Selection Method"
+
+#. module: ad_hr_indonesia
+#: selection:hr.employee,blood_type:0
+msgid "O"
+msgstr "O"
+
+#. module: ad_hr_indonesia
+#: field:hr.allounce.deduction.categoty,calc_type:0
+msgid "Calculation Type"
+msgstr "Calculation Type"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,ktp:0
+#: report:hr.employee.cv:0
+msgid "KTP No"
+msgstr "KTP No"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "ID/Passport Address"
+msgstr "ID/Passport Address"
+
+#. module: ad_hr_indonesia
+#: view:hr.allounce.deduction.categoty:0
+#: selection:hr.allounce.deduction.categoty,calc_type:0
+msgid "Selection from Range"
+msgstr "Selection from Range"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure.line,expense_id:0
+#: model:ir.model,name:ad_hr_indonesia.model_hr_expense_expense
+msgid "Expense"
+msgstr "Biaya"
+
+#. module: ad_hr_indonesia
+#: model:ir.model,name:ad_hr_indonesia.model_res_religion
+msgid "Description of religion"
+msgstr "Deskripsi"
+
+#. module: ad_hr_indonesia
+#: model:ir.model,name:ad_hr_indonesia.model_hr_education
+msgid "Education Background List of Employee"
+msgstr "Daftar Latar Pendidikan Karyawan"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,family_id:0
+msgid "Employee Family"
+msgstr "Keluarga Karyawan"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure,line_ids:0
+#: view:expenses.structure.line:0
+msgid "Expense Lines"
+msgstr "Daftar Pengeluaran"
+
+#. module: ad_hr_indonesia
+#: view:hr.job.level:0
+msgid "Mission"
+msgstr "Mission"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Addresses Information"
+msgstr "Informasi Alamat"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,duration2retire:0
+msgid "Duration to Retire"
+msgstr "Sisa Lama Bekerja"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare,state:0
+msgid "State"
+msgstr "State"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,mpp_date:0
+msgid "MPP Start Date"
+msgstr "Tanggal MPP"
+
+#. module: ad_hr_indonesia
+#: field:mutation_history,duedate:0
+msgid "Mutation Date"
+msgstr "Tanggal Mutasi"
+
+#. module: ad_hr_indonesia
+#: help:hr.family,is_borned:0
+msgid "Check this box if this person is borned by the employee."
+msgstr "Centang jika yang bersangkutan ditanggung oleh karyawan"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+#: field:hr.employee,emergency_contact:0
+msgid "Emergency contact"
+msgstr "Kontak Darurat"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare.stmt,category_id:0
+msgid "Category"
+msgstr "Kategori"
+
+#. module: ad_hr_indonesia
+#: constraint:hr.employee:0
+msgid "ktp number is invalid. The format should be like this: 01.855.081.4-005.000"
+msgstr "Nomor KTP tidak valid. Format nomor KTP seharusnya seperti berikut: 01.855.081.4-005.000"
+
+#. module: ad_hr_indonesia
+#: model:ir.model,name:ad_hr_indonesia.model_hr_family
+msgid "Family of Employee"
+msgstr "Keluarga Karyawan"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+msgid "Job Desc"
+msgstr "Deskripsi Pekerjaan"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+msgid "Certificate"
+msgstr "Sertifikat"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "S3"
+msgstr "S3"
+
+#. module: ad_hr_indonesia
+#: help:hr.employee,npwp:0
+msgid "Indonesian Tax Registration Number e.g 01.855.081.4-005.000"
+msgstr "Indonesian Tax Registration Number e.g 01.855.081.4-005.000"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "S1"
+msgstr "S1"
+
+#. module: ad_hr_indonesia
+#: field:hr.family,is_borned:0
+msgid "Is borned"
+msgstr "Ditanggung"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "SMP"
+msgstr "SMP"
+
+#. module: ad_hr_indonesia
+#: selection:hr.employee,tax_type:0
+msgid "K3"
+msgstr "K3"
+
+#. module: ad_hr_indonesia
+#: selection:hr.employee,tax_type:0
+msgid "K2"
+msgstr "K2"
+
+#. module: ad_hr_indonesia
+#: selection:hr.employee,tax_type:0
+msgid "K1"
+msgstr "K1"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare.line,invest_id:0
+msgid "Investment"
+msgstr "Investment"
+
+#. module: ad_hr_indonesia
+#: selection:hr.payroll.declare,state:0
+msgid "Draft"
+msgstr "Draft"
+
+#. module: ad_hr_indonesia
+#: field:hr.education,certificate:0
+msgid "Attachment"
+msgstr "Lampiran"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Working Address"
+msgstr "Alamat Kerja"
+
+#. module: ad_hr_indonesia
+#: field:mutation_history,name:0
+msgid "Employee Name"
+msgstr "Nama Karyawan"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "SMA"
+msgstr "SMA"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "Pelajar"
+msgstr "Pelajar"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,gender:0
+msgid "Male"
+msgstr "Laki-laki"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare,claim_ids:0
+msgid "Allowance to Claime"
+msgstr "Allowance to Claime"
+
+#. module: ad_hr_indonesia
+#: field:hr.education,degree:0
+msgid "Degree"
+msgstr "Tingkat"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,employement_history:0
+msgid "unknown"
+msgstr "unknown"
+
+#. module: ad_hr_indonesia
+#: field:hr.expense.expense,expense_structure:0
+msgid "Expense Structure"
+msgstr "Struktur Biaya"
+
+#. module: ad_hr_indonesia
+#: wizard_field:print.tax.pph21,init,tax_form:0
+msgid "Tax Form"
+msgstr "Tax Form"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,admission_date:0
+msgid "Admission Date"
+msgstr "Tanggal SK"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+msgid "Masa Pensiun"
+msgstr "Masa Pensiun"
+
+#. module: ad_hr_indonesia
+#: view:expenses.structure.line:0
+msgid "Customer Project"
+msgstr "Customer Project"
+
+#. module: ad_hr_indonesia
+#: field:hr.family,phone:0
+msgid "Phone"
+msgstr "Telepon"
+
+#. module: ad_hr_indonesia
+#: field:hr.family,birthday:0
+msgid "Birthday"
+msgstr "Tanggal Lahir"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,emp_age:0
+msgid "Employee Age"
+msgstr "Umur"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure.line,date_value:0
+#: field:hr.payroll.declare,date:0
+msgid "Date"
+msgstr "Tanggal"
+
+#. module: ad_hr_indonesia
+#: constraint:hr.employee:0
+msgid "Error ! You cannot create recursive Hierarchy of Employees."
+msgstr "Error! Anda tidak dapat  membuat  Hirarki Karyawan secara rekursif  ."
+
+#. module: ad_hr_indonesia
+#: model:ir.model,name:ad_hr_indonesia.model_hr_payroll_declare_stmt
+msgid "Payroll Calculations"
+msgstr "Perhitungan Gaji"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Education Background"
+msgstr "Latar Pendidikan"
+
+#. module: ad_hr_indonesia
+#: selection:hr.employee,blood_type:0
+msgid "B"
+msgstr "B"
+
+#. module: ad_hr_indonesia
+#: model:ir.actions.wizard,name:ad_hr_indonesia.wiz_print_tax_pph21
+#: model:ir.ui.menu,name:ad_hr_indonesia.menu_print_tax_pph21
+msgid "Print Tax Form1"
+msgstr "Print Tax Form1"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Designation"
+msgstr "Designation"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,emergency_phone:0
+msgid "Emergency phone"
+msgstr "Telepon Darurat"
+
+#. module: ad_hr_indonesia
+#: selection:hr.education,passed:0
+msgid "Tidak lulus"
+msgstr "Tidak lulus"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "SD"
+msgstr "SD"
+
+#. module: ad_hr_indonesia
+#: model:ir.model,name:ad_hr_indonesia.model_hr_experience
+msgid "Experience List of Employee"
+msgstr "Daftar Pengalaman Karyawan"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,mpp:0
+#: field:hr.employee,retiring:0
+#: field:hr.payroll.declare.stmt,active:0
+msgid "Active"
+msgstr "Active"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Mobile No"
+msgstr "Mobile No"
+
+#. module: ad_hr_indonesia
+#: view:hr.allounce.deduction.categoty:0
+#: field:hr.payroll.declare.stmt,name:0
+msgid "Expression"
+msgstr "Expression"
+
+#. module: ad_hr_indonesia
+#: field:hr.education,type:0
+msgid "Type"
+msgstr "Type"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure,code:0
+msgid "Code"
+msgstr "Kode"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+#: model:ir.actions.act_window,name:ad_hr_indonesia.act_menu_dummy2
+#: model:ir.ui.menu,name:ad_hr_indonesia.menu_dummy2
+msgid "Family"
+msgstr "Keluarga"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+msgid "City & Phone"
+msgstr "Kota & Telepon"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure.line,sequence:0
+#: field:hr.payroll.declare.stmt,sequence:0
+msgid "Sequence"
+msgstr "Sekuens"
+
+#. module: ad_hr_indonesia
+#: sql_constraint:hr.employee:0
+msgid "NIK must be unique per employee !"
+msgstr "NIK must be unique per employee !"
+
+#. module: ad_hr_indonesia
+#: wizard_field:print.tax.pph21,init,period_id:0
+msgid "Period"
+msgstr "Period"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,tax_type:0
+msgid "Tax Type"
+msgstr "Tipe Pajak"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Marital Status"
+msgstr "Status Pernikahan"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure.line,unit_amount:0
+msgid "Unit Price"
+msgstr "Harga Satuan"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,retiring_age:0
+msgid "Pensiun Plan Age"
+msgstr "Umur Pensiun"
+
+#. module: ad_hr_indonesia
+#: field:hr.job.level,sal_struc:0
+msgid "Salary Structure"
+msgstr "Struktur Gaji"
+
+#. module: ad_hr_indonesia
+#: model:ir.model,name:ad_hr_indonesia.model_hr_job_level
+msgid "hr.job.level"
+msgstr "hr.job.level"
+
+#. module: ad_hr_indonesia
+#: help:hr.employee,religion_id:0
+msgid "Employee religion"
+msgstr "Employee religion"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare.line,claim_id:0
+msgid "Allowance Claims"
+msgstr "Allowance Claims"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure,name:0
+#: field:hr.family,name:0
+#: field:hr.payroll.declare,name:0
+#: field:hr.payroll.declare.line,name:0
+msgid "Name"
+msgstr "Nama"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,insurance_id:0
+msgid "Insurance"
+msgstr "Jamsostek"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Curriculum Vitae"
+msgstr "Curriculum Vitae"
+
+#. module: ad_hr_indonesia
+#: view:hr.allounce.deduction.categoty:0
+msgid "Min/Max Calculation"
+msgstr "Min/Max Calculation"
+
+#. module: ad_hr_indonesia
+#: field:hr.education,res_id:0
+#: field:hr.experience,res_id:0
+#: field:hr.family,res_id:0
+msgid "Resource ID"
+msgstr "Resource ID"
+
+#. module: ad_hr_indonesia
+#: field:hr.family,city:0
+msgid "City"
+msgstr "City"
+
+#. module: ad_hr_indonesia
+#: view:hr.payroll.declare:0
+#: field:hr.payroll.declare,investment_ids:0
+msgid "Investments"
+msgstr "Investments"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Passport No"
+msgstr "Passport No"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,marriage_date:0
+msgid "Marriage Date"
+msgstr "Tanggal Menikah"
+
+#. module: ad_hr_indonesia
+#: model:ir.ui.menu,name:ad_hr_indonesia.menu_hr_root_payroll_declare
+msgid "Yearly Process"
+msgstr "Yearly Process"
+
+#. module: ad_hr_indonesia
+#: selection:hr.education,type:0
+msgid "Informal"
+msgstr "Informal"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare.line,allow:0
+msgid "Allowence"
+msgstr "Tunjangan"
+
+#. module: ad_hr_indonesia
+#: field:hr.family,father:0
+msgid "Father"
+msgstr "Ayah"
+
+#. module: ad_hr_indonesia
+#: help:hr.employee,address_ktp_id:0
+msgid "Address as states on KTP Identity (for Indonesia only)"
+msgstr "Address as states on KTP Identity (for Indonesia only)"
+
+#. module: ad_hr_indonesia
+#: view:hr.payroll.declare:0
+msgid "Confirm Form"
+msgstr "Confirm Form"
+
+#. module: ad_hr_indonesia
+#: field:hr.payroll.declare.line,head_id:0
+msgid "Allowance / Deduction"
+msgstr "Tunjangan / Potongan"
+
+#. module: ad_hr_indonesia
+#: wizard_button:print.tax.pph21,init,print:0
+#: view:wizard.print.tax:0
+msgid "Print"
+msgstr "Cetak"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+msgid "Pensiun"
+msgstr "Pensiun"
+
+#. module: ad_hr_indonesia
+#: help:hr.employee,nik:0
+msgid "Nomor Induk Karyawan / Employee ID"
+msgstr "Nomor Induk Karyawan / Employee ID"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Home Address"
+msgstr "Alamat Rumah"
+
+#. module: ad_hr_indonesia
+#: view:hr.payroll.declare:0
+msgid "Source of Income"
+msgstr "Source of Income"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "Diploma 3"
+msgstr "Diploma 3"
+
+#. module: ad_hr_indonesia
+#: code:addons/ad_hr_indonesia/hr_payroll_declare.py:83
+#, python-format
+msgid "Contract Error !"
+msgstr "Contract Error !"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "Diploma 1"
+msgstr "Diploma 1"
+
+#. module: ad_hr_indonesia
+#: model:ir.model,name:ad_hr_indonesia.model_hr_allounce_deduction_categoty
+msgid "Allowance Deduction Heads"
+msgstr "Pengurangan Tunjangan Kepala"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure,note:0
+#: field:hr.family.relation,notes:0
+#: field:hr.payroll.declare,note:0
+#: field:hr.payroll.declare.line,note:0
+msgid "Description"
+msgstr "Deskripsi"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,emergency_relation:0
+#: field:hr.family,relation:0
+#: field:hr.family.relation,name:0
+msgid "Relation"
+msgstr "Hubungan"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "Diploma 4"
+msgstr "Diploma 4"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure.line,unit_quantity:0
+msgid "Quantities"
+msgstr "Kuantitas"
+
+#. module: ad_hr_indonesia
+#: view:hr.allounce.deduction.categoty:0
+#: selection:hr.allounce.deduction.categoty,calc_type:0
+msgid "List of Calculations"
+msgstr "List of Calculations"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "-"
+msgstr "-"
+
+#. module: ad_hr_indonesia
+#: field:hr.education,name:0
+msgid "Edu Name"
+msgstr "Nama Sekolah"
+
+#. module: ad_hr_indonesia
+#: code:addons/ad_hr_indonesia/report/spt_pph2126_1721.py:78
+#, python-format
+msgid "pdf not created !"
+msgstr "pdf not created !"
+
+#. module: ad_hr_indonesia
+#: help:hr.education,from:0
+msgid "Education start"
+msgstr "Mulai"
+
+#. module: ad_hr_indonesia
+#: view:hr.payroll.declare:0
+msgid "Allowance to be Claime"
+msgstr "Allowance to be Claime"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "TK"
+msgstr "TK"
+
+#. module: ad_hr_indonesia
+#: view:hr.employee:0
+#: field:hr.experience,address:0
+#: field:hr.family,address:0
+msgid "Address"
+msgstr "Alamat"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Nationality"
+msgstr "Kebangsaan"
+
+#. module: ad_hr_indonesia
+#: view:family.job:0
+#: model:ir.actions.act_window,name:ad_hr_indonesia.action_hr_family_job
+#: model:ir.ui.menu,name:ad_hr_indonesia.hr_menu_family_job
+msgid "Family Job"
+msgstr "Family Job"
+
+#. module: ad_hr_indonesia
+#: model:ir.module.module,description:ad_hr_indonesia.module_meta_information
+msgid ""
+"\n"
+"    This module aim to adopt hr modules for use in Indonesia\n"
+"      adding field : \n"
+"           - KTP\n"
+"           - NPWP\n"
+"           - Insurance\n"
+"           - Religion\n"
+"           - Family\n"
+"           - address\n"
+"           - education\n"
+"       adding report :\n"
+"           - CV\n"
+"     \n"
+"    "
+msgstr ""
+"\n"
+"    This module aim to adopt hr modules for use in Indonesia\n"
+"      adding field : \n"
+"           - KTP\n"
+"           - NPWP\n"
+"           - Insurance\n"
+"           - Religion\n"
+"           - Family\n"
+"           - address\n"
+"           - education\n"
+"       adding report :\n"
+"           - CV\n"
+"     \n"
+"    "
+
+#. module: ad_hr_indonesia
+#: selection:hr.education,type:0
+msgid "Formal"
+msgstr "Formal"
+
+#. module: ad_hr_indonesia
+#: selection:hr.employee,blood_type:0
+msgid "A"
+msgstr "A"
+
+#. module: ad_hr_indonesia
+#: help:expenses.structure.line,sequence:0
+msgid "Gives the sequence order when displaying a list of expense lines."
+msgstr "Menampilkan sekuens dari pesanan ketika menampilkan daftar pengeluaran."
+
+#. module: ad_hr_indonesia
+#: selection:hr.employee,blood_type:0
+msgid "AB"
+msgstr "AB"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+msgid "Email Address"
+msgstr "Alamat Email"
+
+#. module: ad_hr_indonesia
+#: field:hr.allounce.deduction.categoty,min:0
+msgid "Min Value"
+msgstr "Min Value"
+
+#. module: ad_hr_indonesia
+#: selection:hr.family,education:0
+msgid "Diploma 2"
+msgstr "Diploma 2"
+
+#. module: ad_hr_indonesia
+#: report:hr.employee.cv:0
+#: field:hr.family,gender:0
+msgid "Gender"
+msgstr "Jenis Kelamin"
+
+#. module: ad_hr_indonesia
+#: selection:hr.allounce.deduction.categoty,stmt_select:0
+msgid "Average"
+msgstr "Rata-rata"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure.line,uom_id:0
+msgid "UoM"
+msgstr "Satuan"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,education_id:0
+msgid "Education background"
+msgstr "Latar Pendidikan"
+
+#. module: ad_hr_indonesia
+#: selection:hr.education,passed:0
+msgid "Lulus"
+msgstr "Lulus"
+
+#. module: ad_hr_indonesia
+#: field:hr.job.level,mini_wage:0
+msgid "Level minimum wage"
+msgstr "Upah Minimum"
+
+#. module: ad_hr_indonesia
+#: view:hr.payroll.declare:0
+msgid "Validate Form"
+msgstr "Validate Form"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure.line,name:0
+msgid "Expense Note"
+msgstr "Catatan"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure.line,line_id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: ad_hr_indonesia
+#: selection:hr.payroll.declare,state:0
+msgid "Waiting for Review"
+msgstr "Waiting for Review"
+
+#. module: ad_hr_indonesia
+#: code:addons/ad_hr_indonesia/hr_npwp.py:17
+#, python-format
+msgid "Bad NPWP format !"
+msgstr "Bad NPWP format !"
+
+#. module: ad_hr_indonesia
+#: field:hr.employee,birthplace:0
+msgid "Birth Place"
+msgstr "Tempat Lahir"
+
+#. module: ad_hr_indonesia
+#: selection:hr.education,passed:0
+msgid "Pindah"
+msgstr "Pindah"
+
+#. module: ad_hr_indonesia
+#: model:ir.ui.menu,name:ad_hr_indonesia.menu_hr_expenses_structure
+msgid "Expenses"
+msgstr "Beban"
+
+#. module: ad_hr_indonesia
+#: field:hr.education,from:0
+msgid "Start (year)"
+msgstr "Mulai (tahun)"
+
+#. module: ad_hr_indonesia
+#: field:hr.family,place_of_birth:0
+msgid "Place of Birth"
+msgstr "Tempat Lahir"
+
+#. module: ad_hr_indonesia
+#: field:expenses.structure.line,product_id:0
+msgid "Product"
+msgstr "Produk"
+
+#. module: ad_hr_indonesia
+#: model:ir.model,name:ad_hr_indonesia.model_expenses_structure_line
+msgid "expenses.structure.line"
+msgstr "expenses.structure.line"
+
+#. module: ad_hr_indonesia
+#: sql_constraint:res.religion:0
+msgid "Religion name must be unique !"
+msgstr "Nama Agama harus unik !"
+

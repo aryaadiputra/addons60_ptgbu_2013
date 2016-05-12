@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="view_kbli_form" model="ir.ui.view">
+			<field name="name">kbli.kbli.form</field>
+			<field name="model">kbli.kbli</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Account">
+					<group col="6" colspan="4">
+						<field name="name" select="1" />
+						<field name="code" select="1" />
+						<newline />
+						<field name="type" />
+						<field name="parent_id" />
+					</group>
+					<notebook colspan="4">
+						<page string="Notes">
+							<field colspan="4" name="note" nolabel="1" widget="text_wiki" />
+						</page>
+					</notebook>
+					<separator colspan="4" />
+					<group col="4" colspan="4">
+						<button icon="gtk-cancel" special="cancel" string="Cancel"
+							colspan="2" />
+						<button icon="gtk-print" name="check_report" string="Print KBLI"
+							type="object" colspan="2" default_focus="1" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_kbli_search" model="ir.ui.view">
+			<field name="name">kbli.kbli.search</field>
+			<field name="model">kbli.kbli</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Accounts">
+					<group col="10" colspan="4">
+						<filter icon="terp-sale" string="Category" domain="[('type','=','category')]" />
+						<filter icon="terp-purchase" string="Main Class"
+							domain="[('type','=','main_class')]" />
+						<filter icon="terp-sale" string="Class" domain="[('type','=','class')]" />
+						<filter icon="terp-purchase" string="Sub Class"
+							domain="[('type','=','sub_class')]" />
+						<filter icon="terp-sale" string="Group" domain="[('type','=','group')]" />
+						<separator orientation="vertical" />
+						<field name="code" />
+						<field name="name" />
+						<field name="type" />
+					</group>
+					<newline />
+					<group expand="0" string="Group By...">
+						<filter string="Parent Account" icon="terp-folder-orange"
+							domain="" context="{'group_by':'parent_id'}" />
+						<separator orientation="vertical" />
+						<filter string="Internal Type" icon="terp-stock_symbol-selection"
+							domain="" context="{'group_by':'type'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="view_kbli_list" model="ir.ui.view">
+			<field name="name">kbli.kbli.list</field>
+			<field name="model">kbli.kbli</field>
+			<field name="type">tree</field>
+			<field name="field_parent">child_id</field>
+			<field name="arch" type="xml">
+				<tree
+					colors="black:type=='group';blue:type in ('category');purple:type=='main_class';brown:type=='sub_class';red:type=='class'"
+					string="List of KBLI" toolbar="1">
+					<field name="code" />
+					<field name="name" />
+					<field name="parent_id" invisible="1" />
+					<field name="type" invisible="1" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_treasory_graph" model="ir.ui.view">
+			<field name="name">kbli.treasury.graph</field>
+			<field name="model">kbli.kbli</field>
+			<field name="type">graph</field>
+			<field name="arch" type="xml">
+				<graph string="Treasury Analysis" type="bar">
+					<field name="name" />
+				</graph>
+			</field>
+		</record>
+		<record id="action_kbli_form" model="ir.actions.act_window">
+			<field name="name">KBLI List</field>
+			<field name="res_model">kbli.kbli</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,graph</field>
+			<field name="search_view_id" ref="view_kbli_search" />
+			<field name="view_id" ref="view_kbli_list" />
+			<field name="help">Create and manage the kblis you need to record
+				journal entries. An kbli is part of a ledger allowing your company
+				to register all kinds of debit and credit transactions. Companies
+				present their annual kblis in two main parts: the balance sheet and
+				the income statement (profit and loss kbli). The annual kblis of a
+				company are required by law to disclose a certain amount of
+				information. They have to be certified by an external auditor
+				annually.</field>
+		</record>
+		<menuitem id="menu_kbli_form" name="KBLI"
+			parent="base.menu_res_company_global" />
+		<menuitem id="menu_action_kbli_form" action="action_kbli_form"
+			parent="menu_kbli_form" />
+		<!-- above is done -->
+
+	</data>
+</openerp>

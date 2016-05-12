@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_raw_data_wizard">
+            <field name="name">Raw Data</field>
+            <field name="model">raw.data</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form col="4" string="Cash Flow">
+                      <separator string="Raw Data" colspan="4"/>
+                      
+                      <field name ="without_zero" invisible="1"/>
+                      <newline/>
+                      <field name = "period_start"/>
+                      <field name = "period_end"/>
+                      <newline/>
+	                  <group colspan="4">
+                      	<button special="cancel" string="_Cancel" icon="gtk-cancel"/>
+                      	<button name="print_raw_data" string="Print" type="object" icon="gtk-print"/>
+	                  </group>
+                </form>
+            </field>
+        </record>
+              
+        <record model="ir.actions.act_window" id="action_raw_data_report">
+            <field name="name">Raw Data</field>
+            <field name="res_model">raw.data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+    	<menuitem id="menu_raw_data_report" 
+    		name="Raw Data New" 
+    		parent="account.final_accounting_reports"
+            action="action_raw_data_report"  
+			icon="STOCK_PRINT" sequence="20"/>
+    	
+		<report
+			id="raw_data_report"
+			name="raw.data.report"
+			string="Report Raw Data"
+			model="account.move.line"
+			file="ad_raw_data/report/raw_data_report.mako"
+			report_type="webkit"
+			auto="False"
+			menu="False"
+		/>
+
+
+    </data>
+</openerp>

@@ -1,0 +1,14 @@
+<openerp>
+	<data>
+		<report
+			id="report_ad_pl_account_new" 
+			name="ad.pl.account.new"
+			string="Report Profit Loss"
+			model="account.account"
+			file="ad_account_optimization/report/account_profit_loss_new.mako"
+			report_type="webkit"
+			auto="False"
+			menu="False"
+		/>
+	</data>
+</openerp>

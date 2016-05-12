@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="wizard_view_extends" model="ir.ui.view">
+            <field name="name">Wizard.Extends</field>
+            <field name="model">wizard.extends</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Add Extends">
+                    <field name="start_work_date_extends" required="True" colspan="4"/>
+                    <field name="end_work_date_extends" required="True" colspan="4"/>
+                    <field name="start_holiday_date_extends" required="True" colspan="4"/>
+                    <field name="end_holiday_date_extends" required="True" colspan="4"/>
+                    <button name="insert_extends" string="Ask Extends" type="object" icon="gtk-execute" colspan="2" />
+                    <button special="cancel" string="Cancel" icon="gtk-cancel" colspan="2"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_view_extends" model="ir.actions.act_window">
+               <field name="name">Wizard Extends</field>
+               <field name="type">ir.actions.act_window</field>
+               <field name="res_model">wizard.extends</field>
+               <field name="view_type">form</field>
+               <field name="view_mode">form</field>
+               <field name="context">{'record_id' : active_id}</field>
+               <field name="target">new</field>
+        </record>    
+    </data>
+</openerp>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data> 
+    
+    	<record model="ir.ui.view" id="email_smtpclient_form_new_inherit">
+            <field name="name">email.smtpclient.form</field>
+            <field name="model">email.smtpclient</field>
+            <field name="inherit_id" ref="smtpclient.email_smtpclient_form_new"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="state" select="1" position="before" >
+                	<field name="type" string="Type"/>
+                	<newline/>
+                </field>
+            </field>
+		</record>
+    
+    
+    	<record model="ir.ui.view" id="email_smtpclient_queue_tree_inherit">
+            <field name="name">email.smtpclient.queue.tree</field>
+            <field name="model">email.smtpclient.queue</field>
+            <field name="inherit_id" ref="smtpclient.email_smtpclient_queue_tree"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml"> 
+            	<field name="state" position="after"> 
+            		<field name="cc" />
+                    <field name="bcc" />
+                </field>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="email_smtpclient_queue_form_inherit">
+            <field name="name">email.smtpclient.queue.form</field>
+            <field name="model">email.smtpclient.queue</field>
+            <field name="inherit_id" ref="smtpclient.email_smtpclient_queue_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml"> 
+            	<field name="to" select="1" position="after"> 
+            		<field name="cc" />
+            	</field>
+            </field>
+        </record>
+        
+    
+    </data>
+</openerp>

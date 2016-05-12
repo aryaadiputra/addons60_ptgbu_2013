@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+<!-- ========================================Menu Company Category======================================== -->
+		<menuitem id="menu_corporate_conf" name="Corporate" parent="base.menu_base_config" sequence="10" />
+		<record model="ir.ui.view" id="view_partner_category_tree">
+			<field name="name">view.partner.category.form</field>            
+            <field name="model">partner.category</field>            
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+            	<tree string="Partner Category">
+            		<field name="name" />
+            	</tree>
+            </field>
+		</record>
+		<record model="ir.ui.view" id="view_partner_category_form">
+			<field name="name">view.partner.category.form</field>            
+            <field name="model">partner.category</field>            
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+            	<form string="Partner Category">
+            		<field name="name" />
+					<field name="partner_template" />
+            		<field name="directory_str" colspan="4" nolabel="1">
+            			<tree string="Directory" >
+							<field name="name" />
+							<field name="type" />
+							<field name="company_id" groups="base.group_multi_company" />
+							<field name="partner_template" />
+							<field name="parent_id" />
+							<field name="level" />
+							<field name="storage_id" />
+							<field name="create_date" />
+							<field name="write_date" />
+							<field name="filled" editable="1" />
+						</tree>
+            		</field>
+            	</form>
+            </field>
+		</record>
+		<record id="act_partner_category_action" model="ir.actions.act_window">
+			<field name="name">Company Template</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">partner.category</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="view_partner_category_tree" />
+		</record>
+		<menuitem id="menu_partner_category" parent="menu_corporate_conf" action='act_partner_category_action' sequence='10' />
+<!-- ========================================Menu Company Category======================================== -->
+
+		<record model="ir.ui.view" id="view_category_field">
+			<field name="name">view.category.field</field>            
+            <field name="model">res.partner</field>            
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form" />						
+            <field name="arch" type="xml">
+            	<field name="lang" position="after">
+            		<field name="partner_category" attrs="{'required':[('company','=',True)],'invisible':[('company','=',False)]}" widget="selection"/>
+            	</field>
+            </field>
+		</record>
+	</data>
+</openerp>

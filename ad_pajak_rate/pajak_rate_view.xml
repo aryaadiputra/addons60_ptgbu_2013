@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+		<record model="ir.ui.view" id="pajak_rate">
+			<field name="name">res.currency.form.pajak</field>
+			<field name="model">res.currency</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_currency_form"/>
+			<field name="arch" type="xml">
+				<field name="symbol" position="after">
+                	<field name="pajak_rate"/>
+                </field>
+                <field name="rate_ids" position="replace">
+                	<notebook>
+                		<page string="Currency Rates">
+                			<field colspan="4" mode="tree,form" name="rate_ids" nolabel="1" attrs="{'readonly':[('base','=',True)]}">
+		                        <form string="Rates">
+		                            <field name="name"/>
+		                            <field name="rate"/>
+		                        </form>
+		                        <tree string="Rates">
+		                            <field name="name"/>
+		                            <field name="rate"/>
+		                        </tree>
+		                    </field>          		
+                		</page>
+                		<page string="Tax Rates">
+                			<field colspan="4" mode="tree,form" name="pajak_rate_ids" nolabel="1" attrs="{'readonly':[('base','=',True)]}">
+		                        <form string="Tax Rates">
+		                            <field name="name"/>
+		                            <field name="rate"/>
+		                        </form>
+		                        <tree string="Tax Rates">
+		                            <field name="name"/>
+		                            <field name="rate"/>
+		                        </tree>
+		                    </field>          		
+                		</page>             	
+                	</notebook>               
+                </field>
+			</field>
+		</record>
+</data>
+</openerp>

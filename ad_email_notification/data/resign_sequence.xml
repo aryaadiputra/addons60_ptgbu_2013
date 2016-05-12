@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data noupdate="1">
+		<record id="hr_resign" model="ir.sequence.type">
+			<field name="name">Resign Sequence</field>
+			<field name="code">hr.resign</field>
+		</record>
+	</data>
+</openerp>

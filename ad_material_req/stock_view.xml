@@ -1,0 +1,119 @@
+<openerp>
+	<data>
+		<record id="view_field_request_tree" model="ir.ui.view">
+			<field name="name">View Field Request by tree</field>
+			<field name="model">stock.picking</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="stock.vpicktree" />
+			<field name="arch" type="xml">
+				<field name="backorder_id" position="after">
+					<field name="req_employee" />
+					<field name="mr_description" />
+				</field>
+			</field>
+		</record>	
+	
+		<record id="view_field_request_form" model="ir.ui.view">
+			<field name="name">View Field Request by form</field>
+			<field name="model">stock.picking</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="stock.view_picking_form" />
+			<field name="arch" type="xml">
+				<field name="backorder_id" position="after">
+					<field name="req_employee" required="1"/>
+					<field name="material_req_id" />
+					<field name="mr_description" attrs="{'required': [('state','=','draft')], 'readonly': [('state','!=','draft')]}"/>
+				</field>
+			</field>
+		</record>
+		
+		<record id="view_picking_form" model="ir.ui.view">
+			<field name="name">View Field Price and AAccount</field>
+			<field name="model">stock.picking</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="stock.view_picking_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//form[@string='Internal Picking list']/notebook/page[@string='Notes']">
+					<page string="Purchase Requisition">
+						<field name='purchase_req' nolabel="1"/>
+						<newline />
+						<field name='purchase_req_tracking' nolabel='1'/>	
+						<field name="not_available" invisible="1" />
+						<field name="pr_created" invisible="1"/>			
+					</page>
+				</xpath>
+				<xpath expr="//form[@string='Internal Picking list']/notebook/page[@string='Products']/field[@name='move_lines']/form[@string='Stock Moves']/group[2]/field[@name='location_dest_id']" position="after">
+					<separator string="Products" colspan="2" />
+					<field name="price_unit" />
+					<field name="analytic_id" />
+				</xpath>
+				
+				<xpath expr="//form[@string='Internal Picking list']/notebook/page[@string='Products']/field[@name='move_lines']/tree[@string='Stock Moves']/field[@name='state']" position="after">
+					<button name="action_cancel" states="confirmed" string="_Cancel" type="object" icon="gtk-cancel" confirm="Are you sure to cancel this product?"/>
+				</xpath>
+				<!--
+<button name="action_assign" position="before">
+					<button name="approval_action" states="confirmed" attrs="{'invisible':[('state','&lt;&gt;','confirmed')]}" string="Create PR" groups="stock.group_stock_user" type="object" icon="gtk-apply"/>
+					<button name="goto_pr" states="approval" attrs="{'invisible':['|',('state','&lt;&gt;','approval'),('pr_created','=',True)]}" string="Confirm PR Release" groups="stock.group_stock_manager" type="object" icon="gtk-go-forward"/>
+				</button>
+				<xpath expr="//form[@string='Internal Picking list']/notebook/page[@string='Products']/group[1]/button[@name='action_assign']" position="replace">
+					<button name="action_assign" states="confirmed,approval" string="Check Availability" groups="stock.group_stock_user" type="object" icon="gtk-find"/>
+				</xpath>
+				<xpath expr="//form[@string='Internal Picking list']/notebook/page[@string='Products']/group[1]/button[@name='force_assign']" position="replace">
+					<button name="force_assign" states="confirmed,approval" string="Force Availability" groups="ad_material_req.group_warehouse_extra" type="object" icon="gtk-jump-to"/>
+				</xpath>
+				<xpath expr="//form[@string='Internal Picking list']/notebook/page[@string='Products']/group[1]/button[@name='button_cancel']" position="replace">
+					<button name="button_cancel" states="assigned,confirmed,draft" string="_Cancel" icon="gtk-cancel"/>
+				</xpath>
+				<xpath expr="//form[@string='Internal Picking list']/notebook/page[@string='Products']/group[1]/button[@name='button_cancel']" position="after">
+					<button name="cancel_action" states="approval" type="object" string="_Cancel" icon="gtk-cancel"/>
+				</xpath>-->
+
+				<xpath expr="//form[@string='Internal Picking list']/notebook/page[@string='Products']/group[1]" position="replace">
+					<group col="14" colspan="6">
+	                    <field name="state" readonly="1"/>
+	                    <button name="button_cancel" states="assigned,confirmed,draft" string="_Cancel" groups="ad_material_req.group_warehouse_extra" confirm="Are you sure to cancel this product?" icon="gtk-cancel"/>
+	                    <button name="cancel_action" states="approval" type="object" string="_Cancel" groups="ad_material_req.group_warehouse_extra" confirm="Are you sure to cancel this product?" icon="gtk-cancel"/>
+	                    <button name="approval_action" states="confirmed" attrs="{'invisible':['|','|',('pr_created','=',True),('state','&lt;&gt;','confirmed'),('not_available','=',False)]}" string="Create PR" groups="stock.group_stock_user" type="object" icon="gtk-apply"/>
+						<button name="goto_pr" states="approval" attrs="{'invisible':['|',('state','&lt;&gt;','approval'),('pr_created','=',True)]}" string="Confirm PR Release" groups="stock.group_stock_manager" type="object" icon="gtk-go-forward"/>
+	                    <button name="draft_force_assign" states="draft" string="Process Later" type="object" icon="gtk-apply"/>
+	                    <button name="draft_validate" states="draft" string="Process Now" type="object" groups="ad_material_req.group_warehouse_extra" icon="gtk-media-play"/>
+	                    <button name="action_assign" states="confirmed,approval,assigned" string="Check Availability" groups="stock.group_stock_user" type="object" icon="gtk-find"/>
+	                    <button name="force_assign" states="confirmed,approval" string="Force Availability" groups="ad_material_req.group_warehouse_extra" type="object" icon="gtk-jump-to"/>
+	                    <button name="action_process" states="assigned" string="Process"  groups="stock.group_stock_user" type="object" icon="gtk-go-forward"/>
+	                    <button name="%(stock.action_stock_invoice_onshipping)d" string="Create Invoice"  attrs="{'invisible': ['|','|',('state','&lt;&gt;','done'),('invoice_state','=','invoiced'),('invoice_state','=','none')]}"  type="action" icon="terp-gtk-go-back-rtl" />
+	                	
+	                    <button name="action_cancel_draft" states="cancel" string="Set to Draft" type="object" groups="ad_material_req.group_warehouse_extra" icon="gtk-convert"/>
+	            	</group>
+				</xpath>
+			</field>
+		</record>
+		
+		
+		<!--Incoming Shipment-->
+		<record id="view_picking_in_form_material_req" model="ir.ui.view">
+            <field name="name">stock.picking.in.form.material.req</field>
+            <field name="model">stock.picking</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="stock.view_picking_in_form" />
+            <field name="arch" type="xml">
+            	<xpath expr="//form/notebook/page[@string='General Information']/group" position="replace">
+					<group col="11" colspan="5">
+                        <field name="state" readonly="1"/>
+                        <button name="button_cancel" states="assigned,confirmed,draft" string="_Cancel" icon="gtk-cancel"/>
+                        <button name="draft_force_assign" states="draft" string="Process Later" type="object" icon="gtk-ok"/>
+                        <button name="draft_validate" states="draft" string="Process Now" type="object" icon="gtk-media-play"/>
+                        <button name="action_assign" states="confirmed" string="Check Availability" type="object" icon="gtk-find"/>
+                        <button name="force_assign" states="confirmed" string="Force Availability" type="object" groups="base.group_extended" icon="gtk-jump-to"/>
+                        <button name="action_process" states="assigned" string="Process" type="object" icon="gtk-go-forward"/>
+                        <group colspan="1" states="done">
+                            <button name="%(stock.act_stock_return_picking)d" string="Return Products" states="done" type="action" icon="gtk-execute"/>
+                        </group>
+                        	<button states="done" name="%(stock.action_stock_invoice_onshipping)d" string="Create Invoice" attrs="{'invisible': ['|','|',('state','&lt;&gt;','done'),('invoice_state','=','invoiced'),('invoice_state','=','none')]}" type="action" icon="terp-gtk-go-back-rtl" />
+                    	<button name="action_cancel_draft" states="cancel" string="Set to Draft" type="object" groups="ad_material_req.group_warehouse_extra" icon="gtk-convert"/>
+                	</group>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

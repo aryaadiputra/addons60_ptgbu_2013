@@ -1,0 +1,53 @@
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_purchase_requisition_form_mr">
+			<field name="name">purchase.requisition.form.mr</field>
+			<field name="type">form</field>
+			<field name="model">purchase.requisition</field>
+			<field name="inherit_id" ref="ad_pr_double_validation.view_purchase_requisition_form_pr1" />
+			<field name="arch" type="xml">
+				<field name="company_id" position="after">
+					<field name="int_move_id" />
+					<field name="material_req_id" readonly="1"/>
+					<field name="mr_description" attrs="{'readonly':[('state','&lt;&gt;','draft')], 'required':[('state','=','draft')]}"/>
+				</field>
+				
+				<xpath expr="/form/notebook/page[@string='Products']/field/form/field[@name='company_id']" position="after">
+					<newline />
+					<separator string="Detail" colspan="4"/>
+		            <field name="detail" colspan="4" nolabel="1"/>                    
+                </xpath>
+				
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_purchase_requisition_tree_mr">
+			<field name="name">purchase.requisition.tree.mr</field>
+			<field name="type">tree</field>
+			<field name="model">purchase.requisition</field>
+			<field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_tree" />
+			<field name="arch" type="xml">
+				<!--
+<xpath expr="//label[@string='description']" position="attributes">
+                    <attribute name="string">The default Chart of Accounts is matching your country selection. If no certified Chart of Accounts exists for your specified country, a generic one can be installed and will be selected by default.</attribute>
+                </xpath>-->
+
+                <field name="name" position="attributes">
+					<attribute name="string">PR No.</attribute>
+				</field>
+				<field name="name" position="after">
+					<field name="material_req_id"/>
+				</field>
+				<field name="user_id" position="replace">
+				</field>
+				<field name="date_end" position="after">
+					<field name="mr_description"/>
+					<field name="delegate"/>
+					<field name="req_employee"/>
+					<field name="user_id"/>
+				</field>
+			</field>
+		</record>
+		
+	</data>
+</openerp>

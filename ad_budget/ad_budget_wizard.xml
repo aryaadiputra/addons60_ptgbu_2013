@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>   
+
+    	<!-- an action to validate a budget structure by dbl click on a budget item in the budget structure-->
+        <wizard string="Validate Budget Structure" 
+                model="ad_budget.item" 
+                name="ad_budget.validate_budget_structure" 
+                id="wizard_validate_budget_structure"/>
+        
+        <!-- add an action in analytic accounts to open the related budget lines -->
+		<wizard string="Open Budgets Lines" 
+				model="account.analytic.account"
+				id="act_budgetlines_from_aa"
+				name="budget.lines.from.aa"/>        
+        
+        <!-- add a print item in budgets objects to print budget -->
+        <wizard string="Budget By Periods" 
+                model="ad_budget" 
+                name="ad_budget.by.periods" 
+                id="wizard_budget_by_period" 
+                keyword="client_print_multi"/>
+                
+        <!-- add a print item in versions objects to print budget -->
+        <wizard string="Budget By Periods" 
+                model="ad_budget.version" 
+                name="ad_budget.by.periods" 
+                id="wizard_budget_by_period" 
+                keyword="client_print_multi"/>
+                
+        <!-- add a print item in lines objects to print budget -->
+        <wizard string="Budget By Periods" 
+                model="ad_budget.line" 
+                name="ad_budget.by.periods" 
+                id="wizard_budget_by_period" 
+                keyword="client_print_multi"/>
+
+        <!-- add an item in menu to open the advanced wizard char -->
+        <wizard string="Budget Lines Search" 
+                model="ad_budget.line" 
+                name="budget.advanced_search2" 
+    			menu="False"                
+                id="wizard_search_budget_lines" />
+        <menuitem parent = "ad_budget.menu_budget_c2c"
+				id="menu_wizard_search_budget_lines"
+				action="wizard_search_budget_lines"
+				type="wizard" />
+   
+        <!-- add a print item in budgets objects to compare versions -->
+        <wizard string="Versions Comparing" 
+                model="ad_budget" 
+                name="compare.budget.versions2" 
+                id="wizard_compare_versions" 
+                keyword="client_print_multi"/>
+                
+        <!-- add a print item in versions objects to compare versions -->
+        <wizard string="Versions Comparing" 
+                model="ad_budget.version" 
+                name="compare.budget.versions2" 
+                id="wizard_compare_versions" 
+                keyword="client_print_multi"/>
+   
+
+        <!-- add a print item in budgets objects to consolidate a budget -->
+        <wizard string="Budget Consolidation" 
+                model="ad_budget" 
+                name="budget.consolidation2" 
+                id="wizard_budget_consolidation" 
+                keyword="client_print_multi"/>
+                
+        <!-- add a print item in versions objects to consolidate a budget -->
+        <wizard string="Budget Consolidation" 
+                model="ad_budget.version" 
+                name="budget.consolidation2" 
+                id="wizard_budget_consolidation" 
+                keyword="client_print_multi"/>
+             
+
+        <wizard string="Budget vs. Reality" 
+                model="ad_budget" 
+                name="budget.vs.reality" 
+                id="wizard_budget_vs_reality" 
+                keyword="client_print_multi"/>
+                
+        <wizard string="Budget vs. Reality" 
+                model="ad_budget.version" 
+                name="budget.vs.reality" 
+                id="wizard_budget_vs_reality" 
+                keyword="client_print_multi"/>
+
+		<wizard string="Budget vs Actual" 
+				model="ad_budget" 
+				name="budget.vs.actual"
+				id="wizard_budget_vs_actual" 
+				keyword="client_print_multi" />
+
+		<wizard string="Budget vs Actual" 
+				model="ad_budget.version" 
+				name="budget.vs.actual" 
+				id="wizard_budget_vs_actual" 
+				keyword="client_print_multi" />
+                
+		<wizard string="Budget per Department" 
+				model="ad_budget" 
+				name="budget.per.department"
+				id="wizard_budget_per_department" 
+				keyword="client_print_multi" />
+
+		<wizard string="Budget per Department" 
+				model="ad_budget.version" 
+				name="budget.per.department" 
+				id="wizard_budget_per_department" 
+				keyword="client_print_multi" />
+                
+    </data>
+</openerp>

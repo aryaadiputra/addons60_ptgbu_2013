@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!-- Supplier Invoice Line Form -->
+    	
+    	<record model="ir.ui.view" id="view_set_to_asset_info_line_form">
+	        <field name="name">account.invoice.line.form</field>
+	        <field name="model">account.invoice.line</field>
+	        <field name="inherit_id" ref="ad_account_asset.view_account_invoice_asset_form"/>
+	        <field name="type">form</field>
+	        <field name="arch" type="xml">
+	            <field name="asset_category_id" position="replace">
+	                <field name="asset_category_id" attrs="{'required':[('asset_check','=',True)]}"/>
+	            </field>
+	        </field>
+    	</record>
+    	
+    	<!--<record model="ir.ui.view" id="view_set_to_asset_info_line_form" >
+            <field name="name">view.set.to.asset.info.line.form</field>            
+            <field name="model">account.invoice.line</field>            
+            <field name="type">form</field>							
+			<field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="arch" type="xml">
+                        
+            	<xpath expr="/form/notebook/page[@string='Line']/field[@name='company_id']" position="after">        
+                    <field name="asset_check" />
+            		<field name="set_to_asset" attrs="{'required':[('asset_check','=',True)]}"/>
+                    <field name="asset_category_id" attrs="{'required':[('asset_check','=',True)]}"/>
+                </xpath>
+                
+                <xpath expr="/form/notebook/page[@string='Line']/field[@name='asset_category_id']" position="replace">        
+                    
+                    <field name="asset_category_id" attrs="{'required':[('asset_check','=',True)]}"/>
+                </xpath>
+            
+            </field>		
+        </record> -->
+        
+        
+        
+        
+        
+        
+    	<!-- Supplier Invoice Line Tree -->
+    	
+		<record model="ir.ui.view" id="view_set_to_asset_info_line_tree" >
+            <field name="name">view.set.to.asset.info.line.tree</field>            
+            <field name="model">account.invoice</field>            
+            <field name="type">form</field>							
+			<field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                        
+            	<xpath expr="/form/notebook/page[@string='Invoice']/field[@name='invoice_line']/tree[@string='Invoice lines']/field[@name='product_id']" position="before">        
+                    <field name="asset_check" />
+            		
+                </xpath>
+            	
+            </field>		
+        </record>
+	</data>
+</openerp>

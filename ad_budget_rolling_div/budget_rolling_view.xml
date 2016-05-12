@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+           			
+		<!-- Sales Report -->
+		<record model="ir.ui.view" id="view_budget_rolling_wizard_div">
+            <field name="name">Budget Rolling Divisi</field>
+            <field name="model">budget.rolling.report.div</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form col="4" string="Budget Rolling Report DIvisi">
+                      <separator string="Budget Rolling" colspan="4"/>
+                      <group colspan="4">
+	                      <field name="fiscalyear_id"/>
+	                      <field name="as_of" required="1"/>
+	                      <field name="type"/>
+	<!--                      <field name="budget_item_id"/-->
+<!--						  <field name="with_detail"/-->
+<!--						  <field name="with_transaction" attrs="{'invisible': [('with_detail','=',False)]}"/-->
+	                      <field name="without_zero"/>
+	                      <field name="display_account_level"/>
+<!--	                      <field name="div_relation"/-->
+<!--	                      <field name="dept_relation"/-->
+                      </group>
+                      <newline/>
+                      <group colspan="4">
+                          <group colspan="2">
+                            <separator string="Division" colspan="4"/>
+	                        <field name="department_select" nolabel="1">
+	                        	<tree>
+	                        		<field name="name" string="Name"/>
+	                        		<field name="manager_id"/>                        	
+	                        	</tree>                        
+	                        </field>
+	                      </group>
+                      	  <group colspan="2">
+                      	    <separator string="Account Budget" colspan="4"/>
+                      	    <field name="budget_item_select" required="1" nolabel="1" domain="[('type','=','view')]">
+	                        	<tree>
+	                        		<field name="name"/>
+	                        		<field name="code"/>
+	                        		<field name="type"/>                        	
+	                        	</tree>                        
+	                        </field>
+	                      </group>
+                      </group>
+                      <newline/>
+	                  <group colspan="4">
+                      	<button special="cancel" string="_Cancel" icon="gtk-cancel"/>
+                      	<button name="create_budget_rolling" string="Print" type="object" icon="gtk-print"/>
+	                  </group>
+                </form>
+            </field>
+        </record>
+              
+        <record model="ir.actions.act_window" id="action_budget_rolling_report_div">
+            <field name="name">Budget Rolling Divisi</field>
+            <field name="res_model">budget.rolling.report.div</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+       
+        <menuitem id="menu_budget_rolling_report_div" name="Budget Rolling DIvisi" parent="ad_budget_report.menu_budgets_reporting" 
+            action="action_budget_rolling_report_div"  
+			icon="STOCK_PRINT" sequence="3"/>
+        
+		
+		
+    </data>
+</openerp>

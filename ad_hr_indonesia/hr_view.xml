@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+        <record model="ir.ui.view" id="form_pensiun_view">
+            <field name="name">Tab Pensiun</field>
+            <field name="model">hr.employee</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <page string="Notes" position="before">
+                    <page string="Pensiun">
+                        <group colspan="4" col="6">
+                            <field name="emp_age" />
+                            <field name='retiring_age' />
+                            <field name="duration2retire" />
+                        </group>
+                        <group colspan="2" col="4">
+                            <separator string="Masa Persiapan Pensiun" colspan="4" />
+                            <newline />
+                            <field name="mpp" />
+                            <field name="mpp_date" attrs="{'readonly':[('mpp','=',False)]}" />
+                        </group>
+                        <group colspan="2" col="4">
+                            <separator string="Masa Pensiun" colspan="4" />
+                            <newline />
+                            <field name="retiring" />
+                            <field name="retiring_date" attrs="{'readonly':[('retiring','=',False)]}" />
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+        
+        <!--{{{ wizard.print.tax -->
+        <record id="view_print_tax_form" model="ir.ui.view">
+            <field name="name">print.tax.form</field>
+            <field name="model">wizard.print.tax</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Print Tax Declaration">
+                    <field name="tax_form" />
+                    <field name="period_id" />
+                    <group colspan="4" col="4">
+                        <button name="button_print" string="Print" type="object" />
+                        <button name="button_cancel" string="Cancel" type="object" special="cancel" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Employee Data -->
+        <record model="ir.ui.view" id="custom_top_view">
+            <field name="name">Custom Top View</field>
+            <field name="model">hr.employee</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="/form[@string='Employee']/group[1]" position="replace">
+                    <group colspan="4" col="8">
+                        <group colspan="6" col="6">
+                            <field name="nik" />
+                            <field name="name" width="200"/>
+                            <field name="user_id" on_change="onchange_user(user_id)"/>
+                            <field name="company_id" widget="selection" groups="base.group_multi_company,base.group_extended"
+                                on_change="onchange_company(company_id)"/>
+                            <field name="admission_letter" />
+                            <field name="admission_date" />
+                            <newline/>
+                            <field name="department_id" />
+                            <field name="parent_id" />
+                            <field name="active" groups="base.group_extended"/>
+                            <newline/>
+                        </group>
+                        <group colspan="2" col="1">
+                            <field name="photo" widget='image' img_height="240" img_width="160" nolabel="1"/>
+                        </group>
+                    </group>
+                </xpath>
+                <field name="birthday" position="before">
+                    <field name="parent" invisible="True" />
+                    <field name="birthplace" />
+                </field>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="employee_nik_tree_view">
+            <field name="name">Employee Tree View</field>
+            <field name="model">hr.employee</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="hr.view_employee_tree" />
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="nik" />
+                </field>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="employee_blood_type_form_view">
+            <field name="name">employee.blood.type.form</field>
+            <field name="model">hr.employee</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <field name="birthday" position="after">
+                    <field name="blood_type" />
+                </field>
+                <field name="work_phone" position="after">
+                    <field name="extension" invisible="True"/>
+                </field>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="employee_marriage_date_form_view">
+            <field name="name">employee.marriage_date.form</field>
+            <field name="model">hr.employee</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="ad_hr_indonesia.employee_family_form_view" />
+            <field name="arch" type="xml">
+                <field name="family_id" position="before">
+                    <field name="marriage_date" colspan="2" />
+                </field>
+            </field>
+        </record>
+        
+        <wizard id="wiz_print_tax_pph21" model="account.tax.code" name="print.tax.pph21" string="Print
+            Tax Form1" />
+        <menuitem id="menu_print_tax_pph21" parent="hr.menu_hr_reporting" icon="STOCK_PRINT"
+            action="wiz_print_tax_pph21" type="wizard" />
+    </data>
+</openerp>
+<!-- vim: set fdm=marker : -->

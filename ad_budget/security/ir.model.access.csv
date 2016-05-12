@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_ad_budget_item","ad_budget.item","model_ad_budget_item","account.group_account_manager",1,1,1,1
+"access_ad_budget","ad_budget","model_ad_budget","account.group_account_manager",1,1,1,1
+"access_ad_budget_version","ad_budget.version","model_ad_budget_version","account.group_account_manager",1,1,1,1
+"access_ad_budget_line","ad_budget.line","model_ad_budget_line","account.group_account_manager",1,1,1,1
+"access_ad_budget_wizard_abstraction","ad_budget.wizard_abstraction","model_ad_budget_wizard_abstraction","account.group_account_manager",1,1,1,1
+"access_ad_budget_report_abstraction","ad_budget.report_abstraction","model_ad_budget_report_abstraction","account.group_account_manager",1,1,1,1

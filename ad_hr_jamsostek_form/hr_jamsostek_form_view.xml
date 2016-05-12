@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="view_jamsostek_form_select" model="ir.ui.view">
+            <field name="name">Select Form</field>
+            <field name="model">jamsostek.form</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Select Form">
+                    <separator string="Select which form you want to view" colspan="4"/>
+                    <field name="form" colspan="4" nolabel="1" />
+                    <group colspan="4">
+                        <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                        <button name="open_form" string="Open Form" type="object" icon="gtk-go-forward"/>
+                    </group>
+                 </form>
+            </field>
+        </record>
+
+        <record id="action_view_jamsostek_form_select" model="ir.actions.act_window">
+            <field name="name">Select Form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jamsostek.form</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_jamsostek_form_select"/>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem name="Jamsostek Form" 
+        		  action="action_view_jamsostek_form_select" 
+        		  id="menu_view_jamsostek_form_select" 
+        		  parent="ad_hr_jamsostek.menu_jamsostek" 
+        		  sequence="5" 
+        		  icon="terp-document-new"/>
+    </data>
+</openerp>

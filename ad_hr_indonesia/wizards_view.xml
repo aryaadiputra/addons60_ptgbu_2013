@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+<!-- 		<wizard id="wiz_make_bill" model="res.partner" name="make_bill" string="Make Bill Issue"/> -->
+<!-- 		<wizard id="wiz_inv_make_vouch" model="account.invoice" name="inv_make_vouch" string="Make Voucher"/> -->
+<!-- 		<wizard id="wiz_bill_make_vouch" model="account.bill" name="bill_make_vouch" string="Make Voucher"/> -->
+<!-- 		<wizard id="wiz_pc_reimburse" model="pc.fund" name="pc.reimburse" string="Replenish"/> -->
+<!-- 		<wizard id="wiz_bank_st_import" model="ac.bank.statement" name="bank.st.import" string="Import From E-Banking"/> -->
+<!-- 		<wizard id="wiz_batch_pay" model="account.voucher" name="batch.pay" string="Make Batch Payment"/> -->
+<!-- 		<wizard id="wiz_batch_pay_export" model="batch.payment" name="batch.pay.export" string="Export To E-Banking"/> -->
+<!-- 		<wizard id="wiz_report_bs" model="account.report.report" name="report.bs" string="Balance Sheet"/> -->
+<!-- 		<wizard id="wiz_report_pl" model="account.report.report" name="report.pl" string="Income Statement"/> -->
+<!-- 		<wizard id="wiz_report_cf" model="account.report.report" name="report.cf" string="Cash Flow Statement"/> -->
+	</data>
+</openerp>
+<!-- vim: set fdm=marker : -->

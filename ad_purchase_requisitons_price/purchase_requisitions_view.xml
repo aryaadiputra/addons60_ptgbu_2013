@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!--
+<record model="ir.ui.view" id="view_ad_purchase_requisition_line_tree_price">
+			<field name="name">purchase.requisition.line.tree.price</field>
+			<field name="type">tree</field>
+			<field name="model">purchase.requisition</field>
+			<field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_tree" />
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<field name="department"/>
+				</field>
+						
+			</field>
+		</record>-->
+
+	
+	
+		<record model="ir.ui.view" id="view_ad_purchase_requisition_line_form_price">
+			<field name="name">purchase.requisition.line.form.price</field>
+			<field name="type">form</field>
+			<field name="model">purchase.requisition</field>
+			<field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form" />
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<field name="department" readonly="1"/>			
+				</field>
+				<xpath expr="/form/notebook/page[@string='Products']/field[@name='line_ids']/tree/field[@name='product_id']" position="after">
+					<field name="price"/>
+					<field name="account_analytic_id"/>
+				</xpath>
+				<xpath expr="/form/notebook/page[@string='Products']/field[@name='line_ids']/form/field[@name='product_qty']" position="after">
+					
+					<field name="price"/>
+					<field name="account_analytic_id"/>
+				</xpath>
+			</field>
+		</record>
+		
+		
+		<record model="ir.ui.view" id="view_ad_purchase_requisition_form_budget">
+			<field name="name">purchase.requisition.form.budget</field>
+			<field name="type">form</field>
+			<field name="model">purchase.requisition</field>
+			<field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form" />
+			<field name="arch" type="xml">
+				<xpath expr="/form/notebook/page[@string='Notes']" position="after">
+					<page string="Budget">
+						<field name="crossovered_budget_line" mode="tree" nolabel="1" groups="purchase.group_purchase_user">
+							<tree string="Budget Lines" >
+								<field name="percentage_dump" widget="progressbar" width="200"/>
+								<field name="general_budget_id" width="400" />
+								<field name="planned_amount" />
+								<field name="real_budget_dump" />
+								
+                            </tree>
+						</field>
+						<group col="6" colspan="4">
+						<button name="compute" states="draft, confirm" string="Compute" type="object" icon="gtk-execute"/>
+						</group>
+					</page>
+				</xpath>
+				
+			</field>
+		</record>
+		
+	</data>
+</openerp>

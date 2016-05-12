@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="form_pensiun_view">
+			<field name="name">Tab Pensiun</field>
+			<field name="model">hr.employee</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<page string="Notes" position="before">
+					<page string="Pensiun" groups="base.group_hr_user">
+						<group colspan="4" col="6">
+							<field name="emp_age" />
+							<field name='retiring_age' />
+							<field name="duration2retire" />
+						</group>
+						<group colspan="2" col="4">
+							<separator string="Masa Persiapan Pensiun" colspan="4" /> <newline />
+							<field name="mpp" /><field name="mpp_date" attrs="{'readonly':[('mpp','=',False)]}" />
+						</group>
+						<group colspan="2" col="4">
+							<separator string="Masa Pensiun" colspan="4" /> <newline />
+							<field name="retiring" /><field name="retiring_date" attrs="{'readonly':[('retiring','=',False)]}" />
+						</group>
+					</page>
+				</page>
+			</field>
+		</record>
+	</data>
+</openerp>

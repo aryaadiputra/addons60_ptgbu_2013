@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_cash_flow_wizard">
+            <field name="name">Cash Flow</field>
+            <field name="model">cash.flow</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form col="4" string="Cash Flow">
+                      <separator string="Cash Flowxx" colspan="4"/>
+                      
+                      <field name ="without_zero" invisible="1"/>
+                      <newline/>
+                      <field name = "date_start"/>
+                      <field name = "date_stop"/>
+                      <newline/>
+	                  <group colspan="4">
+                      	<button special="cancel" string="_Cancel" icon="gtk-cancel"/>
+                      	<button name="print_cash_flow" string="Print" type="object" icon="gtk-print"/>
+	                  </group>
+                </form>
+            </field>
+        </record>
+              
+        <record model="ir.actions.act_window" id="action_cash_flow_report">
+            <field name="name">Cash Flow</field>
+            <field name="res_model">cash.flow</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+    	<menuitem id="menu_cash_flow_report" 
+    		name="Cash Flow New" 
+    		parent="account.menu_finance_generic_reporting"
+            action="action_cash_flow_report"  
+			icon="STOCK_PRINT" sequence="3"/>
+    	
+    	
+ 
+		<!--
+<report
+			id="report_partner_list_customer_pop"
+			name="partner.list.customer.pop"
+			string="Report Partner POP"
+			model="res.partner"
+			file="ad_partner_report_customer/report/customer_list_pop.mako"
+			report_type="webkit"
+			auto="False"
+			menu="False"
+		/>-->
+
+
+		<report
+			id="cash_flow_report"
+			name="cash.flow.report"
+			string="Report Cash Flow"
+			model="account.move.line"
+			file="ad_cash_flow/report/cash_flow_report.mako"
+			report_type="webkit"
+			auto="False"
+			menu="False"
+		/>
+
+
+    </data>
+</openerp>

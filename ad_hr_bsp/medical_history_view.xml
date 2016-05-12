@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_medical_history_page">
+			<field name="name">Medical History</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<page string="Notes" position="after">
+					<page string="Medical History" groups="base.group_hr_user">
+						<field name="medical_ids" colspan="4" mode="tree,form" nolabel="1">
+							<tree string="Medical History">
+								<field name="status" />
+								<field name="date" />
+								<field name="name" />
+							</tree>
+							<form string="Medical History">
+								<field name="date" attrs="{'readonly':[('status','=',True)]}" />
+								<field name="status" /> 
+								<field name="place" attrs="{'readonly':[('status','=',True)]}" />
+								<field name="address"/>
+								<group colspan="4">
+								<separator string = "General Information" colspan="4"/>
+
+								<field name="height" />
+								<field name="weight" /> 
+								<field name="blood_pressure"/>
+								</group>
+								<group colspan="4">
+								<separator string="Attachment" colspan="4"/>
+								<field name="medical_record" attrs="{'readonly':[('status','=',True)]}" />
+								</group>
+								<separator string="Summary Medical Check Up" colspan="4" />
+								<field name="name" colspan="4" nolabel="1" attrs="{'readonly':[('status','=',True)]}" />
+							</form>
+						</field>
+					</page>
+				</page>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,16 @@
+<openerp>
+	<data>
+		<record id="view_account_analytic_account_form" model="ir.ui.view">
+            <field name="name">account.analytic.account.form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="account.view_account_analytic_account_form" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="/form/notebook/page/field[@name='partner_id']" position="after">
+                    <field name="division_id" />
+                    <field name="budget_expense"/>
+                </xpath>
+            </field>
+        </record>
+	</data>
+</openerp>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="employee_experience_form_view">
+			<field name="name">hr.employee.experiece.from</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<page string="Personal Information" position="after">
+					<page string="Experiences" groups="base.group_hr_user">
+						<field name="experience_id" nolabel="1" colspan="4" mode="tree,form">
+							<tree string="Experience List" editable="bottom">
+								<field name="exp_from" />
+								<field name="exp_to" />
+								<field name="name" />
+								<field name="exp_position" />
+								<field name="wage" />
+								<field name="exp_notes" />
+							</tree>
+							<form string="Experience List">
+								<field name="exp_from"/>
+								<field name="exp_to"/>
+								<field name="name"/>
+								<field name="address" colspan="4" />
+                        		<field name="exp_position" />
+                        		<field name="wage" />
+								<separator string="Job Desc" colspan="4"/>
+								<field name="exp_notes" colspan="4" nolabel="1" />
+							</form>
+						</field>
+						<separator string="Skill"/>
+						<newline/>
+						<field name="skill_ids" nolabel="1" colspan="4" />
+					</page>
+				</page>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		
+		<report id="sca_report_form" string="SCA Form" model="purchase.requisition"
+			name="sca.report.form" 
+			file="ad_sca/report/sca_report.mako"
+			report_type="webkit"
+			auto="False"
+			menu="True"/>
+		
+		
+	</data>
+</openerp>

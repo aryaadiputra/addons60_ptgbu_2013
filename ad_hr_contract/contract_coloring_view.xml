@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="hr_contract_view_tree" model="ir.ui.view">
+            <field name="name">hr.contract.view.tree</field>
+            <field name="model">hr.contract</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Contract" colors="red:(date_end&lt;current_date);black:(date_end&gt;=current_date)">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="type_id"/>
+                    <field name="job_id"/>
+                    <!--field name="department_id"/-->
+                    <field name="working_hours"/>                    
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="wage_type_id" invisible="1"/>
+                    <field name="wage" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+	</data>
+</openerp>

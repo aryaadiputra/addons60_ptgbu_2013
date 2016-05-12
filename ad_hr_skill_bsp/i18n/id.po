@@ -1,0 +1,137 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* ad_hr_skill_bsp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-07-11 15:22+0000\n"
+"PO-Revision-Date: 2012-07-11 15:22+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#: field:hr.skill.category,name:0
+#: field:hr.skill.record,category:0
+#. module: ad_hr_skill_bsp
+msgid "Category"
+msgstr "Kategori"
+
+#: selection:hr.skill.record,level:0
+#. module: ad_hr_skill_bsp
+msgid "Advance"
+msgstr "Mahir"
+
+#: field:hr.skill.category,code:0
+#. module: ad_hr_skill_bsp
+msgid "Code"
+msgstr "Kode"
+
+#: model:ir.actions.act_window,name:ad_hr_skill_bsp.act_menu_skill_record_tree
+#. module: ad_hr_skill_bsp
+msgid "Skill Record"
+msgstr "Daftar Skill"
+
+#: selection:hr.skill.record,level:0
+#. module: ad_hr_skill_bsp
+msgid "Beginner"
+msgstr "Pemula"
+
+#: view:hr.skill.record:0
+#: field:hr.skill.record,desc:0
+#. module: ad_hr_skill_bsp
+msgid "Deskripsi"
+msgstr "Deskripsi"
+
+#: constraint:hr.employee:0
+#. module: ad_hr_skill_bsp
+msgid "Bad NPWP format ! \n"
+"The NPWP format should be like this '01.855.081.4-005.000' or '018550814005000'"
+msgstr "Bad NPWP format ! \n"
+"The NPWP format should be like this '01.855.081.4-005.000' or '018550814005000'"
+
+#: sql_constraint:hr.employee:0
+#. module: ad_hr_skill_bsp
+msgid "NIK must be unique per employee !"
+msgstr "NIK harus unik untuk setiap karyawan !"
+
+#: field:hr.skill.record,level:0
+#. module: ad_hr_skill_bsp
+msgid "Level"
+msgstr "Level"
+
+#: model:ir.module.module,description:ad_hr_skill_bsp.module_meta_information
+#. module: ad_hr_skill_bsp
+msgid "Modul ini digunakan untuk me-record skill dari karyawan.\n"
+"    "
+msgstr "Modul ini digunakan untuk me-record skill dari karyawan.\n"
+"    "
+
+#: view:hr.skill.record:0
+#: field:hr.skill.record,employee_ids:0
+#. module: ad_hr_skill_bsp
+msgid "Karyawan"
+msgstr "Karyawan"
+
+#: model:ir.model,name:ad_hr_skill_bsp.model_hr_skill_category
+#. module: ad_hr_skill_bsp
+msgid "Category of employee's Skill"
+msgstr "Kategori Kemampuan Karyawan"
+
+#: view:hr.employee:0
+#. module: ad_hr_skill_bsp
+msgid "PMS"
+msgstr "PMS"
+
+#: selection:hr.skill.record,level:0
+#. module: ad_hr_skill_bsp
+msgid "Intermediate"
+msgstr "Menengah"
+
+#: view:hr.skill.category:0
+#: model:ir.actions.act_window,name:ad_hr_skill_bsp.act_menu_skill_category_tree
+#: model:ir.ui.menu,name:ad_hr_skill_bsp.menu_skill_category
+#: model:ir.ui.menu,name:ad_hr_skill_bsp.menu_skill_category_tree
+#. module: ad_hr_skill_bsp
+msgid "Skill Category"
+msgstr "Skill Category"
+
+#: model:ir.model,name:ad_hr_skill_bsp.model_hr_employee
+#. module: ad_hr_skill_bsp
+msgid "Employee"
+msgstr "Karyawan"
+
+#: constraint:hr.employee:0
+#. module: ad_hr_skill_bsp
+msgid "ktp number is invalid. The format should be like this: 01.855.081.4-005.000"
+msgstr "Nomor KTP tidak valid. Format nomor KTP seharusnya seperti berikut: 01.855.081.4-005.000"
+
+#: view:hr.employee:0
+#: field:hr.employee,skill_ids:0
+#: view:hr.skill.record:0
+#: field:hr.skill.record,name:0
+#: model:ir.ui.menu,name:ad_hr_skill_bsp.menu_skill
+#: model:ir.ui.menu,name:ad_hr_skill_bsp.menu_skill_record_tree
+#. module: ad_hr_skill_bsp
+msgid "Skill"
+msgstr "Skill"
+
+#: model:ir.module.module,shortdesc:ad_hr_skill_bsp.module_meta_information
+#. module: ad_hr_skill_bsp
+msgid "Skill Management BSP"
+msgstr "Skill Management BSP"
+
+#: constraint:hr.employee:0
+#. module: ad_hr_skill_bsp
+msgid "Error ! You cannot create recursive Hierarchy of Employees."
+msgstr "Error! Anda tidak dapat  membuat  Hirarki Karyawan secara rekursif  ."
+
+#: model:ir.model,name:ad_hr_skill_bsp.model_hr_skill_record
+#. module: ad_hr_skill_bsp
+msgid "hr.skill.record"
+msgstr "hr.skill.record"
+

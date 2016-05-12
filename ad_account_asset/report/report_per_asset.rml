@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<document filename="curriculum_vitae.pdf">
+	<template pageSize="(612.0,792.0)" title="FIXED ASSET REPORT" author="ADSOFT - OpenERP Partner Indonesia" allowSplitting="20">
+		<pageTemplate id="first">
+			<frame id="first" x1="57.0" y1="57.0" width="498" height="678"/>
+			<pageGraphics>
+				<rect x="57" y="57" width="510" height="590" fill="no" stroke="yes" round="0"/>
+	        </pageGraphics>
+		</pageTemplate>
+	</template>
+	<stylesheet>
+		<blockTableStyle id="Standard_Outline">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+		</blockTableStyle>
+		<blockTableStyle id="line-above">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+			<lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="-1,-1"/>
+		</blockTableStyle>
+		<blockTableStyle id="Table0">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+		</blockTableStyle>
+		<blockTableStyle id="Table1">
+			<blockAlignment value="LEFT"/>
+			<blockValign value="TOP"/>
+			<lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="-1,-1"/>
+			<lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="-1,-1"/>
+			<lineStyle kind="LINEAFTER" colorName="#000000" start="0,0" stop="-1,-1"/>
+			<lineStyle kind="LINEBELOW" colorName="#000000" start="0,0" stop="-1,-1"/>
+		</blockTableStyle>
+		<initialize>
+			<paraStyle name="all" alignment="justify"/>
+		</initialize>
+		<paraStyle name="Standard" fontName="Helvetica"/>
+		<paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" alignment="center" spaceBefore="12.0" spaceAfter="6.0"/>
+		<paraStyle name="header_center" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="CENTER" spaceBefore="12.0" spaceAfter="6.0"/>
+		<paraStyle name="Text body" fontName="Helvetica" alignment="left" spaceBefore="0.0" spaceAfter="0.0"/>
+		<paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+		<paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+		<paraStyle name="Index" fontName="Helvetica"/>
+		<paraStyle name="Heading1" fontName="Helvetica-Bold" fontSize="18.0" alignment="CENTER" spaceBefore="0.0" spaceAfter="30.0"/>
+		<paraStyle name="Heading2" fontName="Helvetica-Bold" fontSize="14.0" alignment="CENTER" spaceBefore="0.0" spaceAfter="35.0"/>
+		<paraStyle name="Heading3" fontName="Helvetica-Bold" fontSize="12.0" alignment="LEFT" spaceBefore="6.0" spaceAfter="10.0"/>
+		<paraStyle name="Heading4" fontName="Helvetica-Bold" fontSize="11.0" alignment="LEFT" spaceBefore="6.0" spaceAfter="10.0"/>
+		<paraStyle name="Table Contents" fontName="Times-Roman"/>
+		<paraStyle name="Signature" fontName="Times-Roman"/>
+		<paraStyle name="Table Heading" fontName="Times-Roman" alignment="CENTER"/>
+	</stylesheet>
+	<images/>
+	<story>
+		<para style="Standard">[[ repeatIn( objects, 'o' ) ]]</para>
+		<para style="Heading1">FIXED ASSET REPORT</para>
+		<para style="Heading2" >[[ o.name ]]</para>
+		<!-- Employment Information -->
+		<blockTable colWidths="240.0,240.0" style="Table0">
+		<tr>
+		  <td>
+			<para style="Heading3">KETERANGAN ASSET :</para>
+		  </td>
+		  <td>
+			<para style="Heading3">HISTORY EMPLOYEE :</para>
+		  </td>
+		 </tr>
+		 </blockTable>
+		 
+		 <blockTable colWidths="120.0,120.0,130.0,120.0" style="Table0">
+			<tr>
+				<td>
+					<para style="Text body">KODE ASSET</para>
+				</td>
+				<td>
+					<para style="Text body">[[ o.code or '' ]]</para>
+				</td>
+				<td>
+					<para style="Text body">USER / EMPLOYEE</para>
+				</td>
+				<td>
+					<para style="Text body">[[ o.history_user and o.history_user[0].employee_id.name ]]</para>
+				</td>
+			</tr>
+			<tr>
+			<td>
+					<para style="Text body">KATEGORI</para>
+				</td>
+				<td>
+					<para style="Text body">[[ o.category_id and o.category_id.name or '' ]]</para>
+				</td>
+				<td>
+					<para style="Text body">DEPARTMENT</para>
+				</td>
+				<td>
+					<para style="Text body">[[ o.history_user and o.history_user[0].dept_id.name ]]</para>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<para style="Text body">HARGA PEMBELIAN</para>
+				</td>
+				<td>
+					<para style="Text body">[[ o.currency_id.symbol ]] [[ o.purchase_value or '' ]]</para>
+				</td>
+				<td>
+					<para style="Text body">TANGGAL PEMAKAIAN</para>
+				</td>
+				<td>
+					<para style="Text body">[[ o.history_user and o.history_user[0].start_date ]]</para>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<para style="Text body">RESIDUAL VALUE</para>
+				</td>
+				<td>
+					<para style="Text body">[[ o.currency_id.symbol ]] [[ o.value_residual or '' ]]</para>
+				</td>
+				<td>
+					<para style="Text body">TANGGAL PERPINDAHAN</para>
+				</td>
+				<td>
+					<para style="Text body">[[ o.history_user and o.history_user[0].end_date ]]</para>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<para style="Text body">TANGGAL PEMBELIAN</para>
+				</td>
+				<td>
+					<para style="Text body">[[ time.strftime('%d %B %Y', time.strptime(o.purchase_date,'%Y-%m-%d')) ]]</para>
+				</td>
+				<td><para style="Text body"> </para></td>
+				<td><para style="Text body"> </para></td>
+			</tr>
+		</blockTable>
+		
+		<!-- GAMBAR ASSET -->
+		<illustration width="498" height="10">
+			<stroke color="grey"/>
+			<lineMode width="3"/>
+			<lines>0 0 498 0</lines>
+		</illustration>
+		<para style="Heading3">GAMBAR ASSET:</para>
+		<image showBoundary="1" width="200" height="200" >[[ o.picture or '' ]]</image>
+		<image showBoundary="1" width="200" height="200" >[[ o.picture2 or '' ]]</image>
+
+	</story>
+</document>

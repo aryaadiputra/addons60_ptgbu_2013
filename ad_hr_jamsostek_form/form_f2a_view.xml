@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_form_f2a_tree" model="ir.ui.view">
+            <field name="name">Form F2A</field>
+            <field name="model">form.f2a</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Form F2A">
+                	<field name="name" />
+                	<field name="period_id" />
+                	<field name="npp" />
+                	<field name="nuk" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_form_f2a_form" model="ir.ui.view">
+            <field name="name">Form F2A</field>
+            <field name="model">form.f2a</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Form F2A">
+                	<field name="name" />
+                	<field name="period_id" />
+                	<field name="npp" />
+                	<field name="nuk" /><newline />
+                	<separator string="Jamsostek Member" colspan="4" /> <newline />
+                	<field name="jamsostek" nolabel="1" colspan="4">
+		            	<tree string="Jamsostek">
+		            		<field name="name" />
+		            		<field name="jnumber" />
+		            		<field name="jht_amount" />
+		            		<field name="jpk_amount" />
+		            		<field name="jkk_amount" />
+		            		<field name="jk_amount" />
+		            		<field name="total" />
+		            	</tree>
+                	</field>
+                </form>
+            </field>
+        </record>
+	</data>
+</openerp>
