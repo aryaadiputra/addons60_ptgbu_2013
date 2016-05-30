@@ -798,12 +798,18 @@ class cash_settlement(osv.osv):
         currency_pool = self.pool.get('res.currency')
         tax_obj = self.pool.get('account.tax')
         seq_obj = self.pool.get('ir.sequence')
+        period_obj = self.pool.get('account.period')
         for inv in self.browse(cr, uid, ids, context=context):
            
             if inv.move_id:
                 continue
             context_multi_currency = context.copy()
             context_multi_currency.update({'date': inv.date})
+            
+            ###
+            period_id = period_obj.browse(cr,uid,[period_obj.find(cr, uid, inv.date, context=None)[0]],context=None)[0].id
+            self.write(cr, uid, ids, {'period_id' : period_id})
+            ###
 
             if inv.number:
                 name = inv.number
@@ -822,7 +828,7 @@ class cash_settlement(osv.osv):
                 'narration': inv.narration,
                 'date': inv.date,
                 'ref': ref,
-                'period_id': inv.period_id and inv.period_id.id or False
+                'period_id': period_id or inv.period_id and inv.period_id.id or False
             }
             move_id = move_pool.create(cr, uid, move)
 
@@ -871,7 +877,7 @@ class cash_settlement(osv.osv):
                 'account_id': inv.account_advance_id.id,
                 'move_id': move_id,
                 'journal_id': inv.journal_id.id,
-                'period_id': inv.period_id.id,
+                'period_id': period_id or inv.period_id.id,
                 'partner_id': inv.partner_id.id,
                 'currency_id': company_currency <> current_currency and  current_currency or False,
                 'amount_currency': company_currency <> current_currency and sign * inv.amount or 0.0,
@@ -920,7 +926,7 @@ class cash_settlement(osv.osv):
                 'account_id': xaccount_id,
                 'move_id': move_id,
                 'journal_id': inv.journal_id.id,
-                'period_id': inv.period_id.id,
+                'period_id': period_id or inv.period_id.id,
                 'partner_id': inv.partner_id.id,
                 'currency_id': company_currency <> current_currency and  current_currency or False,
                 'amount_currency': company_currency <> current_currency and sign * inv.amount or 0.0,
@@ -957,7 +963,7 @@ class cash_settlement(osv.osv):
                     amount = currency_pool.compute(cr, uid, current_currency, company_currency, line.untax_amount or line.amount, context=context_multi_currency)
                 move_line = {
                     'journal_id': inv.journal_id.id,
-                    'period_id': inv.period_id.id,
+                    'period_id': period_id or inv.period_id.id,
                     ###########################Ambil Desc Dari Memo############################
                     #'name': line.name and line.name or '/',inv.name or '/',
                     #'name': inv.name or '/',
