@@ -21,7 +21,6 @@
             <field name="wkf_id" ref="wkf_advance"/>
             <field name="name">approve</field>
             <field name="action">compute()
-            check_user_create()
             create_note() 
             check_amount()
             write({'state':'approve'})</field>

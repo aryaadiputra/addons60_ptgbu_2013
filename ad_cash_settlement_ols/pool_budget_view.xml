@@ -1,0 +1,44 @@
+<openerp>
+	<data>
+		
+		<record model="ir.ui.view" id="pool_budget_tree">
+            <field name="name">pool.budget.tree</field>
+            <field name="model">pool.budget</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Pool Budget">
+                	<field name="account_id"/> 
+                	<field name="department_id"/>
+                </tree>
+           	</field>
+        </record>
+        
+        <record model="ir.ui.view" id="pool_budget_form">
+            <field name="name">pool.budget.form</field>
+            <field name="model">pool.budget</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Pool Budget">
+                	<field name="account_id" domain="[('type','!=','view')]" on_change="onchange_account_id(account_id)"/> 
+                	<field name="department_id"/>
+                </form>
+           	</field>
+        </record>
+	
+		<menuitem id="menu_pool_budget_conf" name="Pooling Budget Configuration" parent="ad_cash_settlement.menu_view_cash_advance" sequence="20"/>	
+		
+		<act_window id='act_pool_budget'
+				  	res_model='pool.budget' 
+					name='Pool Budget' 
+					domain="[]" 
+					view_type='form'
+					view_mode='tree,form' 
+					context="" />
+		
+		<menuitem id="menu_pool_budget"
+				name="Pool Budget"
+			  	action="act_pool_budget"
+			  	parent="menu_pool_budget_conf" 
+			  	sequence="5" />
+	</data>
+</openerp>

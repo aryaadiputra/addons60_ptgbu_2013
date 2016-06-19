@@ -647,56 +647,6 @@ class cash_advance(osv.osv):
             
             return {'warning': warning, 'value':{'employee_id':result, 'partner_id': result, 'account_id':result}}
 
-
-    def _get_approve_status(self, cr, uid, ids, field_name, arg, context=None):
-        print "xxxxxxxxxxxxxxxxxxxxxxxxxx", ids
-        result = {}
-        
-#        [('draft','Draft'),('lv_1','Waitting Manager Approve'),
-#                                            ('lv_2','Waitting Kadiv Approve'),('lv_3','Waitting CFO'),
-#                                            ('lv_4','Waitting Warehouse User'),
-#                                            ('cancel','Cancelled'),('done','Done')]
-        
-        
-        if len(ids) <= 1:
-            for adv in self.browse(cr, uid, ids, context):
-                if adv.state == 'draft':
-                    try:
-                        to_approve_name = adv.employee_id.name or ""
-                    except Exception,e:
-                        to_approve_name = "Request User Name Not Defined"
-                elif adv.state == 'approve':
-                    try:
-                        to_approve_name = adv.employee_id.department_id.division_id.manager_id.name or ""
-                    except Exception,e:
-                        to_approve_name = "Manager Name Not Defined"
-                elif adv.state == 'approve2':
-                    try:
-                        to_approve_name = "Soebianto Hidayat" or ""
-                    except Exception,e:
-                        to_approve_name = "Head of Division Name Not Defined"
-                elif adv.state == 'approve2-1':
-                    try:
-                        to_approve_name = "Sherly Imelda" or ""
-                    except Exception,e:
-                        to_approve_name = "Head of Division Name Not Defined"
-                elif adv.state == 'approve3':
-                    try:
-                        to_approve_name = "Yassica Caroline Catherin" or ""
-                    except Exception,e:
-                        to_approve_name = "Head of Division Name Not Defined"
-                elif adv.state == 'approve4':
-                    try:
-                        to_approve_name = "Darma W Nubary" or ""
-                    except Exception,e:
-                        to_approve_name = "Head of Division Name Not Defined"
-                else:
-                    to_approve_name = "/"
-                
-            print to_approve_name
-            result[adv.id] = to_approve_name or ""
-        return result
-
     _name = 'cash.advance'
     _description = 'Cash Advance'
     _order = "date desc, id desc"
@@ -809,11 +759,9 @@ class cash_advance(osv.osv):
         'prnts_line_ids'              : fields.one2many('parent.ticket.travel.line','advance_id','Lines', required=True),
         ################################################
         #######################Budget INfo#########################
-        #'budget_info_ids_ca': fields.many2many('budget.info.ca', 'budget_info_rel_ca', 'cash_advance_id', 'budget_info_id', 'Budget Line', readonly=True),
-        'budget_info_ids_ca': fields.one2many('budget.info.ca', 'cash_advance_id', 'Budget Line', readonly=False),
+        'budget_info_ids_ca': fields.many2many('budget.info.ca', 'budget_info_rel_ca', 'cash_advance_id', 'budget_info_id', 'Budget Line', readonly=True),
         #'budget_info_ids': fields.many2many('budget.info', 'budget_info_rel', 'material_req_id', 'budget_info_id', 'Budget Line', readonly=True),
         #'budget_info_ids': fields.many2many('budget.info.ca', 'budget_info_rel_ca', 'material_req_id', 'budget_info_id', 'Budget Line', readonly=True),
-        'approve_status': fields.function(_get_approve_status, method=True, string='To be Approve By',type= 'char', size=64),
         ################################################
     }
     _defaults = {
@@ -838,16 +786,6 @@ class cash_advance(osv.osv):
         'status' : 'advance',
         'user_id': lambda self, cr, uid, context: uid,
     }
-    
-    def check_user_create(self, cr, uid, ids):
-        
-        for adv in self.browse(cr, uid, ids, context=None):
-            if adv.user_id:
-                user_id = adv.user_id.id
-                if user_id <> uid and uid <> 1:
-                    raise osv.except_osv(_('Error User !'), _('You Can not Approve for Other User.'))
-        
-        return True
     
     def compute(self, cr, uid, ids, context=None):
         print ids, "----------------------------"

@@ -129,7 +129,7 @@
                         <separator orientation="vertical"/>
                         <field name="date"/>
                         <field name="number"/>
-<!--                        <field name="employee_id" string="Employee"/-->
+                        <field name="employee_id" string="Employee"/>
                     </group>
                     <newline/>
                     <group col='8' colspan='4'>
@@ -254,7 +254,7 @@
                         <field name="type" invisible="True"/>
                         <field name="payment_adm" attrs="{'required': [('state','=','approve3')],'readonly': [('state','!=','approve3')]}"/>
                         <field name="advance_method" attrs="{'required': [('state','=','draft')],'readonly': [('state','!=','draft')]}"/>
-<!--                        <button name="check_adv" type="object" string="Send Mail" icon="terp-stock_effects-object-colorize"/-->
+                        
                     </group>
                     <group col="6" colspan="4" attrs="{'invisible': [('advance_method','!=','travel')]}">
                         <separator string="Travel Date" colspan="4"/>
@@ -433,8 +433,6 @@
                         </page>
                     </notebook>
                     <group col="12" colspan="4">
-                        <field name="approve_status"/>
-                        <newline/>
                         <field name="state" attrs="{'readonly': [('state','is',True)]}"/>
                         <button name="compute" string="Compute" type="object" icon="terp-stock_format-scientific" attrs="{'invisible': [('state','!=','draft')]}"/>
                         <button name="cancel_voucher" string="Cancel" states="draft,proforma,approve,posted,approve2,approve2-1,approve3,approve4" confirm="Are you sure to confirm this record ?" icon="gtk-cancel"/>

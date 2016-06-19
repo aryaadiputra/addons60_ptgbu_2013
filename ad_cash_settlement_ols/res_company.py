@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,19 +19,18 @@
 #
 ##############################################################################
 
-#import account_voucher
-#import invoice
-#import report
-import wizard
-import report
-import advance_type
-import partner
-import cash_advance
-import cash_settlement
-import res_company
-import pool_budget
-
-import mail
+from osv import osv
+from osv import fields
+import os
+import tools
+from tools.translate import _
+from tools.safe_eval import safe_eval as eval
 
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+class res_company(osv.osv):
+    _inherit = "res.company"
+    _columns = {
+        'rounding_account_id': fields.many2one('account.account', 'Rounding Account'),
+    }
+    
+res_company()

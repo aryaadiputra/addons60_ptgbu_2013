@@ -31,7 +31,5 @@ import cash_settlement
 import res_company
 import pool_budget
 
-import mail
-
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,0 +1,45 @@
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="advance_type_tree">
+            <field name="name">advance.type.tree</field>
+            <field name="model">advance.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Advance Type">
+                	<field name="type"/>
+                	<field name="name"/>
+                	<field name="account_id"/> 
+                </tree>
+           	</field>
+        </record>
+		<record model="ir.ui.view" id="advance_type_form">
+            <field name="name">advance.type.form</field>
+            <field name="model">advance.type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Advance Type">
+                	<field name="name" required="1"/>
+                	<field name="type" required="1"/>
+                	<field name="account_id" required="1"/> 
+                </form>
+           	</field>
+        </record>
+	
+		<menuitem id="menu_advance_type_conf" name="Advance Type Configuration" parent="ad_cash_settlement.menu_view_cash_advance" sequence="20"/>	
+		
+		<act_window id='act_advance_type'
+				  	res_model='advance.type'
+					name='Advance Type' 
+					domain="[]" 
+					view_type='form'
+					view_mode='tree,form' 
+					context="" />
+		
+		<menuitem id="menu_advance_type"
+				name="Advance Type"
+			  	action="act_advance_type"
+			  	parent="menu_advance_type_conf"
+			  	sequence="5" />
+		
+	</data>
+</openerp>

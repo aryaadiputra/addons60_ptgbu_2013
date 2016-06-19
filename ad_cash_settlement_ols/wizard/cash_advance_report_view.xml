@@ -30,6 +30,7 @@
                 </form>
             </field>
         </record>
+        
         <record id="action_view_cash_advance_notification" model="ir.actions.act_window">
             <field name="name">Cash Advance Report Notification</field>
             <field name="type">ir.actions.act_window</field>
