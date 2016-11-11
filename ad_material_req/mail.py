@@ -145,14 +145,12 @@ class material_requisition(osv.osv):
                     email   = "/"
                     mr_to   = "/"
                     if state == 'draft':
-                        print "mr.user_id>>>>>", mr.user_id
                         email       = mr.user_id.user_email or "/"
                         last_app    = mr.date_start
                         mr_to       = mr.user_id.name
                     elif state == 'lv_1':
                         if mr.department :
                             if mr.department.manager_id:
-                                print "mr.department.manager_id>>>>>>", mr.department.manager_id
                                 email       = mr.department.manager_id.user_id.user_email
                                 mr_to       = mr.department.manager_id.user_id.name
                         last_app    = mr.user_app
@@ -160,7 +158,6 @@ class material_requisition(osv.osv):
                         if mr.department:
                             if mr.department.division_id:
                                 if mr.department.division_id.manager_id:
-                                    print "mr.department.division_id>>>>>", mr.department.division_id
                                     email       = mr.department.division_id.manager_id.user_id.user_email
                                     mr_to       = mr.department.division_id.manager_id.user_id.name
                         last_app    = mr.manager_app

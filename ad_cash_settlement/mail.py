@@ -146,8 +146,11 @@ class cash_advance(osv.osv):
                         email       = adv.user_id.user_email or "/"
                     elif state == 'approve':
                         print "adv.employee_id.department_id", adv
+                        print "adv.employee_id", adv.employee_id
+                        print "adv.employee_id.department_id", adv.employee_id.department_id
+                        print "adv.employee_id.department_id.division_id.manager_id", adv.employee_id.department_id.division_id.manager_id
                         email       = adv.employee_id.department_id.division_id.manager_id.user_id.user_email or "/"
-                        
+                        print "email>>>>", email
                     url         = str('%sopenerp/form/view?model=cash.advance&id=%d&ids=[%d]&db=%s\n'% (host,adv.id,adv.id,cr.dbname))
                     #print "url------------------->>", url
                     href        = str('<a href=%s>Approve</a>')%  url
