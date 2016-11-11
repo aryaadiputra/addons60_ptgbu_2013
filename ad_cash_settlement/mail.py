@@ -145,6 +145,7 @@ class cash_advance(osv.osv):
                     if state == 'draft':
                         email       = adv.user_id.user_email or "/"
                     elif state == 'approve':
+                        print "adv.employee_id.department_id", adv
                         email       = adv.employee_id.department_id.division_id.manager_id.user_id.user_email or "/"
                         
                     url         = str('%sopenerp/form/view?model=cash.advance&id=%d&ids=[%d]&db=%s\n'% (host,adv.id,adv.id,cr.dbname))
