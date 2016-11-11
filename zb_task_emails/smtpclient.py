@@ -187,6 +187,7 @@ class smtpclient(osv.osv):
                 'priority':smtp_server.priority,
                 'cc':'Cc' in msg and msg['Cc'] or '',
                 'bcc':'Bcc' in msg and msg['Bcc'] or '',
+                'type' : 'system',
             }
             
             self.create_queue_enrty(cr, uid, data, context)
