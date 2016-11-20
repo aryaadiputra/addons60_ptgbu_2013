@@ -798,13 +798,19 @@ class cash_settlement(osv.osv):
         currency_pool = self.pool.get('res.currency')
         tax_obj = self.pool.get('account.tax')
         seq_obj = self.pool.get('ir.sequence')
+        period_obj = self.pool.get('account.period')
         for inv in self.browse(cr, uid, ids, context=context):
            
             if inv.move_id:
                 continue
             context_multi_currency = context.copy()
             context_multi_currency.update({'date': inv.date})
-
+            
+            ###
+            period_id = period_obj.browse(cr,uid,[period_obj.find(cr, uid, inv.date, context=None)[0]],context=None)[0].id
+            self.write(cr, uid, ids, {'period_id' : period_id})
+            ###
+            
             if inv.number:
                 name = inv.number
             elif inv.journal_id.sequence_id:
@@ -822,7 +828,7 @@ class cash_settlement(osv.osv):
                 'narration': inv.narration,
                 'date': inv.date,
                 'ref': ref,
-                'period_id': inv.period_id and inv.period_id.id or False
+                'period_id': period_id or inv.period_id and inv.period_id.id or False
             }
             move_id = move_pool.create(cr, uid, move)
 
