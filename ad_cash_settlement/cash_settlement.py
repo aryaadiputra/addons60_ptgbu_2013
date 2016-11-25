@@ -877,7 +877,7 @@ class cash_settlement(osv.osv):
                 'account_id': inv.account_advance_id.id,
                 'move_id': move_id,
                 'journal_id': inv.journal_id.id,
-                'period_id': inv.period_id.id,
+                'period_id': period_id or inv.period_id.id,
                 'partner_id': inv.partner_id.id,
                 'currency_id': company_currency <> current_currency and  current_currency or False,
                 'amount_currency': company_currency <> current_currency and sign * inv.amount or 0.0,
@@ -926,7 +926,7 @@ class cash_settlement(osv.osv):
                 'account_id': xaccount_id,
                 'move_id': move_id,
                 'journal_id': inv.journal_id.id,
-                'period_id': inv.period_id.id,
+                'period_id': period_id or inv.period_id.id,
                 'partner_id': inv.partner_id.id,
                 'currency_id': company_currency <> current_currency and  current_currency or False,
                 'amount_currency': company_currency <> current_currency and sign * inv.amount or 0.0,
@@ -963,7 +963,7 @@ class cash_settlement(osv.osv):
                     amount = currency_pool.compute(cr, uid, current_currency, company_currency, line.untax_amount or line.amount, context=context_multi_currency)
                 move_line = {
                     'journal_id': inv.journal_id.id,
-                    'period_id': inv.period_id.id,
+                    'period_id': period_id or inv.period_id.id,
                     ###########################Ambil Desc Dari Memo############################
                     #'name': line.name and line.name or '/',inv.name or '/',
                     #'name': inv.name or '/',
@@ -1042,6 +1042,7 @@ class cash_settlement(osv.osv):
                     'account_id': rounding_account_id or account_id,
                     
                     #'account_id': account_id,
+                    'period_id': period_id or inv.period_id.id,
                     'move_id': move_id,
                     'partner_id': inv.partner_id.id,
                     'date': inv.date,
